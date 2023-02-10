@@ -3,7 +3,7 @@ html, body {
     width: 100vw;
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Consolas,monaco,monospace; 
     background: black;
 }
 
@@ -23,4 +23,36 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#typing-area {
+    height: 50vh;
+    width: 50vw;
+    display: grid;
+    grid-template: 1fr / 1fr;
+}
+
+#text-to-type {
+    overflow: wrap;
+    color: white;
+    grid-area: 1 / 1;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    font-family: Consolas,monaco,monospace;
+    font-size: 20px;
+    font-weight: 0;
+}
+
+#text {
+    background: transparent;
+    grid-area: 1 / 1;
+    color: transparent;
+    z-index: 2;
+    font-family: Consolas,monaco,monospace;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    caret-color: white;
+    text-decoration: none;
 }
