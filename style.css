@@ -7,18 +7,9 @@ html, body {
     background: black;
 }
 
-#logoname {
-    /* height: 20vh; */
-    /* width: 100vw; */
-    background: lime;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 #mainContent {
-    height: 85vh;
-    /* width: 100vw; */
+    height: 90vh;
+    /* width: 100vw; */:
     background: black;
     display: flex;
     justify-content: center;
@@ -59,13 +50,20 @@ html, body {
 }
 
 #header {
+    height: 10vh;
     width: 100vw;
     box-sizing: border-box;
     position: relative;
     background: #404040;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+#profile-pic > img {
+    height: 50px;
+    padding-right: 1vw;
+}
 
 /* Dropdown Button */
 .dropbtn {
@@ -80,6 +78,7 @@ html, body {
 .dropdown {
   position: relative;
   display: inline-block;
+  padding-left: 1vw;
 }
 
 /* Dropdown Content (Hidden by Default) */
