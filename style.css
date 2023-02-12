@@ -68,9 +68,10 @@ html, body {
 }
 
 #profile-pic > img {
-    height: 50px;
+    height: 40px;
     margin-right: 10px;
     border-radius: 50%;
+    padding-top: 3px;
 }
 
 .coralStyle {
@@ -95,8 +96,8 @@ button{
   border-radius: 0px 25px;
   background-color: orange;
   color: white;
-  padding: 16px;
-  font-weight: 550;
+  padding: 10px;
+  font-weight :550;
   font-size: medium;
   border: none;
   box-shadow: 0 8px 15px 0 rgba(255, 166, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
