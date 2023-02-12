@@ -11,13 +11,13 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: Consolas,monaco,monospace; 
-    background: black;
+    background: #333333;
 }
 
 #mainContent {
     height: 90vh;
     /* width: 100vw; */
-    background: black;
+    background: #404040;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +61,7 @@ html, body {
     width: 100vw;
     box-sizing: border-box;
     position: relative;
-    background: #404040;
+    background: #333333;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,21 +74,26 @@ html, body {
 
 /* Dropdown Button */
 button{
+  font-family: Consolas,monaco,monospace;
+  font-weight: 550;
+  font-size: medium;
   background-color: rgb(253, 195, 88);
 }
 .dropbtn {
-
+  border-radius: 0px 25px;
   background-color: orange;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-weight: 550;
+  font-size: medium;
   border: none;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 15px 0 rgba(255, 166, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
+  font-family: Consolas,monaco,monospace;
   position: relative;
   display: inline-block;
   margin-left: 10px;
@@ -96,15 +101,17 @@ button{
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
+  font-family: Consolas,monaco,monospace;
+  margin-left: 25px;
   display: none;
   position: absolute;
-  background-color: #bb1e1e;
   z-index: 1;
 }
 
 /* Links inside the dropdown */
 .dropdown-content button {
-  color: black;
+  font-family: Consolas,monaco,monospace;
+  color: rgb(255, 255, 255);
   padding: 12px 70px;
   text-decoration: none;
   display: block;
