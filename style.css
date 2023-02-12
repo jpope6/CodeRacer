@@ -1,3 +1,9 @@
+:root{
+  --main-color:#404040;
+  --text-color:white;
+
+}
+
 html, body {
     height: 100vh;
     /* width: 100vw; */
@@ -9,7 +15,7 @@ html, body {
 
 #mainContent {
     height: 90vh;
-    /* width: 100vw; */:
+    /* width: 100vw; */
     background: black;
     display: flex;
     justify-content: center;
@@ -26,7 +32,7 @@ html, body {
 
 #text-to-type {
     overflow: wrap;
-    color: white;
+    color: var(--text-color);
     grid-area: 1 / 1;
     z-index: 1;
     padding: 0;
@@ -45,12 +51,12 @@ html, body {
     font-size: 20px;
     padding: 0;
     margin: 0;
-    caret-color: white;
+    caret-color: var(--text-color);
     text-decoration: none;
 }
 
 #header {
-    height: 10vh;
+    height: 5vh;
     width: 100vw;
     box-sizing: border-box;
     position: relative;
@@ -62,48 +68,78 @@ html, body {
 
 #profile-pic > img {
     height: 50px;
-    padding-right: 1vw;
+    margin-right: 10px;
 }
 
 /* Dropdown Button */
+button{
+  background-color: rgb(253, 195, 88);
+}
 .dropbtn {
-  background-color: #94898e;
+
+  background-color: orange;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
   display: inline-block;
-  padding-left: 1vw;
+  margin-left: 10px;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: #bb1e1e;
   z-index: 1;
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content button {
   color: black;
-  padding: 12px 16px;
+  padding: 12px 70px;
   text-decoration: none;
   display: block;
+  border: none;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #e00e07;}
+.dropdown-content button:hover {background-color: orange;}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #00ff08;}
+.dropdown:hover .dropbtn {background-color: orange;}
+
+.typewriter h1 {
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
