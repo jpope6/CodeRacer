@@ -1,6 +1,6 @@
 html, body {
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
     margin: 0;
     padding: 0;
     font-family: Consolas,monaco,monospace; 
@@ -8,8 +8,8 @@ html, body {
 }
 
 #logoname {
-    height: 20vh;
-    width: 100vw;
+    /* height: 20vh; */
+    /* width: 100vw; */
     background: lime;
     display: flex;
     justify-content: center;
@@ -18,11 +18,12 @@ html, body {
 
 #mainContent {
     height: 85vh;
-    width: 100vw;
+    /* width: 100vw; */
     background: black;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 #typing-area {
@@ -58,9 +59,11 @@ html, body {
 }
 
 #header {
+    width: 100vw;
     box-sizing: border-box;
     position: relative;
     background: #404040;
+    display: flex;
 }
 
 
