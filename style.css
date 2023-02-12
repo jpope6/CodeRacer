@@ -61,7 +61,7 @@ html, body {
     width: 100vw;
     box-sizing: border-box;
     position: relative;
-    background: #333333;
+    background: transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,6 +71,17 @@ html, body {
     height: 50px;
     margin-right: 10px;
 }
+
+.coralStyle {
+  background-color: coral;
+  color: white;
+}
+
+.blueStyle {
+  background-color: blue;
+  color: white;
+}
+
 
 /* Dropdown Button */
 button{
@@ -151,3 +162,5 @@ button{
   from, to { border-color: transparent }
   50% { border-color: orange }
 }
+
+
