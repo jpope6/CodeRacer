@@ -7,7 +7,7 @@
 
 html, body {
     height: 100vh;
-    /* width: 100vw; */
+    width: 100vw;
     margin: 0;
     padding: 0;
     font-family: Consolas,monaco,monospace; 
@@ -16,7 +16,7 @@ html, body {
 
 #mainContent {
     height: 90vh;
-    /* width: 100vw; */
+    width: 100vw;
     background: #404040;
     display: flex;
     justify-content: center;
@@ -41,6 +41,21 @@ html, body {
     font-family: Consolas,monaco,monospace;
     font-size: 20px;
     font-weight: 0;
+}
+
+#text-to-type > p {
+    margin: 0;
+    padding: 0;
+}
+
+.tab {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.double-tab {
+    display: inline-block;
+    margin-left: 80px;
 }
 
 #text {
@@ -138,14 +153,17 @@ button{
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: .15em; /* Adjust as needed */
   animation: 
-    typing 3.5s steps(30, end),
+    typing 7.5s steps(30, end) infinite,
     blink-caret .5s step-end infinite;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+    0% { width: 0% }
+    25% { width: 100% }
+    50% { width: 100% }
+    75% { width: 0% }
+    100% { width: 0% }
 }
 
 /* The typewriter cursor effect */
