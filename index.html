@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="style.css" rel="stylesheet">
-    </head>
-    <body>
-        <div id = "header">
-            <div class="dropdown">
-                <button class="dropbtn">Themes</button>
-                <div class="dropdown-content">
-                    <button onclick="DefultTheme()">Defult Theme</button>
-                    <button onclick="CoralTheme()">Coral Theme</button>
-                    <button onclick="BlueTheme()">Blue Theme</button>
-                </div>
-              </div>
-              <div id="logoname">
-                <div class="typewriter">
-                    <h1>Code Racer.</h1>
-                  </div>
-              </div>
-              <a id="profile-pic" href = "profile/index.html"><img src = "images/pfp.jpg" alt="Profile Pic"></img></a>
-        </div>
 
-        <div id="mainContent">
-            <div id="typing-area">
-                <textarea spellcheck="false" id="text" rows="40" cols="80"></textarea>
-                <p id="text-to-type">SpongeBob SquarePants (or simply SpongeBob) is an American animated comedy television series created by marine science educator and animator Stephen Hillenburg for Nickelodeon. It chronicles the adventures of the title character and his aquatic friends in the fictional underwater city of Bikini Bottom. The fifth-longest-running American animated series, its high popularity has made it a media franchise. It is the highest rated Nickelodeon series and the most profitable property for Paramount Consumer Products, generating over $13 billion in merchandising revenue as of 2019.</p>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="header">
+        <div class="dropdown">
+            <button class="dropbtn">Themes</button>
+            <div class="dropdown-content">
+                <button onclick="DefultTheme()">Defult Theme</button>
+                <button onclick="CoralTheme()">Coral Theme</button>
+                <button onclick="BlueTheme()">Blue Theme</button>
             </div>
         </div>
-        <script src="app.js"></script>
-    </body>
+        <div id="logoname">
+            <div class="typewriter">
+                <h1>Code Racer.</h1>
+            </div>
+        </div>
+        <a id="profile-pic" href="profile/login.html"><img src="images/pfp.jpg" alt="Profile Pic"></img></a>
+    </div>
+
+    <div id="mainContent">
+        <div id="typing-area">
+            <textarea spellcheck="false" id="text" rows="40" cols="80"></textarea>
+            <p id="text-to-type">SpongeBob SquarePants (or simply SpongeBob) is an American animated comedy television
+                series created by marine science educator and animator Stephen Hillenburg for Nickelodeon. It chronicles
+                the adventures of the title character and his aquatic friends in the fictional underwater city of Bikini
+                Bottom. The fifth-longest-running American animated series, its high popularity has made it a media
+                franchise. It is the highest rated Nickelodeon series and the most profitable property for Paramount
+                Consumer Products, generating over $13 billion in merchandising revenue as of 2019.</p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
 </html>
