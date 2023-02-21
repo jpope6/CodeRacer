@@ -89,6 +89,11 @@ html, body {
     padding-top: 3px;
 }
 
+#userlink{
+  text-decoration: none; 
+  color: orange; 
+}
+
 /* Dropdown Button */
 button{
   font-family: Consolas,monaco,monospace;
