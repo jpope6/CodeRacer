@@ -60,7 +60,6 @@
             sessionStorage.removeItem('user');
             localStorage.removeItem('user');
             localStorage.removeItem('keepLoggedIn');
-            window.location = "/index.html";
         }
 
         // Loads Windows
@@ -92,7 +91,8 @@
                 signoutlink.innerText = "Sign Out";
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
-                signoutlink.href = "javascript:signOut()";
+                signoutlink.onclick = "javascript:signOut()";
+                signoutlink.href = "/index.html";
             }
         }
 
