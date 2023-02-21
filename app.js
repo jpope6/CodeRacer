@@ -36,4 +36,37 @@ function BlueTheme()
 //     background-color: blue;
 //     color: white;
 //   }
-  
+ 
+// References
+
+let userlink = document.getElementById('userlink');
+var currentuser = null;
+
+// Gets the username and checks to see if the user wants to be kept logged in or not
+
+function getUsername() {
+    let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+    if (keepLoggedIn == "yes") {
+        currentuser = JSON.parse(localStorage.getItem('user'));
+    }
+    else {
+        currentuser = JSON.parse(sessionStorage.getItem('user'));
+    }
+}
+
+// Loads Windows
+
+// If the "Create New Account" is pressed, it will redirect the user to the register.html page
+// If the "Login" button is pressed, it will redirect the user to the login.html page
+// If the user is signed in, it will display the username and the signout button on the top right-hand corner of the page
+// Once the person presses "Sign Out", it will redirect them to the homepage
+window.onload = function () {
+    getUsername();
+    if (currentuser != null) {
+        userlink.innerText = currentuser.username;
+        userlink.classList.replace("btn", "nav-link");
+        userlink.classList.add("btn-primary");
+        userlink.href = "#";
+    }
+}
