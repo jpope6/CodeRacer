@@ -18,7 +18,7 @@ function BlueTheme()
 
 
 
-}function DefultTheme() 
+}function DefaultTheme() 
 {
     main.style.background = "#404040";
     body.style.background = "#333333";
