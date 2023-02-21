@@ -89,65 +89,63 @@ html, body {
     padding-top: 3px;
 }
 
-#userlink{
-  text-decoration: none; 
-  color: orange; 
-}
 
 /* Dropdown Button */
 button{
   font-family: Consolas,monaco,monospace;
   font-weight: 550;
   font-size: medium;
-  background-color: rgb(253, 195, 88);
-}
-.dropbtn {
-  border-radius: 0px 25px;
-  background-color: orange;
-  color: white;
-  padding: 10px;
-  font-weight :550;
-  font-size: medium;
+  background-color: transparent;
   border: none;
-  box-shadow: 0 8px 15px 0 rgba(255, 166, 0, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
+  min-width: 150px;
+  padding: 16px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  font-family: Consolas,monaco,monospace;
-  position: relative;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   font-family: Consolas,monaco,monospace;
-  margin-left: 25px;
+  font-weight: 550;
+  font-size: medium;
   display: none;
   position: absolute;
+  right: 0;
+  background-color: transparent;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown-content button {
-  font-family: Consolas,monaco,monospace;
-  color: rgb(255, 255, 255);
-  padding: 12px 70px;
-  text-decoration: none;
-  display: block;
+.dropbtn {
+  border-radius: 25px 25px;
+  background-color:orange;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
   border: none;
+  cursor: pointer;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content button:hover {background-color: orange;}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown-content a {
+  color: rgb(0, 0, 0);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: orange;}
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content button:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: 	#F28C28;
+}
 
 .typewriter h1 {
   color: #fff;
