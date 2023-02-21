@@ -119,14 +119,14 @@
             // Stores the data only if the session is active. Otherwise, the data is gone
             if (!keepLoggedIn) {
                 sessionStorage.setItem('user', JSON.stringify(user));
-                window.location = "/index.html";
+                window.location = "/CodeRacer/index.html";
             }
             else {
                 // Save users information in the local storage
                 // The local storage is a permanent storage that keeps the user logged in even if the browser is closed
                 localStorage.setItem('keepLoggedIn', 'yes');
                 localStorage.setItem('user', JSON.stringify(user));
-                window.location = "/index.html";
+                window.location = "/CodeRacer/index.html";
             }
         }
 
