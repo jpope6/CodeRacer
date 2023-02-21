@@ -68,5 +68,6 @@ window.onload = function () {
         userlink.classList.replace("btn", "nav-link");
         userlink.classList.add("btn-primary");
         userlink.href = '/CodeRacer/profile/profile.html';
+        link.href = 'style.css';
     }
 }
