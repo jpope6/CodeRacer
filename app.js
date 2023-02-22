@@ -57,10 +57,7 @@ function getUsername() {
 
 // Loads Windows
 
-// If the "Create New Account" is pressed, it will redirect the user to the register.html page
-// If the "Login" button is pressed, it will redirect the user to the login.html page
-// If the user is signed in, it will display the username and the signout button on the top right-hand corner of the page
-// Once the person presses "Sign Out", it will redirect them to the homepage
+// If the user is signed in, it will display the username under the profile icon
 window.onload = function () {
     getUsername();
     if (currentuser != null) {
