@@ -148,6 +148,7 @@ button{
 }
 
 .typewriter h1 {
+  
   color: #fff;
   font-family: monospace;
   overflow: hidden; /* Ensures the content is not revealed until the animation */

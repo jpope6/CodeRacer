@@ -8,21 +8,43 @@
     <link href="style.css" rel="stylesheet">
 </head>
 
+
 <body>
-    <div id="header">
-        <div id="logoname">
-            <div class="typewriter" style="text-align: center";>
+    <div id="header" style = "justify-content: center;">
+
+        <div id="logoname" >
+            <div class="typewriter">
                 <h1>Code Racer</h1>
             </div>
         </div>
 
-        <!-- <a id="profile-pic" href="profile/login.html"><img src="images/pfp.jpg" alt="Profile Pic"></img></a> -->
+        <div class="dropdown" style="position: absolute;top: 0px;right: 0px;" >
+            <button class="dropbtn">Your Profile</button>
+            <div class="dropdown-content">
+            <a id="userlink" href="\CodeRacer\profile\login.html">Not Logged in</a>
+            <a id="userlink" href="\CodeRacer\index.html">Logout</a>
+            <a id="userlink" href="\CodeRacer\setting\setting.html">Settings</a>
+            <a id="userlink" href="\CodeRacer">Home page</a>
+
+            </div>
+          </div>
+          
+
+          
     </div>
 
     <div id="mainContent">
-
+        <div class="dropdown" style="float:left;margin-left: 10px;">
+            <button class="dropbtn">Themes</button>
+            <div class="dropdown-content" style="left:0;">
+            <button onclick="DefaultTheme()">Default Theme</button>
+            <button onclick="CoralTheme()">Coral Theme</button>
+            <button onclick="BlueTheme()">Blue Theme</button>
+            </div>
+          </div>
     </div>
     <script src="app.js"></script>
 </body>
+
 
 </html>
