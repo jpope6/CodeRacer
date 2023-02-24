@@ -13,42 +13,45 @@
         <div class="dropdown" style="float:left;margin-left: 10px;">
             <button class="dropbtn">Themes</button>
             <div class="dropdown-content" style="left:0;">
-            <button onclick="DefaultTheme()">Default Theme</button>
-            <button onclick="CoralTheme()">Coral Theme</button>
-            <button onclick="BlueTheme()">Blue Theme</button>
+                <button onclick="DefaultTheme()">Default Theme</button>
+                <button onclick="CoralTheme()">Coral Theme</button>
+                <button onclick="BlueTheme()">Blue Theme</button>
             </div>
-          </div>
+        </div>
         <div id="logoname">
             <div class="typewriter">
                 <h1>Code Racer</h1>
             </div>
         </div>
 
-        <div class="dropdown" style="float:right;margin-right: 10px;" >
+        <div class="dropdown" style="float:right;margin-right: 10px;">
             <button class="dropbtn">Your Profile</button>
             <div class="dropdown-content">
-            <a id="userlink" href="\CodeRacer\profile\login.html">Not Logged in</a>
-            <a id="userlink" href="\CodeRacer\index.html">Logout</a>
-            <a id="userlink" href="\CodeRacer\setting\setting.html">Settings</a>
-            <a id="userlink" href="\CodeRacer">Home page</a>
+                <a id="userlink" href="\CodeRacer\profile\login.html">Not Logged in</a>
+                <a id="userlink" href="\CodeRacer\index.html">Logout</a>
+                <a id="userlink" href="\CodeRacer\setting\setting.html">Settings</a>
+                <a id="userlink" href="\CodeRacer">Home page</a>
             </div>
-          </div>
-          
+        </div>
 
-          
+
+
     </div>
 
     <div id="mainContent">
+        <div id="language-dropdown" class="dropdown">
+            <button id="language-dropbtn" class="dropbtn">Select Language</button>
+            <div class="dropdown-content">
+                <a id="python" onclick="changeLanguage('Python')">Python</a>
+                <a id="java" onclick="changeLanguage('Java')">Java</a>
+            </div>
+        </div>
         <div id="typing-area">
             <textarea spellcheck="false" id="text" rows="40" cols="80"></textarea>
-            <p id="text-to-type">SpongeBob SquarePants (or simply SpongeBob) is an American animated comedy television
-                series created by marine science educator and animator Stephen Hillenburg for Nickelodeon. It chronicles
-                the adventures of the title character and his aquatic friends in the fictional underwater city of Bikini
-                Bottom. The fifth-longest-running American animated series, its high popularity has made it a media
-                franchise. It is the highest rated Nickelodeon series and the most profitable property for Paramount
-                Consumer Products, generating over $13 billion in merchandising revenue as of 2019.</p>
+            <pre id="text-to-type"><code id="code"></code></pre>
         </div>
     </div>
+    <script src="code-snip.js"></script>
     <script src="app.js"></script>
 </body>
 

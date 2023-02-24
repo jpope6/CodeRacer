@@ -19,7 +19,8 @@ html, body {
     width: 100vw;
     background: #404040;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     position: relative;
 }
