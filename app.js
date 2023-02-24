@@ -1,5 +1,6 @@
 let main = document.getElementById("mainContent");
 let text = document.getElementById("text-to-type");
+
 let body = document.body;
 
 function CoralTheme() 
