@@ -177,4 +177,7 @@ button{
   50% { border-color: orange }
 }
 
+#language-dropdown {
+    z-index: 3;
+}
 
