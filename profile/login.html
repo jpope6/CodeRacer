@@ -90,7 +90,7 @@
             get(child(dbref, "UsersList/" + username.value)).then((snapshot) => {
                 if (snapshot.exists()) {
                     let dbpass = decryptedPassword(snapshot.val().password);
-                    if (dbpass == pass.value) {
+                    if (dbpass == pass.value && pass.value.length > 0) {
                         login(snapshot.val());
                     }
                     else {
