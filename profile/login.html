@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +87,6 @@
             const dbref = ref(db);
 
             // Checks if the password is correct or not from the database and allows the user to login, if the information is correct
-            console.log(username.value);
             get(child(dbref, "UsersList/" + username.value)).then((snapshot) => {
                 if (snapshot.exists()) {
                     let dbpass = decryptedPassword(snapshot.val().password);
@@ -126,7 +126,7 @@
                 // The local storage is a permanent storage that keeps the user logged in even if the browser is closed
                 localStorage.setItem('keepLoggedIn', 'yes');
                 localStorage.setItem('user', JSON.stringify(user));
-                window.location = "/CodeRacer/index.html";
+                window.location = "/CodeRacer/profile.html";
             }
         }
 

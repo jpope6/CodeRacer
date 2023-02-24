@@ -60,6 +60,7 @@
             sessionStorage.removeItem('user');
             localStorage.removeItem('user');
             localStorage.removeItem('keepLoggedIn');
+            window.location = "/CodeRacer/index.html";
         }
 
         // Loads Windows
@@ -91,8 +92,7 @@
                 signoutlink.innerText = "Sign Out";
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
-                signoutlink.onclick = "javascript:signOut()";
-                signoutlink.href = "/CodeRacer/index.html";
+                signoutlink.href = "javascript:signOut()";
             }
         }
 
