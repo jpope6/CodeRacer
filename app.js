@@ -3,24 +3,21 @@ let text = document.getElementById("text-to-type");
 
 let body = document.body;
 
-function CoralTheme() 
-{
+function CoralTheme() {
     main.style.background = "#fbb666";
     text.style.color = "#55231d";
-    body.style.background ="#f98d44";
+    body.style.background = "#f98d44";
 
 }
 
-function BlueTheme() 
-{
+function BlueTheme() {
     main.style.background = "#7fcdff";
     body.style.background = "#064273";
     text.style.color = "white";
 
 
 
-}function DefaultTheme() 
-{
+} function DefaultTheme() {
     main.style.background = "#404040";
     body.style.background = "#333333";
     text.style.color = "white";
@@ -32,15 +29,16 @@ function BlueTheme()
 //     background-color: coral;
 //     color: white;
 //   }
-  
+
 //   .blueStyle {
 //     background-color: blue;
 //     color: white;
 //   }
- 
+
 // References
 
 let userlink = document.getElementById('userlink');
+let signoutmainlink = document.getElementById('signoutmainlink');
 var currentuser = null;
 
 // Gets the username and checks to see if the user wants to be kept logged in or not
@@ -56,6 +54,15 @@ function getUsername() {
     }
 }
 
+// When the "signOut" function gets called, the user is logged out and is redirected to the homepage
+
+function signOut() {
+    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
+    localStorage.removeItem('keepLoggedIn');
+    window.location = "/CodeRacer/index.html";
+}
+
 // Loads Windows
 
 // If the user is signed in, it will display the username under the profile icon
@@ -69,3 +76,10 @@ window.onload = function () {
         link.href = 'style.css';
     }
 }
+
+// Allows the user to sign out from the homepage
+
+var submitButton = document.getElementById('signoutmainlink');
+submitButton.addEventListener('click', function handleClick() {
+    signoutmainlink.href = "javascript:signOut()";
+});
