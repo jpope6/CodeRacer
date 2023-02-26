@@ -48,8 +48,7 @@
             <!-- <a class="btn btn-outline-primary" href="profile.html" role="button"> Login</a> -->
             <!-- The code below is a button that you can find on Bootstrap. (w-100 means the width and 100 pixels) -->
             <a class="btn btn-outline-primary" href="register.html" role="button"> Sign Up </a>
-            <!-- Work-in progress -->
-            <button type="text" id="sub_btn" class="btn btn-outline-primary"> Forgot Password </button>
+            <a class="btn btn-outline-primary" href="reset.html" role="button"> Forgot Password? </a>
         </div>
     </div>
 
@@ -83,7 +82,7 @@
 
         // Authentication Process
 
-        function authenticationUser() {
+        function authenticateUser() {
             const dbref = ref(db);
 
             // Checks if the password is correct or not from the database and allows the user to login, if the information is correct
@@ -132,7 +131,7 @@
 
         // Assign the events
 
-        submit.addEventListener('click', authenticationUser);
+        submit.addEventListener('click', authenticateUser);
 
     </script>
 </body>
