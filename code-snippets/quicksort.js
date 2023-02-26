@@ -41,7 +41,7 @@ export const partition = {
         + "    array[high] = temp;\n"
         + "    return (i + 1);\n"
         + "}",
-    "Javascript": "function partition(items, left, right) {\n"
+    "JavaScript": "function partition(items, left, right) {\n"
         + "    var pivot = items[Math.floor((right + left) / 2)];\n"
         + "    i = left;\n"
         + "    j = right;\n"
@@ -82,7 +82,7 @@ export const quicksort = {
         + "      quickSort(array, pi + 1, high);\n"
         + "    }\n"
         + "}",
-    "Javascript": "function quickSort(items, left, right) {\n"
+    "JavaScript": "function quickSort(items, left, right) {\n"
         + "    var index;\n"
         + "    if (items.length > 1) {\n"
         + "        index = partition(items, left, right);\n"
