@@ -33,8 +33,16 @@
             <label for="floatingUsername"> Username </label>
         </div>
         <div class="form-floating mb-3">
+            <input type="email" placeholder="Email" id="emailInp" class="form-control mb-3">
+            <label for="floatingEmail"> Email </label>
+        </div>
+        <div class="form-floating mb-3">
             <input type="password" placeholder="Password" id="passInp" class="form-control mb-3">
             <label for="floatingPassword"> Enter New Password </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" placeholder="ConfirmPassword" id="confirmPassInp" class="form-control mb-3">
+            <label for="floatingPassword"> Confirm New Password </label>
         </div>
         <button type="text" id="sub_btn" class="btn btn-outline-primary"> Submit </button>
     </div>
@@ -64,7 +72,9 @@
         // References
 
         const username = document.getElementById('userInp');
+        const email = document.getElementById('emailInp');
         const pass = document.getElementById('passInp');
+        const confirm_pass = document.getElementById('confirmPassInp');
         const submit = document.getElementById('sub_btn');
 
         // This function is for validation (Regular Expressions) (Compilers - Lexical Analyzer)
@@ -93,26 +103,46 @@
             const dbRef = ref(db);
 
             // Checks if the user exists. "UsersList" is the folder that contains the user's data
-            // Updates the username and password once the user is verified
-            
+            // Updates password once the user is verified by checking the user's email and making sure that the same password was entered twice
+
             get(child(dbRef, "UsersList/" + username.value)).then((snapshot) => {
                 if (!snapshot.exists()) {
                     alert("Account Doesn't Exist!")
                 }
                 else {
-                    update(ref(db, "UsersList/" + username.value),
-                        {
-                            password: encryptedPassword()
-                        })
-                        .then(() => {
-                            alert("Password was reset successfully!");
-                            window.location = "login.html";
-                        })
-                        .catch((error) => {
-                            alert("Error" + error);
-                        })
+                    let dbemail = decryptedEmail(snapshot.val().email);
+                    console.log(dbemail);
+                    if (dbemail == email.value) {
+                        if (confirm_pass.value != pass.value) {
+                            update(ref(db, "UsersList/" + username.value),
+                                {
+                                    password: encryptedPassword()
+                                })
+                                .then(() => {
+                                    alert("Password was reset successfully!");
+                                    window.location = "login.html";
+                                })
+                                .catch((error) => {
+                                    alert("Error" + error);
+                                })
+                        }
+                        else {
+                            alert("Invalid Password")
+                        }
+                    }
+                    else {
+                        alert("Invalid Email Address")
+                    }
                 }
+
             });
+        }
+
+        // Decryption Process
+
+        function decryptedEmail(dbemail) {
+            var decryptEmail = CryptoJS.AES.decrypt(dbemail, email.value);
+            return decryptEmail.toString(CryptoJS.enc.Utf8);
         }
 
         // The user's data is encrypted using AES 256-bit encryption
