@@ -103,7 +103,9 @@
             const dbRef = ref(db);
 
             // Checks if the user exists. "UsersList" is the folder that contains the user's data
-            // Updates password once the user is verified by checking the user's email and making sure that the same password was entered twice
+            // Updates password once the user is verified by checking the user's email and making sure
+            // that the user didn't enter the same password that is already in the database and
+            // making the user enter the same password twice
 
             get(child(dbRef, "UsersList/" + username.value)).then((snapshot) => {
                 if (!snapshot.exists()) {
@@ -111,9 +113,9 @@
                 }
                 else {
                     let dbemail = decryptedEmail(snapshot.val().email);
-                    console.log(dbemail);
+                    let dbpass = decryptedPassword(snapshot.val().password);
                     if (dbemail == email.value) {
-                        if (confirm_pass.value != pass.value) {
+                        if (confirm_pass.value == pass.value && (dbpass != pass.value) && (dbpass != confirm_pass.value)) {
                             update(ref(db, "UsersList/" + username.value),
                                 {
                                     password: encryptedPassword()
@@ -134,7 +136,6 @@
                         alert("Invalid Email Address")
                     }
                 }
-
             });
         }
 
@@ -143,6 +144,11 @@
         function decryptedEmail(dbemail) {
             var decryptEmail = CryptoJS.AES.decrypt(dbemail, email.value);
             return decryptEmail.toString(CryptoJS.enc.Utf8);
+        }
+        
+        function decryptedPassword(dbpass) {
+            var decryptPass = CryptoJS.AES.decrypt(dbpass, pass.value);
+            return decryptPass.toString(CryptoJS.enc.Utf8);
         }
 
         // The user's data is encrypted using AES 256-bit encryption
