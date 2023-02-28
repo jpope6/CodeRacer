@@ -1,14 +1,31 @@
 let main = document.getElementById("mainContent");
-let text = document.getElementById("text-to-type");
 let body = document.body;
 
+
+function DefultFontSize(){
+    main.style.fontWeight = "400";
+}
+// function SmallFontSize(){
+//     main.style.fontWeight = "100";
+// }
+function LargeFontSize(){
+    main.style.fontWeight = "900";
+}
+
+function Font1(){
+    main.style.fontFamily ="Consolas,monaco,monospace";                                         
+}
+function Font2(){
+    main.style.fontFamily = "Andale Mono, sans-serif";                                          
+}
+function Font3(){
+    main.style.fontFamily = "Major Mono Display, sans-serif";                                 
+}
 function CoralTheme() 
 {
     main.style.background = "#fbb666";
     body.style.background ="#f98d44";
     text.style.color = "#55231d";
-
-
 }
 
 function BlueTheme() 
