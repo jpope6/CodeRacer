@@ -34,7 +34,7 @@ js.addEventListener("click", () => changeLanguage("JavaScript"));
 function splitSnippetToDivs() {
     // Create new code container and divArray for new snippet
     let code_container = document.createElement("div");
-    code_container.className = "code_container";
+    code_container.id = "code_container";
     divArray = []
 
 
