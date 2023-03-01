@@ -182,3 +182,12 @@ button{
     z-index: 3;
 }
 
+#code_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    display: flex;
+}
+
