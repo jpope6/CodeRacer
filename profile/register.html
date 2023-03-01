@@ -152,7 +152,16 @@
                             fullname: encryptedFullName(),
                             email: encryptedEmail(),
                             username: username.value,
-                            password: encryptedPassword()
+                            password: encryptedPassword(),
+                            // Add placeholder values for the statistics
+                            total_words_typed: 1,
+                            total_characters_typed: 2,
+                            avg_WPM: 3,
+                            avg_WPS: 4,
+                            avg_CPM: 5,
+                            avg_CPS: 6,
+                            total_completed_runs: 7,
+                            total_time_spent_typing: 8
                         })
                         .then(() => {
                             alert("User was added successfully!");
