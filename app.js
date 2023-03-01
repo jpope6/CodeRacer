@@ -1,29 +1,29 @@
-let main = document.getElementById("mainContent");
-let text = document.getElementById("text-to-type");
+// let main = document.getElementById("mainContent");
+// let text = document.getElementById("text-to-type");
 
-let body = document.body;
+// let body = document.body;
 
-function CoralTheme() {
-    main.style.background = "#fbb666";
-    text.style.color = "#55231d";
-    body.style.background = "#f98d44";
+// function CoralTheme() {
+//     main.style.background = "#fbb666";
+//     text.style.color = "#55231d";
+//     body.style.background = "#f98d44";
 
-}
+// }
 
-function BlueTheme() {
-    main.style.background = "#7fcdff";
-    body.style.background = "#064273";
-    text.style.color = "white";
-
-
-
-} function DefaultTheme() {
-    main.style.background = "#404040";
-    body.style.background = "#333333";
-    text.style.color = "white";
+// function BlueTheme() {
+//     main.style.background = "#7fcdff";
+//     body.style.background = "#064273";
+//     text.style.color = "white";
 
 
-}
+
+// } function DefaultTheme() {
+//     main.style.background = "#404040";
+//     body.style.background = "#333333";
+//     text.style.color = "white";
+
+
+// }
 
 // .coralStyle {
 //     background-color: coral;
@@ -86,3 +86,34 @@ var submitButton = document.getElementById('signoutmainlink');
 submitButton.addEventListener('click', function handleClick() {
     signoutmainlink.href = "javascript:signOut()";
 });
+
+const colorThemes = document.querySelectorAll('[name="theme"]');
+
+// store theme
+const storeTheme = function (theme) {
+  localStorage.setItem("theme", theme);
+};
+
+// set theme when visitor returns
+const setTheme = function () {
+  const activeTheme = localStorage.getItem("theme");
+  colorThemes.forEach((themeOption) => {
+    if (themeOption.id === activeTheme) {
+      themeOption.checked = true;
+    }
+  });
+  // fallback for no :has() support
+  document.documentElement.className = activeTheme;
+};
+
+
+
+colorThemes.forEach((themeOption) => {
+  themeOption.addEventListener("click", () => {
+    storeTheme(themeOption.id);
+    // fallback for no :has() support
+    document.documentElement.className = themeOption.id;
+  });
+});
+
+document.onload = setTheme();

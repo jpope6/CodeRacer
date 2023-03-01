@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html
 <html lang="en">
 
 <head>
@@ -8,17 +8,32 @@
     <link href="style.css" rel="stylesheet">
 </head>
 
-
 <body>
-    <div id="header" style = "justify-content: center;">
-
-        <div id="logoname" >
+    <div id="header">
+      <form class="color-picker">
+        <fieldset>
+          <legend class="visually-hidden">Pick a color scheme</legend>
+          <label for="light" class="visually-hidden">Light</label>
+          <input type="radio" name="theme" id="light" checked>
+      
+          <label for="pink" class="visually-hidden">Pink theme</label>
+          <input type="radio" id="pink" name="theme">
+      
+          <label for="blue" class="visually-hidden">Blue theme</label>
+          <input type="radio" id="blue" name="theme">
+      
+          <label for="green" class="visually-hidden">Green theme</label>
+          <input type="radio" id="green" name="theme">
+      
+        </fieldset>
+      </form>
+    <div id="logoname">
             <div class="typewriter">
                 <h1>Code Racer</h1>
             </div>
         </div>
 
-        <div class="dropdown" style="position: absolute;top: 0px;right: 0px;" >
+        <div class="dropdown" style="float:right;margin-right: 10px;" >
             <button class="dropbtn">Your Profile</button>
             <div class="dropdown-content">
             <a id="userlink" href="\CodeRacer\profile\login.html">Not Logged in</a>
@@ -35,14 +50,6 @@
 
     <div id="mainContent">
         Settings
-        <div class="dropdown" style="float:left;margin-left: 10px;">
-            <button class="dropbtn">Themes</button>
-            <div class="dropdown-content" style="left:0;">
-            <button onclick="DefaultTheme()">Default Theme</button>
-            <button onclick="CoralTheme()">Coral Theme</button>
-            <button onclick="BlueTheme()">Blue Theme</button>
-            </div>
-          </div>
           <div class="dropdown" style="float:left;margin-left: 10px;">
             <button class="dropbtn">Font Size</button>
             <div class="dropdown-content" style="left:0;">
@@ -53,9 +60,8 @@
           <div class="dropdown" style="float:left;margin-left: 10px;">
             <button class="dropbtn">Fonts</button>
             <div class="dropdown-content" style="left:0;">
-            <button onclick="Font1()">Defult Font</button>
-            <button onclick="Font2()">Andale Mono</button>    
-            <button onclick="Font3()">Major Mono</button>                           
+            <button onclick="Font1()">Defult </button>
+            <button onclick="Font2()">Courier New</button>                         
             </div>
           </div>
 

@@ -1,7 +1,7 @@
 :root{
-    --main-color:#404040;
-    --text-color:white;
-  
+  --clr-body-bg: #333;
+  --clr-text: hsl(0, 0%, 100%);
+  --clr-heading: hsl(0 0% 25%);
     
   }
   
@@ -11,7 +11,8 @@
       margin: 0;
       padding: 0;
       font-family: Consolas,monaco,monospace; 
-      background: #333333;
+      background: var(--clr-heading);
+      color: var(--clr-text);
   }
   
   #mainContent {
@@ -22,6 +23,8 @@
       justify-content: center;
       align-items: center;
       position: relative;
+    background: var(--clr-body-bg)
+
   }
   
   #typing-area {
@@ -87,6 +90,10 @@
       margin-right: 10px;
       border-radius: 50%;
       padding-top: 3px;
+  }
+  #logoname{
+    position: absolute;
+    left: 50%;
   }
   
   
@@ -175,5 +182,121 @@
     50% { border-color: orange }
   }
   
+  h1,
+  h2,
+  h3 {
+    color: var(--clr-heading);
+    line-height: 1.1;
+  }
   
+
+  
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+            clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  .color-picker > fieldset {
+    top: 3;
+    border: 0;
+    display: absolute;
+    left: 2%;
+    width: 300px;
+    background: none;
+    padding: 1rem 1rem;
+    }
+  
+  .color-picker input[type=radio] {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    outline: 3px solid var(--radio-color, currentColor);
+    outline-offset: 3px;
+    border-radius: 50%;
+  }
+  
+  .color-picker input[type=radio]:checked {
+    background-color: var(--radio-color);
+  }
+  
+  .color-picker input[type=radio]#light {
+    --radio-color: gray;
+  }
+  
+  .color-picker input[type=radio]#pink {
+    --radio-color: pink;
+  }
+  
+  .color-picker input[type=radio]#blue {
+    --radio-color: blue;
+  }
+  
+  .color-picker input[type=radio]#green {
+    --radio-color: green;
+  }
+  
+  
+  .pink {
+    --clr-body-bg: hsl(310 50% 90%);
+    --clr-card-bg: hsl(310 50% 100%);
+    --clr-text: hsl(310 50% 15%);
+    --clr-heading: hsl(310 50% 25%);
+  }
+  
+  .blue {
+    --clr-body-bg: hsl(209 50% 90%);
+    --clr-card-bg: hsl(209 50% 100%);
+    --clr-text: hsl(209 50% 15%);
+    --clr-heading: hsl(209 50% 25%);
+  }
+  
+  .green {
+    --clr-body-bg: hsl(109 50% 90%);
+    --clr-card-bg: hsl(109 50% 100%);
+    --clr-text: hsl(109 50% 15%);
+    --clr-heading: hsl(109 50% 25%);
+  }
+  
+  .dark {
+    --clr-body-bg: hsl(209 50% 10%);
+    --clr-card-bg: hsl(209 50% 5%);
+    --clr-text: hsl(209 50% 90%);
+    --clr-heading: hsl(209 50% 80%);
+  }
+  
+  :root:has(#pink:checked) {
+    --clr-body-bg: hsl(310 50% 90%);
+    --clr-card-bg: hsl(310 50% 100%);
+    --clr-text: hsl(310 50% 15%);
+    --clr-heading: hsl(310 50% 25%);
+  }
+  
+  :root:has(#blue:checked) {
+    --clr-body-bg: hsl(209 50% 90%);
+    --clr-card-bg: hsl(209 50% 100%);
+    --clr-text: hsl(209 50% 15%);
+    --clr-heading: hsl(209 50% 25%);
+  }
+  
+  :root:has(#green:checked) {
+    --clr-body-bg: hsl(109 50% 90%);
+    --clr-card-bg: hsl(109 50% 100%);
+    --clr-text: hsl(109 50% 15%);
+    --clr-heading: hsl(109 50% 25%);
+  }
+  
+  :root:has(#dark:checked) {
+    --clr-body-bg: hsl(209 50% 10%);
+    --clr-card-bg: hsl(209 50% 5%);
+    --clr-text: hsl(209 50% 90%);
+    --clr-heading: hsl(209 50% 80%);
+  } 
   
