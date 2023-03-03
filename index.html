@@ -12,21 +12,21 @@
     <div id="header">
         <form class="color-picker">
             <fieldset>
-              <legend class="visually-hidden">Pick a color scheme</legend>
-              <label for="light" class="visually-hidden">Light</label>
-              <input type="radio" name="theme" id="light" checked>
-          
-              <label for="pink" class="visually-hidden">Pink theme</label>
-              <input type="radio" id="pink" name="theme">
-          
-              <label for="blue" class="visually-hidden">Blue theme</label>
-              <input type="radio" id="blue" name="theme">
-          
-              <label for="green" class="visually-hidden">Green theme</label>
-              <input type="radio" id="green" name="theme">
-          
+                <legend class="visually-hidden">Pick a color scheme</legend>
+                <label for="light" class="visually-hidden">Light</label>
+                <input type="radio" name="theme" id="light" checked>
+
+                <label for="pink" class="visually-hidden">Pink theme</label>
+                <input type="radio" id="pink" name="theme">
+
+                <label for="blue" class="visually-hidden">Blue theme</label>
+                <input type="radio" id="blue" name="theme">
+
+                <label for="green" class="visually-hidden">Green theme</label>
+                <input type="radio" id="green" name="theme">
+
             </fieldset>
-          </form>
+        </form>
         <div id="logoname">
             <div class="typewriter">
                 <h1>Code Racer</h1>
@@ -41,23 +41,18 @@
                 <a id="userlink" href="\CodeRacer">Homepage</a>
             </div>
         </div>
-
-
-
     </div>
 
     <div id="mainContent">
-        <div id="language-dropdown" class="dropdown">
-            <button id="language-dropbtn" class="dropbtn">Select Language</button>
-            <div class="dropdown-content">
-                <a id="c++">C++</a>
-                <a id="java">Java</a>
-                <a id="js">JavaScript</a>
-                <a id="python">Python</a>
-            </div>
+        <div id="language-container">
+            <h2 id="c++">C++</h2>
+            <h2 id="java">Java</h2>
+            <h2 id="js">JavaScript</h2>
+            <h2 id="python">Python</h2>
         </div>
+
         <div id="typing-area">
-            
+
             <pre id="text-to-type"><code id="code"></code></pre>
         </div>
     </div>
