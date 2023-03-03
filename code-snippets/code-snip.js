@@ -1,5 +1,5 @@
 import { binary_search } from "./binary-search.js";
-// import { partition, quicksort } from "./quicksort.js";
+import { partition, quicksort } from "./quicksort.js";
 
 let code = document.getElementById("text-to-type");
 let python = document.getElementById("python");
@@ -9,7 +9,7 @@ let js = document.getElementById("js");
 
 
 
-const code_list = [binary_search]
+const code_list = [binary_search, partition, quicksort]
 let cur_language = "Python"
 let random_index = Math.floor(Math.random() * code_list.length);
 let current_block = code_list[random_index][cur_language]
@@ -128,7 +128,7 @@ function checkCharCorrectness(keyName, gameIndex) {
 function findNextNonWhiteSpace() {
     let currIndex = gameIndex;
 
-    while(divArray[currIndex + 1].innerText == ' '){
+    while (divArray[currIndex + 1].innerText == ' ') {
         currIndex++;
     }
     currIndex++;
@@ -137,7 +137,7 @@ function findNextNonWhiteSpace() {
 function findPreviousNonWhiteSpace() {
     let currIndex = gameIndex;
 
-    while(divArray[currIndex - 1].innerText == ' '){
+    while (divArray[currIndex - 1].innerText == ' ') {
         currIndex--;
     }
     currIndex--;
@@ -181,8 +181,8 @@ document.addEventListener('keydown', (event) => {
     var keyName = event.key;
 
     const KEY_IGNR = ["Shift", "CapsLock", "Alt", "Insert", "Delete", "Home", "End", "PageUp", "PageDown", "ScrollLock", "Pause",
-                        "NumLock", "Control", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "ArrowUp",
-                        "ArrowDown", "ArrowLeft", "ArrowRight", "Escape"];
+        "NumLock", "Control", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "ArrowUp",
+        "ArrowDown", "ArrowLeft", "ArrowRight", "Escape"];
     if (!KEY_IGNR.includes(keyName)) {
         keydownSend(keyName);
     }
