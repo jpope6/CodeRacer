@@ -24,6 +24,9 @@ function changeLanguage(language) {
     code_container.remove();
 
     code_container = splitSnippetToDivs();
+
+    //Reset to initial conditions just incase some of the current code has been typed
+    resetToInitialConditions();
 }
 
 python.addEventListener("click", () => changeLanguage("Python"));
@@ -62,6 +65,31 @@ function splitSnippetToDivs() {
 //Start of Character Correctness Code ---------------------------------------------
 var gameIndex = 0;
 
+//User stats NOT READY YET
+//From profile if available, for use in calculating next average
+// GlobalUserStats = {
+//     totalWords: 0,
+//     totalChars: 0,
+//     avgWPM: 0,
+//     avgWPS: 0,
+//     avgCPM: 0,
+//     avgCPS: 0,
+//     totalRunsCompleted: 0,
+//     totalTimeTyping: 0
+// };
+
+// //Stats for current snippet
+// LocalUserStats = {
+//     totalWords: 0,
+//     totalChars: 0,
+//     avgWPM: 0,
+//     avgWPS: 0,
+//     avgCPM: 0,
+//     avgCPS: 0,
+//     totalRunsCompleted: 0,
+//     totalTimeTyping: 0
+// };
+
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {
 
@@ -83,7 +111,7 @@ function keydownSend(keyName) {
     else if (keyName == "Backspace") {
         //Make sure not backspacing into nothing
         if (gameIndex > 0) {
-            //Check if backspacing into a tab TODO************
+            //Check if backspacing into a tab
             var lastNonWhiteSpace = findPreviousNonWhiteSpace();
             var distToLastNonWhiteSpace = gameIndex - lastNonWhiteSpace;
 
@@ -102,13 +130,37 @@ function keydownSend(keyName) {
     }
     else {
         //Legitimate letter input
-
         //If newline is what is needed, it is necessary to hit enter.  This prevents cursor misalignment
         if (divArray[gameIndex].innerText == '\n') {
             return;
         }
+
         var isCorr = checkCharCorrectness(keyName, gameIndex);
-        updateCursorForward(gameIndex, isCorr);
+
+        //Check for last character
+        if (isLastChar(gameIndex)) {
+            //Currently on last, we should unhighlight the current div, and for now, we can change code snippets
+            //console.log("Last char!");
+
+            unsetHighlight(gameIndex);
+
+            if (isCorr) {
+                setCorrectBG(gameIndex);
+            }
+            else {
+                setIncorrectBG(gameIndex);
+            }
+
+            //Send local stats here TODO**
+
+            //For now we can change snippet
+            changeToRandomSnippet();
+            resetToInitialConditions();
+            return;
+
+        } else {
+            updateCursorForward(gameIndex, isCorr);
+        }
     }
 
     gameIndex++;
@@ -143,6 +195,12 @@ function findPreviousNonWhiteSpace() {
     currIndex--;
     return currIndex;
 }
+function isLastChar(gameIndex) {
+    if (gameIndex == divArray.length - 1) {
+        return 1;
+    }
+    else return 0;
+}
 
 //Highlighting functions
 function updateCursorForward(gameIndex, isCorr) {
@@ -174,6 +232,31 @@ function setCorrectBG(index) {
 }
 function setIncorrectBG(index) {
     divArray[index].style.backgroundColor = "#ff3300";
+}
+function resetToInitialConditions() {
+    //clearLocalStats();
+    gameIndex = 0;
+    for (var i = 0; i < divArray.length; i++) {
+        unsetHighlight(i);
+    }
+    beginCursorHighlight();
+}
+// function clearLocalStats() {
+//     for (var i = 0; i < LocalUserStats.length; i++) {
+//         LocalUserStats[i] = 0;
+//     }
+// }
+function changeToRandomSnippet() {
+    let mostRecentIndex = random_index;
+
+    //Select new random code index, but do not select the same one as before
+    do {
+        random_index = Math.floor(Math.random() * code_list.length);
+    } while (random_index == mostRecentIndex);
+
+    current_block = code_list[random_index][cur_language];
+    code_container.remove();
+    code_container = splitSnippetToDivs();
 }
 
 //Event Listener
