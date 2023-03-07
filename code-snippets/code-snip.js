@@ -7,6 +7,13 @@ let java = document.getElementById("java");
 let cpp = document.getElementById("c++");
 let js = document.getElementById("js");
 
+let test_button = document.getElementById("testButton");
+let modal = document.getElementById("modal");
+
+test_button.addEventListener('click', () => {
+    modal.showModal();
+})
+
 
 
 const code_list = [binary_search, partition, quicksort]
@@ -87,7 +94,9 @@ var gameIndex = 0;
 //     avgCPM: 0,
 //     avgCPS: 0,
 //     totalRunsCompleted: 0,
-//     totalTimeTyping: 0
+//     totalTimeTyping: 0,
+//     accuracy,
+//     lifetime accuracy 
 // };
 
 //Char Check & Manipulation Functions
@@ -152,6 +161,8 @@ function keydownSend(keyName) {
             }
 
             //Send local stats here TODO**
+            
+            modal.showModal();
 
             //For now we can change snippet
             changeToRandomSnippet();

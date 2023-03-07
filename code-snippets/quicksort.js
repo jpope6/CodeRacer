@@ -59,7 +59,7 @@ export const partition = {
         "        }\n",
         "    }\n",
         "    return i;\n",
-        "}\n"]
+        "}"]
 }
 
 export const quicksort = {
@@ -67,7 +67,7 @@ export const quicksort = {
         "  if low < high:\n",
         "    pi = partition(array, low, high)\n",
         "    quickSort(array, low, pi - 1)\n",
-        "    quickSort(array, pi + 1, high)\n"],
+        "    quickSort(array, pi + 1, high)"],
     "Java": ["static void quickSort(int array[], int low, int high) {\n",
         "    if (low < high) {\n",
         "      int pi = partition(array, low, high);\n",
@@ -94,5 +94,5 @@ export const quicksort = {
         "        }\n",
         "    }\n",
         "    return items;\n",
-        "}\n"]
+        "}"]
 }
