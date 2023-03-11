@@ -1,6 +1,7 @@
 // link: https://www.programiz.com/dsa/quick-sort
 
 export const partition = {
+    "link":"https://www.geeksforgeeks.org/quick-sort/",
     "Python": ["def partition(array, low, high):\n",
         "  pivot = array[high]\n",
         "  i = low - 1\n",
@@ -63,6 +64,7 @@ export const partition = {
 }
 
 export const quicksort = {
+    "link":"https://www.geeksforgeeks.org/quick-sort/",
     "Python": ["def quickSort(array, low, high):\n",
         "  if low < high:\n",
         "    pi = partition(array, low, high)\n",

@@ -7,14 +7,36 @@ let java = document.getElementById("java");
 let cpp = document.getElementById("c++");
 let js = document.getElementById("js");
 
+// *******BLOCK FOR MODAL POP-UP WHEN CODE FINISHED TYPING*********
+
 let test_button = document.getElementById("testButton");
 let modal = document.getElementById("modal");
+let closeModalButton = document.getElementById("modalClose");
+
 
 test_button.addEventListener('click', () => {
     modal.showModal();
-})
+});
+
+// close modal when user clicks on the close button
+closeModalButton.addEventListener('click', () => {
+    modal.close();
+    changeToRandomSnippet();
+    resetToInitialConditions();
+});
+
+// close modal when user clicks outside of the modal
+// modal.addEventListener('click', (e) => {
+//    if (e.target.nodeName === "DIALOG") {
+//        modal.close();
+//        changeToRandomSnippet();
+//        resetToInitialConditions();
+//    }
+//});
 
 
+
+// **********END OF BLOCK FOR MODAL****************
 
 const code_list = [binary_search, partition, quicksort]
 let cur_language = "Python"
@@ -40,6 +62,14 @@ python.addEventListener("click", () => changeLanguage("Python"));
 java.addEventListener("click", () => changeLanguage("Java"));
 cpp.addEventListener("click", () => changeLanguage("C++"));
 js.addEventListener("click", () => changeLanguage("JavaScript"));
+
+// Add link to learn more about the algorithm
+const learnMoreButton = document.getElementById("learnMore");
+
+learnMoreButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open(code_list[random_index]["link"]);
+});
 
 function splitSnippetToDivs() {
     // Create new code container and divArray for new snippet
@@ -164,9 +194,11 @@ function keydownSend(keyName) {
             
             modal.showModal();
 
+            // I moved this block to execute when our pop up closes -Jared
+            // 
             //For now we can change snippet
-            changeToRandomSnippet();
-            resetToInitialConditions();
+            //changeToRandomSnippet();
+            //resetToInitialConditions();
             return;
 
         } else {
@@ -233,16 +265,23 @@ function beginCursorHighlight() {
     setHighlight(gameIndex);
 }
 function setHighlight(index) {
-    divArray[index].style.backgroundColor = "#c2c2c2";
+    // divArray[index].style.backgroundColor = "#c2c2c2";
+    divArray[index].style.backgroundColor = "";
+    divArray[index].style.color = "";
+    divArray[index].className = "activeDiv";
 }
 function unsetHighlight(index) {
-    divArray[index].style.backgroundColor = "";
+    // divArray[index].style.backgroundColor = "";
+    divArray[index].style.color = "";
+    divArray[index].className = "";
 }
 function setCorrectBG(index) {
-    divArray[index].style.backgroundColor = "#00ff00";
+    // divArray[index].style.backgroundColor = "#00ff00";
+    divArray[index].style.color = "#00ff00";
 }
 function setIncorrectBG(index) {
-    divArray[index].style.backgroundColor = "#ff3300";
+    // divArray[index].style.backgroundColor = "#ff3300";
+    divArray[index].style.color = "#ff3300";
 }
 function resetToInitialConditions() {
     //clearLocalStats();

@@ -1,5 +1,6 @@
 
 export const binary_search = {
+    "link":"https://www.geeksforgeeks.org/binary-search/",
     "Python": ["def binary_search(arr, target):\n",
         "    left = 0\n",
         "    right = len(arr) - 1\n",
