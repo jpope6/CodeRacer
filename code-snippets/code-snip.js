@@ -26,13 +26,13 @@ closeModalButton.addEventListener('click', () => {
 });
 
 // close modal when user clicks outside of the modal
-// modal.addEventListener('click', (e) => {
-//    if (e.target.nodeName === "DIALOG") {
-//        modal.close();
-//        changeToRandomSnippet();
-//        resetToInitialConditions();
-//    }
-//});
+modal.addEventListener('click', (e) => {
+    if (e.target.nodeName === "DIALOG") {
+        modal.close();
+        changeToRandomSnippet();
+        resetToInitialConditions();
+    }
+});
 
 
 
