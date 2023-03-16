@@ -28,7 +28,7 @@ export const partition = {
         "    return (i + 1);\n",
         "}"],
     "C++": ["int partition(int& array[], int low, int high) {\n",
-        "    int pivot = array[high];",
+        "    int pivot = array[high];\n",
         "    int i = low - 1;\n",
         "    for (int j = low; j < high; j++) {\n",
         "        i++;\n",

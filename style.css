@@ -5,30 +5,30 @@
     
   }
   
-  html, body {
-      height: 100vh;
-      width: 100vw;
-      margin: 0;
-      padding: 0;
-      font-family: Consolas,monaco,monospace; 
-      background: var(--clr-heading);
-      color: var(--clr-text);
-  }
-  
-  #mainContent {
-      height: 90vh;
-      width: 100vw;
-      background: #404040;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      background: var(--clr-body-bg)
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Consolas,monaco,monospace; 
+    background: var(--clr-body-bg);
+    color: var(--clr-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-  }
+#mainContent {
+    width: 100%;
+    background: #404040;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--clr-body-bg)
+}
 
-  @keyframes fade-in {
+/* animation for modal */
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
@@ -46,362 +46,309 @@
   }
 }
 
-#modal {
-  padding: 0;
-  height: 50%;
-  width: 50%;
-  border-radius: 10px;
-  background: var(--clr-heading);
-}
-
-#modalContent {
-    height: 100%;
-    width: 100%;
+#language-container {
+    width: 40%;
+    background: var(--clr-body-bg); 
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#modal[open] {
-  animation: slide-up 500ms forwards, fade-in 500ms forwards;
-}
-
-#modal::backdrop {
-  background: rgb(0, 0, 0 / 0.5);
-  opacity: 0;
-}
-
-#modal[open]::backdrop {
-  animation: fade-in 500ms forwards;
-}
-
-#modalContent > * {
-    font-family: Consolas,monaco,monospace; 
-}
-
-#modalContent > h1 {
-    color:var(--clr-text);
-    margin: 0 auto;
-    font-size: 3rem;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.stats > h2 {
+#language-container > h2 {
     color: var(--clr-text);
+    cursor: pointer;
 }
 
-#learnMore, #modalClose {
-    width:fit-content;
-    margin: 0 auto;
-    color: var(--clr-text);
-    border: 1px solid var(--clr-text);
-    border-radius: 10px;
-}
-
-#learnMore:hover, #modalClose:hover {
+#language-container > h2:hover {
     opacity: 0.5;
 }
 
-  #language-container {
-      width: 40%;
-      background: var(--clr-body-bg); 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-
-  #language-container > h2 {
-      color: var(--clr-text);
-      cursor: pointer;
-  }
-
-  #language-container > h2:hover {
-      opacity: 0.5;
-  }
+#typing-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: var(--text-color)
+}
   
-  #typing-area {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5%;
-      border-radius: 10px;
-      border: 1px solid;
-      border-color: var(--text-color)
-  }
-  
-  #text-to-type {
-      overflow: wrap;
-      color: var(--text-color);
-      grid-area: 1 / 1;
-      z-index: 1;
-      padding: 0;
-      margin: 0;
-      font-family: Consolas,monaco,monospace;
-      font-size: 20px;
-      font-weight: 0;
-  }
-  
-  #text-to-type > p {
-      margin: 0;
-      padding: 0;
-  }
-  
-  #text {
-      background: transparent;
-      grid-area: 1 / 1;
-      color: transparent;
-      z-index: 2;
-      font-family: Consolas,monaco,monospace;
-      font-size: 20px;
-      padding: 0;
-      margin: 0;
-      caret-color: var(--text-color);
-      text-decoration: none;
-  }
-
-  .activeDiv {
-      animation: blink .8s infinite; 
-  }
-
-  @keyframes blink {
-      0% {
-      background-image: linear-gradient(left, white, white 10%, transparent 10%, transparent 100%);
-      background-image: -webkit-linear-gradient(left, white, white 10%, transparent 10%, transparent 100%);
-      }
-
-      100% {
-      background-image: linear-gradient(left, transparent, transparent 10%, transparent 10%, transparent 100%);
-      background-image: -webkit-linear-gradient(left, transparent, transparent 10%, transparent 10%, transparent 100%);
-      }
-  }
-  
-  #header {
-      height: 53.5px;
-      width: 100vw;
-      box-sizing: border-box;
-      position: relative;
-      background: transparent;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-  
-  #profile-pic > img {
-      height: 40px;
-      margin-right: 10px;
-      border-radius: 50%;
-      padding-top: 3px;
-  }
-  #logoname{
-    position: absolute;
-    left: 45%;
-  }
-  
-  
-  /* Dropdown Button */
-  button{
-    font-family: Consolas,monaco,monospace;
-    font-weight: 550;
-    font-size: medium;
-    background-color: transparent;
-    border: none;
-    min-width: 150px;
-    padding: 16px;
-  }
-  
-  .dropdown-content {
-    font-family: Consolas,monaco,monospace;
-    font-weight: 550;
-    font-size: medium;
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: transparent;
-    min-width: relative;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+#text-to-type {
+    overflow: wrap;
+    color: var(--text-color);
+    grid-area: 1 / 1;
     z-index: 1;
-  }
+    padding: 0;
+    margin: 0;
+    font-family: Consolas,monaco,monospace;
+    font-size: 20px;
+    font-weight: 0;
+}
   
-  .dropbtn {
-    border-radius: 25px 25px;
-    background-color:orange;
-    color: var(--text-color);
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+#text-to-type > p {
+    margin: 0;
+    padding: 0;
+}
   
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content a {
-    color: var(--text-color);
-    padding: 12px 16px;
+#text {
+    background: transparent;
+    grid-area: 1 / 1;
+    color: transparent;
+    z-index: 2;
+    font-family: Consolas,monaco,monospace;
+    font-size: 20rem;
+    padding: 0;
+    margin: 0;
+    caret-color: var(--text-color);
     text-decoration: none;
-    display: block;
-  }
+}
+
+.activeDiv {
+    animation: blink .8s infinite; 
+}
+
+@keyframes blink {
+    0% {
+    background-image: linear-gradient(left, white, white 10%, transparent 10%, transparent 100%);
+    background-image: -webkit-linear-gradient(left, white, white 10%, transparent 10%, transparent 100%);
+    }
+
+    100% {
+    background-image: linear-gradient(left, transparent, transparent 10%, transparent 10%, transparent 100%);
+    background-image: -webkit-linear-gradient(left, transparent, transparent 10%, transparent 10%, transparent 100%);
+    }
+}
   
-  .dropdown-content a:hover {background-color: var(--clr-heading);}
-  .dropdown-content button:hover {background-color: #f1f1f1;}
+#header {
+    height: 10%;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--clr-heading)
+}
+
+#footer {
+    height: 10%;
+    width: 100%;
+    background: var(--clr-heading)
+}
   
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+#profile-pic > img {
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    padding-top: 3px;
+}
+
+#logoname{
+  position: absolute;
+  left: 45%;
+}
   
-  .dropdown:hover .dropbtn {
-    background-color: 	#F28C28;
-  }
   
-  .typewriter h1 {
-    color: #fff;
-    font-family: monospace;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation: 
-      typing 7.5s steps(30, end) infinite,
-      blink-caret .5s step-end infinite;
-  }
+/* Dropdown Button */
+button{
+  font-family: Consolas,monaco,monospace;
+  font-weight: 550;
+  font-size: medium;
+  background-color: transparent;
+  border: none;
+  min-width: 150px;
+  padding: 16px;
+}
   
-  /* The typing effect */
-  @keyframes typing {
-      0% { width: 0% }
-      25% { width: 100% }
-      50% { width: 100% }
-      75% { width: 0% }
-      100% { width: 0% }
-  }
+.dropdown-content {
+  font-family: Consolas,monaco,monospace;
+  font-weight: 550;
+  font-size: medium;
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: transparent;
+  min-width: relative;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+ 
+.dropbtn {
+  border-radius: 25px 25px;
+  background-color:orange;
+  color: var(--text-color);
+  padding: 16px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+ 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
   
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange }
-  }
+.dropdown-content a {
+  color: var(--text-color);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
   
-  h1,
-  h2,
-  h3 {
-    color: var(--clr-heading);
-    line-height: 1.1;
-  }
+.dropdown-content a:hover {background-color: var(--clr-heading);}
+.dropdown-content button:hover {background-color: #f1f1f1;}
+ 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+  
+.dropdown:hover .dropbtn {
+  background-color: #F28C28;
+}
+  
+.typewriter h1 {
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 7.5s steps(30, end) infinite,
+    blink-caret .5s step-end infinite;
+}
+  
+/* The typing effect */
+@keyframes typing {
+    0% { width: 0% }
+    25% { width: 100% }
+    50% { width: 100% }
+    75% { width: 0% }
+    100% { width: 0% }
+}
+  
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
+  
+h1,
+h2,
+h3 {
+  color: var(--clr-heading);
+  line-height: 1.1;
+}
   
 
   
-  .visually-hidden {
-    clip: rect(0 0 0 0);
-    -webkit-clip-path: inset(50%);
-            clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
   
-  .color-picker > fieldset {
-    top: 3;
-    border: 0;
-    display: absolute;
-    left: 2%;
-    width: 300px;
-    background: none;
-    padding: 1rem 1rem;
-    }
+.color-picker > fieldset {
+  top: 3;
+  border: 0;
+  display: absolute;
+  left: 2%;
+  width: 300px;
+  background: none;
+  padding: 1rem 1rem;
+}
   
-  .color-picker input[type=radio] {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    width: 1.5rem;
-    height: 1.5rem;
-    outline: 3px solid var(--radio-color, currentColor);
-    outline-offset: 3px;
-    border-radius: 50%;
-  }
+.color-picker input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  outline: 3px solid var(--radio-color, currentColor);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
   
-  .color-picker input[type=radio]:checked {
-    background-color: var(--radio-color);
-  }
+.color-picker input[type=radio]:checked {
+  background-color: var(--radio-color);
+}
   
-  .color-picker input[type=radio]#light {
-    --radio-color: gray;
-  }
+.color-picker input[type=radio]#light {
+  --radio-color: gray;
+}
   
-  .color-picker input[type=radio]#pink {
-    --radio-color: pink;
-  }
+.color-picker input[type=radio]#pink {
+  --radio-color: pink;
+}
   
-  .color-picker input[type=radio]#blue {
-    --radio-color: blue;
-  }
+.color-picker input[type=radio]#blue {
+  --radio-color: blue;
+}
   
-  .color-picker input[type=radio]#green {
-    --radio-color: green;
-  }
+.color-picker input[type=radio]#green {
+  --radio-color: green;
+}
   
   
-  .pink {
-    --clr-body-bg: hsl(310 50% 90%);
-    --clr-card-bg: hsl(310 50% 100%);
-    --clr-text: hsl(310 50% 15%);
-    --clr-heading: hsl(310 50% 25%);
-  }
+.pink {
+  --clr-body-bg: hsl(310 50% 90%);
+  --clr-card-bg: hsl(310 50% 100%);
+  --clr-text: hsl(310 50% 15%);
+  --clr-heading: hsl(310 50% 25%);
+}
   
-  .blue {
-    --clr-body-bg: hsl(209 50% 90%);
-    --clr-card-bg: hsl(209 50% 100%);
-    --clr-text: hsl(209 50% 15%);
-    --clr-heading: hsl(209 50% 25%);
-  }
+.blue {
+  --clr-body-bg: hsl(209 50% 90%);
+  --clr-card-bg: hsl(209 50% 100%);
+  --clr-text: hsl(209 50% 15%);
+  --clr-heading: hsl(209 50% 25%);
+}
   
-  .green {
-    --clr-body-bg: hsl(109 50% 90%);
-    --clr-card-bg: hsl(109 50% 100%);
-    --clr-text: hsl(109 50% 15%);
-    --clr-heading: hsl(109 50% 25%);
-  }
+.green {
+  --clr-body-bg: hsl(109 50% 90%);
+  --clr-card-bg: hsl(109 50% 100%);
+  --clr-text: hsl(109 50% 15%);
+  --clr-heading: hsl(109 50% 25%);
+}
   
-  .dark {
-    --clr-body-bg: hsl(209 50% 10%);
-    --clr-card-bg: hsl(209 50% 5%);
-    --clr-text: hsl(209 50% 90%);
-    --clr-heading: hsl(209 50% 80%);
-  }
+.dark {
+  --clr-body-bg: hsl(209 50% 10%);
+  --clr-card-bg: hsl(209 50% 5%);
+  --clr-text: hsl(209 50% 90%);
+  --clr-heading: hsl(209 50% 80%);
+}
   
-  :root:has(#pink:checked) {
-    --clr-body-bg: hsl(310 50% 90%);
-    --clr-card-bg: hsl(310 50% 100%);
-    --clr-text: hsl(310 50% 15%);
-    --clr-heading: hsl(310 50% 25%);
-  }
+:root:has(#pink:checked) {
+  --clr-body-bg: hsl(310 50% 90%);
+  --clr-card-bg: hsl(310 50% 100%);
+  --clr-text: hsl(310 50% 15%);
+  --clr-heading: hsl(310 50% 25%);
+}
   
-  :root:has(#blue:checked) {
-    --clr-body-bg: hsl(209 50% 90%);
-    --clr-card-bg: hsl(209 50% 100%);
-    --clr-text: hsl(209 50% 15%);
-    --clr-heading: hsl(209 50% 25%);
-  }
+:root:has(#blue:checked) {
+  --clr-body-bg: hsl(209 50% 90%);
+  --clr-card-bg: hsl(209 50% 100%);
+  --clr-text: hsl(209 50% 15%);
+  --clr-heading: hsl(209 50% 25%);
+}
   
-  :root:has(#green:checked) {
-    --clr-body-bg: hsl(109 50% 90%);
-    --clr-card-bg: hsl(109 50% 100%);
-    --clr-text: hsl(109 50% 15%);
-    --clr-heading: hsl(109 50% 25%);
-  }
+:root:has(#green:checked) {
+  --clr-body-bg: hsl(109 50% 90%);
+  --clr-card-bg: hsl(109 50% 100%);
+  --clr-text: hsl(109 50% 15%);
+  --clr-heading: hsl(109 50% 25%);
+}
   
-  :root:has(#dark:checked) {
-    --clr-body-bg: hsl(209 50% 10%);
-    --clr-card-bg: hsl(209 50% 5%);
-    --clr-text: hsl(209 50% 90%);
-    --clr-heading: hsl(209 50% 80%);
-  } 
-  
+:root:has(#dark:checked) {
+  --clr-body-bg: hsl(209 50% 10%);
+  --clr-card-bg: hsl(209 50% 5%);
+  --clr-text: hsl(209 50% 90%);
+  --clr-heading: hsl(209 50% 80%);
+}

@@ -89,6 +89,7 @@ function splitSnippetToDivs() {
             let current = document.createElement("div");
             current.innerHTML = current_block[i][j];
             current_line.appendChild(current);
+            current.style.fontSize = "100%";
             divArray.push(current);
         }
         code_container.appendChild(current_line);
