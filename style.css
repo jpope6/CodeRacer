@@ -207,12 +207,6 @@ html, body {
     padding-top: 3px;
 }
 
-#logoname{
-  position: absolute;
-  left: 45%;
-}
-  
-  
 /* Dropdown Button */
 button{
   font-family: Consolas,monaco,monospace;
@@ -321,9 +315,6 @@ h3 {
 .color-picker > fieldset {
   top: 3;
   border: 0;
-  display: absolute;
-  left: 2%;
-  width: 300px;
   background: none;
   padding: 1rem 1rem;
 }
