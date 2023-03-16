@@ -260,6 +260,7 @@ function updateCursorForward(gameIndex, isCorr) {
 }
 function updateCursorBackward(gameIndex) {
     unsetHighlight(gameIndex);
+    unsetHighlight(gameIndex - 1);
     setHighlight(gameIndex - 1);
 }
 function beginCursorHighlight() {
@@ -275,14 +276,17 @@ function unsetHighlight(index) {
     // divArray[index].style.backgroundColor = "";
     divArray[index].style.color = "";
     divArray[index].className = "";
+    divArray[index].style.fontWeight = "400";
 }
 function setCorrectBG(index) {
     // divArray[index].style.backgroundColor = "#00ff00";
-    divArray[index].style.color = "#00ff00";
+    divArray[index].style.color = "#009A17";
+    divArray[index].style.fontWeight = "800"
 }
 function setIncorrectBG(index) {
     // divArray[index].style.backgroundColor = "#ff3300";
     divArray[index].style.color = "#ff3300";
+    divArray[index].style.fontWeight = "800"
 }
 function resetToInitialConditions() {
     //clearLocalStats();
