@@ -111,7 +111,7 @@ html, body {
 
 #language-container {
     width: 40%;
-    background: var(--clr-body-bg); 
+    background: transparent; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -207,6 +207,7 @@ html, body {
     padding-top: 3px;
 }
 
+  
 /* Dropdown Button */
 button{
   font-family: Consolas,monaco,monospace;
