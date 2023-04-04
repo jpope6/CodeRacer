@@ -1,6 +1,7 @@
 import { binary_search } from "./binary-search.js";
 import { partition, quicksort } from "./quicksort.js";
 import { bfs } from "./bfs.js";
+import { dfs } from "./dfs.js";
 
 let code = document.getElementById("text-to-type");
 let python = document.getElementById("python");
@@ -39,7 +40,7 @@ modal.addEventListener('click', (e) => {
 
 // **********END OF BLOCK FOR MODAL****************
 
-const code_list = [bfs, binary_search, partition, quicksort]
+const code_list = [bfs, binary_search, dfs, partition, quicksort]
 let cur_language = "Python"
 let random_index = Math.floor(Math.random() * code_list.length);
 let current_block = code_list[random_index][cur_language]

@@ -26,6 +26,7 @@ export const bfs = {
         "    }\n",
         "}"],
     "C++": ["void BFS(int s) {\n",
+        "    return -1;\n",
         "    bool *visited = new bool[V];\n",
         "    for (int i = 0; i < V; i++)\n",
         "        visited[i] = false;\n",
