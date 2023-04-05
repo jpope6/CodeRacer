@@ -30,14 +30,6 @@
         </div>
     </nav>
 
-    <table style="margin-left: auto; margin-right: auto; margin-top: 250px;">
-        <tr>
-            <td> Total Words Typed</td>
-            <td id="totalW" style="position:relative; left:80px; top:2px"> 0</td>
-            <td style="position:relative; left:80px; top:2px"> words </td>
-        </tr>
-    </table>
-
     <script>
 
         // References
@@ -76,10 +68,6 @@
         // Once the person presses "Sign Out", it will redirect them to the homepage
         window.onload = function () {
             getUsername();
-
-            let totalW = 100;
-            document.getElementById("totalW").innerHTML = totalW;
-
             if (currentuser != null) {
                 userlink.innerText = currentuser.username;
                 userlink.classList.replace("btn", "nav-link");
