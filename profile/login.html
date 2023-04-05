@@ -40,26 +40,86 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            
         }
 
         .mb-3 {
-            color: gray;
+            color: hsl(0 0% 25%);
+            font-family: Consolas,monaco,monospace; 
+        }
+        
+          
+        .pink {
+        --clr-body-bg: hsl(310 50% 90%);
+        --clr-card-bg: hsl(310 50% 100%);
+        --clr-text: hsl(310 50% 15%);
+        --clr-heading: hsl(310 50% 25%);
+        }
+        
+        .blue {
+        --clr-body-bg: hsl(209 50% 90%);
+        --clr-card-bg: hsl(209 50% 100%);
+        --clr-text: hsl(209 50% 15%);
+        --clr-heading: hsl(209 50% 25%);
+        }
+        
+        .green {
+        --clr-body-bg: hsl(109 50% 90%);
+        --clr-card-bg: hsl(109 50% 100%);
+        --clr-text: hsl(109 50% 15%);
+        --clr-heading: hsl(109 50% 25%);
+        }
+        
+        .dark {
+        --clr-body-bg: hsl(209 50% 10%);
+        --clr-card-bg: hsl(209 50% 5%);
+        --clr-text: hsl(209 50% 90%);
+        --clr-heading: hsl(209 50% 80%);
+        }
+        
+        :root:has(#pink:checked) {
+        --clr-body-bg: hsl(310 50% 90%);
+        --clr-card-bg: hsl(310 50% 100%);
+        --clr-text: hsl(310 50% 15%);
+        --clr-heading: hsl(310 50% 25%);
+        }
+        
+        :root:has(#blue:checked) {
+        --clr-body-bg: hsl(209 50% 90%);
+        --clr-card-bg: hsl(209 50% 100%);
+        --clr-text: hsl(209 50% 15%);
+        --clr-heading: hsl(209 50% 25%);
+        }
+        
+        :root:has(#green:checked) {
+        --clr-body-bg: hsl(109 50% 90%);
+        --clr-card-bg: hsl(109 50% 100%);
+        --clr-text: hsl(109 50% 15%);
+        --clr-heading: hsl(109 50% 25%);
+        }
+        
+        :root:has(#dark:checked) {
+        --clr-body-bg: hsl(209 50% 10%);
+        --clr-card-bg: hsl(209 50% 5%);
+        --clr-text: hsl(209 50% 90%);
+        --clr-heading: hsl(209 50% 80%);
         }
 
         .btn-outline-primary {
-           --bs-btn-color: orange;
-           --bs-btn-border-color: orange;
+            font-family: Consolas,monaco,monospace; 
+           --bs-btn-color: var(--clr-text);
+           --bs-btn-border-color: var(--clr-heading);
            --bs-btn-hover-color: #fff;
-           --bs-btn-hover-bg: orange;
-           --bs-btn-hover-border-color: orange;
-           --bs-btn-focus-shadow-rgb: orange;
+           --bs-btn-hover-bg: var(--clr-heading);
+           --bs-btn-hover-border-color: var(--clr-heading);
+           --bs-btn-focus-shadow-rgb: var(--clr-heading);
            --bs-btn-active-color: #fff;
-           --bs-btn-active-bg: orange;
-           --bs-btn-active-border-color: orange;
+           --bs-btn-active-bg: var(--clr-heading);
+           --bs-btn-active-border-color: var(--clr-heading);
            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-           --bs-btn-disabled-color: orange;
+           --bs-btn-disabled-color: var(--clr-heading);
            --bs-btn-disabled-bg: transparent;
-           --bs-btn-disabled-border-color: orange;
+           --bs-btn-disabled-border-color: var(--clr-heading);
            --bs-gradient: none;
         }       
 
@@ -125,30 +185,61 @@
 
 
     <div class="mb-5 col-md-6">
-        <h3 class="mb-3"> Login </h3>
+        <h3 class="mb-3"style="font-weight: bold;color:#fff"> Login </h3>
         <div class="form-floating mb-3">
             <input type="text" placeholder="Username" id="userInp" class="form-control mb-3">
-            <label for="floatingUsername"> Username </label>
+            <label for="floatingUsername" style="font-weight: bold"> Username </label>
         </div>
         <div class="form-floating mb-3">
             <input type="password" placeholder="Password" id="passInp" class="form-control mb-3">
-            <label for="floatingPassword"> Password </label>
+            <label for="floatingPassword"style="font-weight: bold"> Password </label>
         </div>
         <!-- Default switch from "https://mdbootstrap.com/docs/standard/forms/switch/"-->
         <div class="d-grid gap-2">
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                <label class="form-check-label" for="flexSwitchCheckDefault">Keep Me Logged In</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault"style="font-weight: bold">Keep Me Logged In</label>
             </div>
-            <button type="text" id="sub_btn" class="btn btn-outline-primary"> Login </button>
+            <button type="text" id="sub_btn" class="btn btn-outline-primary"style="font-weight: bold"> Login </button>
             <!-- <a class="btn btn-outline-primary" href="profile.html" role="button"> Login</a> -->
             <!-- The code below is a button that you can find on Bootstrap. (w-100 means the width and 100 pixels) -->
-            <a class="btn btn-outline-primary" href="register.html" role="button"> Sign Up </a>
-            <a class="btn btn-outline-primary" href="reset.html" role="button"> Forgot Password? </a>
+            <a class="btn btn-outline-primary" href="register.html" role="button"style="font-weight: bold"> Sign Up </a>
+            <a class="btn btn-outline-primary" href="reset.html" role="button" style="font-weight: bold"> Forgot Password? </a>
         </div>
     </div>
 
     <script type="module">
+        
+        const colorThemes = document.querySelectorAll('[name="theme"]');
+
+// store theme
+const storeTheme = function (theme) {
+  localStorage.setItem("theme", theme);
+};
+
+// set theme when visitor returns
+const setTheme = function () {
+  const activeTheme = localStorage.getItem("theme");
+  colorThemes.forEach((themeOption) => {
+    if (themeOption.id === activeTheme) {
+      themeOption.checked = true;
+    }
+  });
+  // fallback for no :has() support
+  document.documentElement.className = activeTheme;
+};
+
+
+
+colorThemes.forEach((themeOption) => {
+  themeOption.addEventListener("click", () => {
+    storeTheme(themeOption.id);
+    // fallback for no :has() support
+    document.documentElement.className = themeOption.id;
+  });
+});
+
+document.onload = setTheme();
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 
