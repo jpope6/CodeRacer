@@ -32,8 +32,71 @@
     </nav>
 
     <h3 id="header"> </h3>
+    <table style="margin-left: auto; margin-right: auto; margin-top: 250px;">
+        <tr>
+            <td> Total Words Typed</td>
+            <td id="totalW" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> words </td>
+        </tr>
+        <tr>
+            <td>Total Characters Typed</td>
+            <td id="totalC" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> characters </td>
+        </tr>
+        <tr>
+            <td>Average Word Per Minute</td>
+            <td id="avgW" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> words </td>
+        </tr>
+        <tr>
+            <td>Average Character Per Minute</td>
+            <td id="avgC" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> characters </td>
+        </tr>
+        <tr>
+            <td>Accuracy</td>
+            <td id="acc" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> % </td>
+        </tr>
+        <tr>
+            <td>Lifetime Accuracy</td>
+            <td id="accL" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> % </td>
+        </tr>
+        <tr>
+            <td>Total Completed Runs</td>
+            <td id="comR" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> runs </td>
+        </tr>
+        <tr>
+            <td>Total Time Spent Typing</td>
+            <td id="time" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> seconds </td>
+        </tr>
+    </table>
 
-    <script>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
+            authDomain: "coderacer-4d354.firebaseapp.com",
+            databaseURL: "https://coderacer-4d354-default-rtdb.firebaseio.com",
+            projectId: "coderacer-4d354",
+            storageBucket: "coderacer-4d354.appspot.com",
+            messagingSenderId: "300760585108",
+            appId: "1:300760585108:web:f1841e34b255daf97fb581"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, set, child, get }
+            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+        const db = getDatabase();
 
         // References
 
@@ -41,6 +104,7 @@
         let signoutlink = document.getElementById('signoutlink');
         let header = document.getElementById('header');
         var currentuser = null;
+
 
         // Gets the username and checks to see if the user wants to be kept logged in or not
 
@@ -72,7 +136,24 @@
         // Once the person presses "Sign Out", it will redirect them to the homepage
         window.onload = function () {
             getUsername();
-            if (currentuser == null) {
+            let totalW = 100;
+            document.getElementById("totalW").innerHTML = totalW;
+            let totalC = 0;
+            document.getElementById("totalC").innerHTML = totalC;
+            let avgW = 0;
+            document.getElementById("avgW").innerHTML = avgW
+            let avgC = 0;
+            document.getElementById("avgC").innerHTML = avgC;
+            let acc = 0;
+            document.getElementById("acc").innerHTML = acc;
+            let accL = 0;
+            document.getElementById("accL").innerHTML = accL;
+            let comR = 0;
+            document.getElementById("comR").innerHTML = comR;
+            let time = 0;
+            document.getElementById("time").innerHTML = time;
+
+            if (currentuser != null) {
                 userlink.innerText = "Create New Account";
                 userlink.classList.replace("nav-link", "btn");
                 userlink.classList.add("btn-primary");
@@ -82,8 +163,26 @@
                 signoutlink.classList.replace("nav-link", "btn");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "login.html";
+
             }
             else {
+                const dbRef = ref(db);
+                get(child(dbRef, "UsersList/" + username.value)).then((snapshot) => {
+                    update(ref(db, "UsersList/" + username.value),
+                        {
+                            totalW: total_words_typed
+                        })
+                        .then(() => {
+                            alert("Password was reset successfully!");
+                            window.location = "login.html";
+                        })
+                        .catch((error) => {
+                            alert("Error" + error);
+                        })
+                });
+
+                document.getElementById("totalW").innerHTML = 2;
+
                 userlink.innerText = currentuser.username;
                 header.innerText = "Welcome " + currentuser.username;
                 userlink.classList.replace("btn", "nav-link");
@@ -94,10 +193,11 @@
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
-            }
-        }
 
+            }
+        } 
     </script>
+
 
 </body>
 
