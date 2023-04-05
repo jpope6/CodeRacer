@@ -30,15 +30,12 @@
         </div>
     </nav>
 
-    <h3 id="header"> </h3>
-
     <script>
 
         // References
 
         let userlink = document.getElementById('userlink');
         let signoutlink = document.getElementById('signoutlink');
-        let header = document.getElementById('header');
         var currentuser = null;
 
         // Gets the username and checks to see if the user wants to be kept logged in or not
@@ -73,7 +70,6 @@
             getUsername();
             if (currentuser != null) {
                 userlink.innerText = currentuser.username;
-                header.innerText = "Welcome " + currentuser.username;
                 userlink.classList.replace("btn", "nav-link");
                 userlink.classList.add("btn-primary");
                 userlink.href = "#";
