@@ -166,20 +166,20 @@
 
             }
             else {
-                const dbRef = ref(db);
-                get(child(dbRef, "UsersList/" + username.value)).then((snapshot) => {
-                    update(ref(db, "UsersList/" + username.value),
-                        {
-                            totalW: total_words_typed
-                        })
-                        .then(() => {
-                            alert("Password was reset successfully!");
-                            window.location = "login.html";
-                        })
-                        .catch((error) => {
-                            alert("Error" + error);
-                        })
-                });
+           //     const dbRef = ref(db);
+            //    get(child(dbRef, "UsersList/" + username.value)).then((snapshot) => {
+            //        update(ref(db, "UsersList/" + username.value),
+            //            {
+            //                totalW: total_words_typed
+            //            })
+            //            .then(() => {
+            //                alert("Password was reset successfully!");
+            //                window.location = "login.html";
+           //             })
+            //            .catch((error) => {
+            //                alert("Error" + error);
+             //           })
+             //   });
 
                 document.getElementById("totalW").innerHTML = 2;
 
