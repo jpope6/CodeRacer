@@ -23,7 +23,7 @@
                         <a id="userlink" class="nav-link" href="#">Username</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a id="signoutlink" class="nav-link" href="">Sign Out</a>
+                        <a id="signoutlink" class="nav-link" href="javascript:signOut()">Sign Out</a>
                     </li>
                 </ul>
             </form>
@@ -193,6 +193,7 @@
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
+                //signoutlink.href = "javascript:signOut()";
 
             }
         } 
