@@ -43,7 +43,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-
         }
 
         .mb-3 {
@@ -51,6 +50,10 @@
             font-family: Consolas, monaco, monospace;
         }
 
+        .mb-5 > h3 {
+            color: var(--clr-text);
+            font-weight: bold;
+        }
 
         .pink {
             --clr-body-bg: hsl(310 50% 90%);
@@ -215,21 +218,21 @@
         <h3 class="mb-3"> Reset Password </h3>
         <div class="form-floating mb-3">
             <input type="text" placeholder="Username" id="userInp" class="form-control mb-3">
-            <label for="floatingUsername"> Username </label>
+            <label for="floatingUsername" style="font-weight: bold;"> Username </label>
         </div>
         <div class="form-floating mb-3">
             <input type="email" placeholder="Email" id="emailInp" class="form-control mb-3">
-            <label for="floatingEmail"> Email </label>
+            <label for="floatingEmail" style="font-weight: bold;"> Email </label>
         </div>
         <div class="form-floating mb-3">
             <input type="password" placeholder="Password" id="passInp" class="form-control mb-3">
-            <label for="floatingPassword"> Enter New Password </label>
+            <label for="floatingPassword" style="font-weight: bold;"> Enter New Password </label>
         </div>
         <div class="form-floating mb-3">
             <input type="password" placeholder="ConfirmPassword" id="confirmPassInp" class="form-control mb-3">
-            <label for="floatingPassword"> Confirm New Password </label>
+            <label for="floatingPassword" style="font-weight: bold;"> Confirm New Password </label>
         </div>
-        <button type="text" id="sub_btn" class="btn btn-outline-primary"> Submit </button>
+        <button type="text" id="sub_btn" class="btn btn-outline-primary" style="font-weight: bold;"> Submit </button>
     </div>
 
     <script type="module">
