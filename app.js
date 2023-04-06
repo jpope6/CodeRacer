@@ -1,6 +1,7 @@
 // References
 
 let userlink = document.getElementById('userlink');
+let leaderboardlink = document.getElementById('leaderboardlink')
 let signoutmainlink = document.getElementById('signoutmainlink');
 var currentuser = null;
 
@@ -35,7 +36,7 @@ window.onload = function () {
         userlink.innerText = currentuser.username;
         userlink.classList.replace("btn", "nav-link");
         userlink.classList.add("btn-primary");
-        userlink.href = '/CodeRacer/profile/profile.html';
+        userlink.href = '/profile/profile.html';
         link.href = 'style.css';
     }
 }
@@ -43,37 +44,35 @@ window.onload = function () {
 // Allows the user to sign out from the homepage
 
 var submitButton = document.getElementById('signoutmainlink');
-submitButton.addEventListener('click', function handleClick() {
-    signoutmainlink.href = "javascript:signOut()";
+    submitButton.addEventListener('click', function handleClick() {
+        signoutmainlink.href = "javascript:signOut()";
 });
 
 const colorThemes = document.querySelectorAll('[name="theme"]');
 
 // store theme
 const storeTheme = function (theme) {
-  localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", theme);
 };
 
 // set theme when visitor returns
 const setTheme = function () {
-  const activeTheme = localStorage.getItem("theme");
-  colorThemes.forEach((themeOption) => {
-    if (themeOption.id === activeTheme) {
-      themeOption.checked = true;
-    }
-  });
-  // fallback for no :has() support
-  document.documentElement.className = activeTheme;
+    const activeTheme = localStorage.getItem("theme");
+    colorThemes.forEach((themeOption) => {
+      if (themeOption.id === activeTheme) {
+        themeOption.checked = true;
+      }
+    });
+    // fallback for no :has() support
+    document.documentElement.className = activeTheme;
 };
 
-
-
 colorThemes.forEach((themeOption) => {
-  themeOption.addEventListener("click", () => {
-    storeTheme(themeOption.id);
-    // fallback for no :has() support
-    document.documentElement.className = themeOption.id;
-  });
+    themeOption.addEventListener("click", () => {
+      storeTheme(themeOption.id);
+      // fallback for no :has() support
+      document.documentElement.className = themeOption.id;
+    });
 });
 
 document.onload = setTheme();

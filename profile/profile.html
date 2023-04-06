@@ -73,7 +73,27 @@
         </tr>
     </table>
 
-    <script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
+            authDomain: "coderacer-4d354.firebaseapp.com",
+            databaseURL: "https://coderacer-4d354-default-rtdb.firebaseio.com",
+            projectId: "coderacer-4d354",
+            storageBucket: "coderacer-4d354.appspot.com",
+            messagingSenderId: "300760585108",
+            appId: "1:300760585108:web:f1841e34b255daf97fb581"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, child, get, update }
+            from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+        const db = getDatabase();
 
         // Displaying the statistics for each user
 
@@ -83,7 +103,7 @@
             let totalC = 0;
             document.getElementById("totalC").innerHTML = totalC;
             let avgW = 0;
-            document.getElementById("avgW").innerHTML = avgW
+            document.getElementById("avgW").innerHTML = avgW;
             let avgC = 0;
             document.getElementById("avgC").innerHTML = avgC;
             let acc = 0;
@@ -95,6 +115,14 @@
             let time = 0;
             document.getElementById("time").innerHTML = time;
         }
+
+        function updateStatistics() {
+            
+        }
+
+    </script>
+
+    <script>
 
         // References
 
@@ -130,7 +158,6 @@
         // Once the person presses "Sign Out", it will redirect them to the homepage
         window.onload = function () {
             getUsername();
-            displayStatistics();
             if (currentuser != null) {
                 userlink.innerText = currentuser.username;
                 userlink.classList.replace("btn", "nav-link");
