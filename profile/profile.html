@@ -77,22 +77,24 @@
 
         // Displaying the statistics for each user
 
-        let totalW = 100;
-        document.getElementById("totalW").innerHTML = totalW;
-        let totalC = 0;
-        document.getElementById("totalC").innerHTML = totalC;
-        let avgW = 0;
-        document.getElementById("avgW").innerHTML = avgW
-        let avgC = 0;
-        document.getElementById("avgC").innerHTML = avgC;
-        let acc = 0;
-        document.getElementById("acc").innerHTML = acc;
-        let accL = 0;
-        document.getElementById("accL").innerHTML = accL;
-        let comR = 0;
-        document.getElementById("comR").innerHTML = comR;
-        let time = 0;
-        document.getElementById("time").innerHTML = time;
+        function displayStatistics() {
+            let totalW = 100;
+            document.getElementById("totalW").innerHTML = totalW;
+            let totalC = 0;
+            document.getElementById("totalC").innerHTML = totalC;
+            let avgW = 0;
+            document.getElementById("avgW").innerHTML = avgW
+            let avgC = 0;
+            document.getElementById("avgC").innerHTML = avgC;
+            let acc = 0;
+            document.getElementById("acc").innerHTML = acc;
+            let accL = 0;
+            document.getElementById("accL").innerHTML = accL;
+            let comR = 0;
+            document.getElementById("comR").innerHTML = comR;
+            let time = 0;
+            document.getElementById("time").innerHTML = time;
+        }
 
         // References
 
@@ -124,12 +126,11 @@
 
         // Loads Windows
 
-        // If the "Create New Account" is pressed, it will redirect the user to the register.html page
-        // If the "Login" button is pressed, it will redirect the user to the login.html page
         // If the user is signed in, it will display the username and the signout button on the top right-hand corner of the page
         // Once the person presses "Sign Out", it will redirect them to the homepage
         window.onload = function () {
             getUsername();
+            displayStatistics();
             if (currentuser != null) {
                 userlink.innerText = currentuser.username;
                 userlink.classList.replace("btn", "nav-link");
@@ -140,10 +141,14 @@
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
-
+            }
+            else {
+                signoutlink.innerText = "Sign Out";
+                signoutlink.classList.replace("btn", "nav-link");
+                signoutlink.classList.add("btn-success");
+                signoutlink.href = "javascript:signOut()";
             }
         }
-
     </script>
 
 </body>
