@@ -30,7 +30,69 @@
         </div>
     </nav>
 
+    <table style="margin-left: auto; margin-right: auto; margin-top: 250px;">
+        <tr>
+            <td> Total Words Typed</td>
+            <td id="totalW" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> words </td>
+        </tr>
+        <tr>
+            <td>Total Characters Typed</td>
+            <td id="totalC" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> characters </td>
+        </tr>
+        <tr>
+            <td>Average Word Per Minute</td>
+            <td id="avgW" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> words </td>
+        </tr>
+        <tr>
+            <td>Average Character Per Minute</td>
+            <td id="avgC" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> characters </td>
+        </tr>
+        <tr>
+            <td>Accuracy</td>
+            <td id="acc" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> % </td>
+        </tr>
+        <tr>
+            <td>Lifetime Accuracy</td>
+            <td id="accL" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> % </td>
+        </tr>
+        <tr>
+            <td>Total Completed Runs</td>
+            <td id="comR" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> runs </td>
+        </tr>
+        <tr>
+            <td>Total Time Spent Typing</td>
+            <td id="time" style="position:relative; left:80px; top:2px"> 0</td>
+            <td style="position:relative; left:80px; top:2px"> seconds </td>
+        </tr>
+    </table>
+
     <script>
+
+        // Displaying the statistics for each user
+
+        let totalW = 100;
+        document.getElementById("totalW").innerHTML = totalW;
+        let totalC = 0;
+        document.getElementById("totalC").innerHTML = totalC;
+        let avgW = 0;
+        document.getElementById("avgW").innerHTML = avgW
+        let avgC = 0;
+        document.getElementById("avgC").innerHTML = avgC;
+        let acc = 0;
+        document.getElementById("acc").innerHTML = acc;
+        let accL = 0;
+        document.getElementById("accL").innerHTML = accL;
+        let comR = 0;
+        document.getElementById("comR").innerHTML = comR;
+        let time = 0;
+        document.getElementById("time").innerHTML = time;
 
         // References
 
@@ -78,6 +140,7 @@
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
+
             }
         }
 
