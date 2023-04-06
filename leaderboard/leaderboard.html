@@ -166,7 +166,7 @@
             // Ascending order for username
 
             username_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('username'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('username'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -180,7 +180,7 @@
             // Descending order for username
 
             username_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('username'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('username'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -194,7 +194,7 @@
             // Ascending order for total words typed
 
             total_words_typed_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_words_typed'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_words_typed'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -208,7 +208,7 @@
             // Descending order for total words typed
 
             total_words_typed_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_words_typed'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_words_typed'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -222,7 +222,7 @@
             // Ascending order for total characters typed
 
             total_characters_typed_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_characters_typed'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_characters_typed'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -236,7 +236,7 @@
             // Descending order for total characters typed
 
             total_characters_typed_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_characters_typed'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_characters_typed'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -250,7 +250,7 @@
             // Ascending order for avg_WPM
 
             avg_WPM_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_WPM'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_WPM'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -264,7 +264,7 @@
             // Descending order for avg_WPM
 
             avg_WPM_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_WPM'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_WPM'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -278,7 +278,7 @@
             // Ascending order for avg_CPM
 
             avg_CPM_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_CPM'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_CPM'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -292,7 +292,7 @@
             // Descending order for avg_CPM
 
             avg_CPM_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_CPM'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_CPM'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -306,7 +306,7 @@
             // Ascending order for accuracy
 
             accuracy_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -320,7 +320,7 @@
             // Descending order for accuracy
 
             accuracy_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -334,7 +334,7 @@
             // Ascending order for lifetime accuracy
 
             lifetime_accuracy_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('lifetime_accuracy'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('lifetime_accuracy'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -348,7 +348,7 @@
             // Descending order for lifetime accuracy
 
             lifetime_accuracy_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('lifetime_accuracy'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('lifetime_accuracy'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -362,7 +362,7 @@
             // Ascending order for total completed runs
 
             total_completed_runs_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_completed_runs'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_completed_runs'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -376,7 +376,7 @@
             // Descending order for total completed runs
 
             total_completed_runs_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_completed_runs'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_completed_runs'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -390,7 +390,7 @@
             // Ascending order for total time spent typing
 
             total_time_spent_typing_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_time_spent_typing'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_time_spent_typing'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
@@ -404,7 +404,7 @@
             // Descending order for total time spent typing
 
             total_time_spent_typing_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_time_spent_typing'), limitToFirst(15));
+                const dbRef = query(ref(db, 'UsersList'), orderByChild('total_time_spent_typing'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
