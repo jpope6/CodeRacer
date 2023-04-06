@@ -26,41 +26,233 @@
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+
+        :root {
+            --clr-body-bg: #333;
+            --clr-text: hsl(0, 0%, 100%);
+            --clr-heading: hsl(0 0% 25%);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Consolas, monaco, monospace;
+            background: var(--clr-body-bg);
+            color: var(--clr-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .mb-3 {
+            color: hsl(0 0% 25%);
+            font-family: Consolas, monaco, monospace;
+        }
+
+        #mainContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .pink {
+            --clr-body-bg: hsl(310 50% 90%);
+            --clr-card-bg: hsl(310 50% 100%);
+            --clr-text: hsl(310 50% 15%);
+            --clr-heading: hsl(310 50% 25%);
+        }
+
+        .blue {
+            --clr-body-bg: hsl(209 50% 90%);
+            --clr-card-bg: hsl(209 50% 100%);
+            --clr-text: hsl(209 50% 15%);
+            --clr-heading: hsl(209 50% 25%);
+        }
+
+        .green {
+            --clr-body-bg: hsl(109 50% 90%);
+            --clr-card-bg: hsl(109 50% 100%);
+            --clr-text: hsl(109 50% 15%);
+            --clr-heading: hsl(109 50% 25%);
+        }
+
+        .dark {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
+        }
+
+        :root:has(#pink:checked) {
+            --clr-body-bg: hsl(310 50% 90%);
+            --clr-card-bg: hsl(310 50% 100%);
+            --clr-text: hsl(310 50% 15%);
+            --clr-heading: hsl(310 50% 25%);
+        }
+
+        :root:has(#blue:checked) {
+            --clr-body-bg: hsl(209 50% 90%);
+            --clr-card-bg: hsl(209 50% 100%);
+            --clr-text: hsl(209 50% 15%);
+            --clr-heading: hsl(209 50% 25%);
+        }
+
+        :root:has(#green:checked) {
+            --clr-body-bg: hsl(109 50% 90%);
+            --clr-card-bg: hsl(109 50% 100%);
+            --clr-text: hsl(109 50% 15%);
+            --clr-heading: hsl(109 50% 25%);
+        }
+
+        :root:has(#dark:checked) {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
+        }
+
+        .btn-outline-primary {
+            font-family: Consolas, monaco, monospace;
+            --bs-btn-color: var(--clr-text);
+            --bs-btn-border-color: var(--clr-heading);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--clr-heading);
+            --bs-btn-hover-border-color: var(--clr-heading);
+            --bs-btn-focus-shadow-rgb: var(--clr-heading);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--clr-heading);
+            --bs-btn-active-border-color: var(--clr-heading);
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: var(--clr-heading);
+            --bs-btn-disabled-bg: transparent;
+            --bs-btn-disabled-border-color: var(--clr-heading);
+            --bs-gradient: none;
+        }
+
+        #header {
+            height: 10%;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--clr-heading);
+        }
+
+        .typewriter h1 {
+            color: #fff;
+            font-family: monospace;
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange;
+            /* The typwriter cursor */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em;
+            /* Adjust as needed */
+            animation:
+                typing 7.5s steps(30, end) infinite,
+                blink-caret .5s step-end infinite;
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            0% {
+                width: 0%
+            }
+
+            25% {
+                width: 100%
+            }
+
+            50% {
+                width: 100%
+            }
+
+            75% {
+                width: 0%
+            }
+
+            100% {
+                width: 0%
+            }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: orange
+            }
+        }
+
+        #footer {
+            height: 10%;
+            width: 100%;
+            background: var(--clr-heading)
+        }
     </style>
 </head>
 
 <body>
+    <div id="header">
+        <div id="logoname" style="cursor: pointer;">
+            <div class="typewriter">
+                <h1>Code Racer</h1>
+            </div>
+        </div>
 
-    <div class="container text-center overflow-auto">
-        <table class="table table-striped table-hover table-light">
-            <thead class="table-dark">
-                <th>Rank</th>
-                <th>Username <i class="arrow up" id="username_up"></i> <i class="arrow down" id="username_down"></i>
-                </th>
-                <th>Total Words Typed <i class="arrow up" id="total_words_typed_up"></i> <i class="arrow down"
-                        id="total_words_typed_down"></i></th>
-                <th>Total Characters Typed <i class="arrow up" id="total_characters_typed_up"></i> <i class="arrow down"
-                        id="total_characters_typed_down"></i></th>
-                <th>Average WPM <i class="arrow up" id="avg_WPM_up"></i> <i class="arrow down" id="avg_WPM_down"></i>
-                </th>
-                <th>Average CPM <i class="arrow up" id="avg_CPM_up"></i> <i class="arrow down" id="avg_CPM_down"></i>
-                </th>
-                <th>Accuracy <i class="arrow up" id="accuracy_up"></i> <i class="arrow down" id="accuracy_down"></i>
-                </th>
-                <th>Lifetime Accuracy <i class="arrow up" id="lifetime_accuracy_up"></i> <i class="arrow down"
-                        id="lifetime_accuracy_down"></i></th>
-                <th>Total Completed Runs <i class="arrow up" id="total_completed_runs_up"></i> <i class="arrow down"
-                        id="total_completed_runs_down"></i></th>
-                <th>Total Time Spent Typing <i class="arrow up" id="total_time_spent_typing_up"></i> <i
-                        class="arrow down" id="total_time_spent_typing_down"></i></th>
-            </thead>
-            <tbody id="data_table"></tbody>
-        </table>
+    </div>
+
+    <div id="mainContent">
+        <h1 id="title">Top 100 Leaderboard</h1>
+
+        <div class="container text-center overflow-auto">
+            <table class="table table-striped table-hover table-light">
+                <thead class="table-dark">
+                    <th>Rank</th>
+                    <th>Username <i class="arrow up" id="username_up"></i> <i class="arrow down" id="username_down"></i>
+                    </th>
+                    <th>Total Words Typed <i class="arrow up" id="total_words_typed_up"></i> <i class="arrow down"
+                            id="total_words_typed_down"></i></th>
+                    <th>Total Characters Typed <i class="arrow up" id="total_characters_typed_up"></i> <i
+                            class="arrow down" id="total_characters_typed_down"></i></th>
+                    <th>Average WPM <i class="arrow up" id="avg_WPM_up"></i> <i class="arrow down"
+                            id="avg_WPM_down"></i>
+                    </th>
+                    <th>Average CPM <i class="arrow up" id="avg_CPM_up"></i> <i class="arrow down"
+                            id="avg_CPM_down"></i>
+                    </th>
+                    <th>Accuracy <i class="arrow up" id="accuracy_up"></i> <i class="arrow down" id="accuracy_down"></i>
+                    </th>
+                    <th>Lifetime Accuracy <i class="arrow up" id="lifetime_accuracy_up"></i> <i class="arrow down"
+                            id="lifetime_accuracy_down"></i></th>
+                    <th>Total Completed Runs <i class="arrow up" id="total_completed_runs_up"></i> <i class="arrow down"
+                            id="total_completed_runs_down"></i></th>
+                    <th>Total Time Spent Typing <i class="arrow up" id="total_time_spent_typing_up"></i> <i
+                            class="arrow down" id="total_time_spent_typing_down"></i></th>
+                </thead>
+                <tbody id="data_table"></tbody>
+            </table>
+        </div>
     </div>
 
     <script type="module">
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
@@ -436,7 +628,16 @@
 
         window.onload = GetAllDataInRealtime();
 
+        // Clicking on logo will send you back to home page
+        let logo = document.getElementById("logoname");
+
+        logo.addEventListener('click', () => {
+            window.location = "/CodeRacer/index.html";
+        })
+
+
     </script>
+    <footer id="footer"></footer>
 </body>
 
 </html>

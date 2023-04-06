@@ -13,20 +13,204 @@
     <!-- The link below is a CDN that is written in JavaScript that contains a library of crypto standards. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"> </script>
     <style>
+        
+        :root {
+            --clr-body-bg: #333;
+            --clr-text: hsl(0, 0%, 100%);
+            --clr-heading: hsl(0 0% 25%);
+        }
+
         body {
             /* To be able to bring all of the input buttons to the center of the page. */
             /* Make the high and width equal to the viewport and the margins to 0 pixels. */
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0px;
+            font-family: Consolas, monaco, monospace;
+            background: var(--clr-body-bg);
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Consolas, monaco, monospace;
+            background: var(--clr-body-bg);
+            color: var(--clr-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+        }
+
+        .mb-3 {
+            color: hsl(0 0% 25%);
+            font-family: Consolas, monaco, monospace;
+        }
+
+
+        .pink {
+            --clr-body-bg: hsl(310 50% 90%);
+            --clr-card-bg: hsl(310 50% 100%);
+            --clr-text: hsl(310 50% 15%);
+            --clr-heading: hsl(310 50% 25%);
+        }
+
+        .blue {
+            --clr-body-bg: hsl(209 50% 90%);
+            --clr-card-bg: hsl(209 50% 100%);
+            --clr-text: hsl(209 50% 15%);
+            --clr-heading: hsl(209 50% 25%);
+        }
+
+        .green {
+            --clr-body-bg: hsl(109 50% 90%);
+            --clr-card-bg: hsl(109 50% 100%);
+            --clr-text: hsl(109 50% 15%);
+            --clr-heading: hsl(109 50% 25%);
+        }
+
+        .dark {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
+        }
+
+        :root:has(#pink:checked) {
+            --clr-body-bg: hsl(310 50% 90%);
+            --clr-card-bg: hsl(310 50% 100%);
+            --clr-text: hsl(310 50% 15%);
+            --clr-heading: hsl(310 50% 25%);
+        }
+
+        :root:has(#blue:checked) {
+            --clr-body-bg: hsl(209 50% 90%);
+            --clr-card-bg: hsl(209 50% 100%);
+            --clr-text: hsl(209 50% 15%);
+            --clr-heading: hsl(209 50% 25%);
+        }
+
+        :root:has(#green:checked) {
+            --clr-body-bg: hsl(109 50% 90%);
+            --clr-card-bg: hsl(109 50% 100%);
+            --clr-text: hsl(109 50% 15%);
+            --clr-heading: hsl(109 50% 25%);
+        }
+
+        :root:has(#dark:checked) {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
+        }
+
+        .btn-outline-primary {
+            font-family: Consolas, monaco, monospace;
+            --bs-btn-color: var(--clr-text);
+            --bs-btn-border-color: var(--clr-heading);
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: var(--clr-heading);
+            --bs-btn-hover-border-color: var(--clr-heading);
+            --bs-btn-focus-shadow-rgb: var(--clr-heading);
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: var(--clr-heading);
+            --bs-btn-active-border-color: var(--clr-heading);
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: var(--clr-heading);
+            --bs-btn-disabled-bg: transparent;
+            --bs-btn-disabled-border-color: var(--clr-heading);
+            --bs-gradient: none;
+        }
+
+        #header {
+            height: 10%;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
-            margin: 0px;
+            background: var(--clr-heading);
         }
+
+        .typewriter h1 {
+            color: #fff;
+            font-family: monospace;
+            overflow: hidden;
+            /* Ensures the content is not revealed until the animation */
+            border-right: .15em solid orange;
+            /* The typwriter cursor */
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives that scrolling effect as the typing happens */
+            letter-spacing: .15em;
+            /* Adjust as needed */
+            animation:
+                typing 7.5s steps(30, end) infinite,
+                blink-caret .5s step-end infinite;
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            0% {
+                width: 0%
+            }
+
+            25% {
+                width: 100%
+            }
+
+            50% {
+                width: 100%
+            }
+
+            75% {
+                width: 0%
+            }
+
+            100% {
+                width: 0%
+            }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: orange
+            }
+        }
+
+        #footer {
+            height: 10%;
+            width: 100%;
+            background: var(--clr-heading)
+        }
+
     </style>
 </head>
 
 <body>
+    <div id="header">
+        <div id="logoname" style="cursor: pointer;">
+            <div class="typewriter">
+                <h1>Code Racer</h1>
+            </div>
+        </div>
+
+    </div>
+
     <div class="mb-5 col-md-6">
         <h3 class="mb-3"> Reset Password </h3>
         <div class="form-floating mb-3">
@@ -163,7 +347,14 @@
 
         submit.addEventListener('click', resetPassword);
 
+        let logo = document.getElementById("logoname");
+
+        logo.addEventListener('click', () => {
+            window.location = "/CodeRacer/index.html";
+        })
+
     </script>
+    <footer id="footer"></footer>
 </body>
 
 </html>
