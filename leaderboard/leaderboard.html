@@ -52,7 +52,6 @@
         }
 
         #mainContent {
-            display: flex;
             flex-direction: column;
             align-items: center;
         }
@@ -98,6 +97,7 @@
             --clr-card-bg: hsl(209 50% 100%);
             --clr-text: hsl(209 50% 15%);
             --clr-heading: hsl(209 50% 25%);
+            --clr-body-bg2: 	hsl(210, 57%, 78%);
         }
 
         :root:has(#green:checked) {
@@ -206,12 +206,11 @@
         }
     h2 {
   font-size: 50px;
-  font-weight: bolder;
   color: var(--clr-text);
   text-transform: uppercase;
   font-weight: 300;
+  padding-bottom: 50px;
   text-align: center;
-  margin-bottom: 20px;
   text-decoration: underline;
 }
 table {
@@ -228,7 +227,6 @@ th {
   text-transform: uppercase;
 }
 td {
-  padding: 15px;
   text-align: center;
   vertical-align: middle;
   font-weight: 300;
@@ -258,7 +256,10 @@ td {
   /* border: solid var(--clr-text); */
 }
 section {
-  margin: 150px;
+  margin: 300px;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: var(--clr-body-bg);
 }
 
     </style>
@@ -272,8 +273,9 @@ section {
             </div>
         </div>
     </div>
+
         <section>
-        <h2 id="title">Top 100 Leaderboard</h2>
+            <h2 id="title">Top 100 Leaderboard</h2>
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" c>
         <thead>
@@ -300,6 +302,7 @@ section {
     </section>
 
     <script type="module">
+
 
         const colorThemes = document.querySelectorAll('[name="theme"]');
 
