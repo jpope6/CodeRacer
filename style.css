@@ -82,7 +82,7 @@ html, body {
 }
 
 #modalContent > h1 {
-    color:var(--clr-text);
+    color: whitesmoke;
     margin: 0 auto;
     font-size: 3rem;
 }
@@ -94,14 +94,14 @@ html, body {
 
 
 .stats > h2 {
-    color: var(--clr-text);
+    color: whitesmoke;
 }
 
 #learnMore, #modalClose {
     width:fit-content;
     margin: 0 auto;
-    color: var(--clr-text);
-    border: 1px solid var(--clr-text);
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
     border-radius: 10px;
 }
 
