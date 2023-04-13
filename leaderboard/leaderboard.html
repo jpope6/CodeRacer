@@ -202,7 +202,7 @@
         #footer {
             height: 10%;
             width: 100%;
-            background: var(--clr-heading)
+            background: var(--clr-heading);
         }
 
         h2 {
@@ -281,6 +281,13 @@
             background-color: var(--clr-text);
         } */
 
+        .arrow {
+  border: solid var(--clr-heading);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
     </style>
 </head>
 
@@ -300,15 +307,19 @@
         <thead>
             <tr>
                     <th >Rank</th>
-                    <th >Username</th>
-                    <th>Total Words Typed</th>
-                    <th >Total Characters Typed</th>
-                    <th>Average WPM</th>
-                    <th>Average CPM</th>
-                    <th>Accuracy</th>
-                    <th>Lifetime Accuracy</th>
-                    <th>Total Completed Runs</th>
-                    <th>Total Time Spent Typing</th>
+                    <th >Username<br></br><i class="arrow up" id="username_up"></i> <i class="arrow down" id="username_down"></i></th>
+                    <th>Total Words Typed<br></br><i class="arrow up" id="total_words_typed_up"></i> <i class="arrow down"
+                        id="total_words_typed_down"></i></th>
+                    <th >Total Characters<br></br><i class="arrow up" id="total_characters_typed_up"></i> <i class="arrow down"
+                        id="total_characters_typed_down"></i></th>
+                    <th>Average WPM<br></br><i class="arrow up" id="avg_WPM_up"></i> <i class="arrow down" id="avg_WPM_down"></i></th>
+                    <th>Average CPM<br></br><i class="arrow up" id="avg_CPM_up"></i> <i class="arrow down" id="avg_CPM_down"></i></th>
+                    <th>Lifetime Accuracy<br></br><i class="arrow up" id="lifetime_accuracy_up"></i> <i class="arrow down"
+                        id="lifetime_accuracy_down"></i></th>
+                    <th>Total Completed Runs<br></br><i class="arrow up" id="total_completed_runs_up"></i> <i class="arrow down"
+                        id="total_completed_runs_down"></i></th>
+                    <th>Total Time Spent Typing<br></br><i class="arrow up" id="total_time_spent_typing_up"></i> <i
+                        class="arrow down" id="total_time_spent_typing_down"></i></th>
                 </tr>
             </thead>
           </table>
