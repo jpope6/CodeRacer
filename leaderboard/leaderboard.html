@@ -394,7 +394,7 @@
         var tbody = document.getElementById('data_table');
 
         function AddItemToTable(username, total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
-            accuracy, lifetime_accuracy, total_completed_runs, total_time_spent_typing) {
+            lifetime_accuracy, total_completed_runs, total_time_spent_typing) {
 
             let trow = document.createElement("tr");
             let td1 = document.createElement('td');
@@ -406,7 +406,6 @@
             let td7 = document.createElement('td');
             let td8 = document.createElement('td');
             let td9 = document.createElement('td');
-            let td10 = document.createElement('td');
 
             td1.innerHTML = ++rankNum;
             td2.innerHTML = username;
@@ -414,15 +413,9 @@
             td4.innerHTML = total_characters_typed;
             td5.innerHTML = avg_WPM;
             td6.innerHTML = avg_CPM;
-            td7.innerHTML = accuracy;
-            td8.innerHTML = lifetime_accuracy;
-            td9.innerHTML = total_completed_runs;
-            td10.innerHTML = total_time_spent_typing;
-
-            // td2.innerHTML = username.substring(0,25);
-            // if (td2.innerHTML.length > 24) {
-            //     td2.innerHTML = td2.innerHTML + ".."
-            // }
+            td7.innerHTML = lifetime_accuracy;
+            td8.innerHTML = total_completed_runs;
+            td9.innerHTML = total_time_spent_typing;
 
             trow.appendChild(td1);
             trow.appendChild(td2);
@@ -433,7 +426,6 @@
             trow.appendChild(td7);
             trow.appendChild(td8);
             trow.appendChild(td9);
-            trow.appendChild(td10);
 
             tbody.appendChild(trow);
         }
@@ -448,8 +440,6 @@
         var total_characters_typed_down = document.getElementById('total_characters_typed_down');
         var avg_WPM_up = document.getElementById('avg_WPM_up');
         var avg_WPM_down = document.getElementById('avg_WPM_down');
-        var accuracy_up = document.getElementById('accuracy_up');
-        var accuracy_down = document.getElementById('accuracy_down');
         var lifetime_accuracy_up = document.getElementById('lifetime_accuracy_up');
         var lifetime_accuracy_down = document.getElementById('lifetime_accuracy_down');
         var total_completed_runs_up = document.getElementById('total_completed_runs_up');
@@ -468,7 +458,7 @@
             tbody.innerHTML = "";
             UsersList.forEach(element => {
                 AddItemToTable(element.username, element.total_words_typed, element.total_characters_typed, element.avg_WPM, element.avg_CPM,
-                    element.accuracy, element.lifetime_accuracy, element.total_completed_runs, element.total_time_spent_typing)
+                    element.lifetime_accuracy, element.total_completed_runs, element.total_time_spent_typing)
             });
 
             // Ascending order for username
@@ -601,34 +591,6 @@
 
             avg_CPM_down.addEventListener('click', () => {
                 const dbRef = query(ref(db, 'UsersList'), orderByChild('avg_CPM'), limitToFirst(100));
-
-                onValue(dbRef, (snapshot) => {
-                    snapshot.forEach(childsnapshot => {
-                        users.push(childsnapshot.val());
-                    });
-
-                    AddAllItemsToLeaderboard(users.reverse());
-                })
-            })
-
-            // Ascending order for accuracy
-
-            accuracy_up.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(100));
-
-                onValue(dbRef, (snapshot) => {
-                    snapshot.forEach(childsnapshot => {
-                        users.push(childsnapshot.val());
-                    });
-
-                    AddAllItemsToLeaderboard(users);
-                })
-            })
-
-            // Descending order for accuracy
-
-            accuracy_down.addEventListener('click', () => {
-                const dbRef = query(ref(db, 'UsersList'), orderByChild('accuracy'), limitToFirst(100));
 
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
