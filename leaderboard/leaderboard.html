@@ -739,6 +739,7 @@
         var total_characters_typed_local_data = null;
         var avg_WPM_local_data = null;
         var avg_CPM_local_data = null;
+        var accuracy_local_data = null;
         var lifetime_accuracy_local_data = null;
         var total_completed_runs_local_data = null;
         var total_time_spent_typing_local_data = null;
@@ -747,6 +748,7 @@
         total_characters_typed_local_data = JSON.parse(localStorage.getItem('total_characters_typed_local'))
         avg_WPM_local_data = JSON.parse(localStorage.getItem('avg_WPM_local'))
         avg_CPM_local_data = JSON.parse(localStorage.getItem('avg_CPM_local'))
+        accuracy_local_data = JSON.parse(localStorage.getItem('accuracy_local'))
         lifetime_accuracy_local_data = JSON.parse(localStorage.getItem('lifetime_accuracy_local'))
         total_completed_runs_local_data = JSON.parse(localStorage.getItem('total_completed_runs_local'))
         total_time_spent_typing_local_data = JSON.parse(localStorage.getItem('total_time_spent_typing_local'))
@@ -757,6 +759,7 @@
         var total_characters_typed_session_data = null;
         var avg_WPM_session_data = null;
         var avg_CPM_session_data = null;
+        var accuracy_session_data = null;
         var lifetime_accuracy_session_data = null;
         var total_completed_runs_session_data = null;
         var total_time_spent_typing_session_data = null;
@@ -765,6 +768,7 @@
         total_characters_typed_session_data = JSON.parse(sessionStorage.getItem('total_characters_typed_session'))
         avg_WPM_session_data = JSON.parse(sessionStorage.getItem('avg_WPM_session'))
         avg_CPM_session_data = JSON.parse(sessionStorage.getItem('avg_CPM_session'))
+        accuracy_session_data = JSON.parse(sessionStorage.getItem('accuracy_session'))
         lifetime_accuracy_session_data = JSON.parse(sessionStorage.getItem('lifetime_accuracy_session'))
         total_completed_runs_session_data = JSON.parse(sessionStorage.getItem('total_completed_runs_session'))
         total_time_spent_typing_session_data = JSON.parse(sessionStorage.getItem('total_time_spent_typing_session'))
@@ -793,7 +797,7 @@
                                 total_characters_typed: total_characters_typed_session_data,
                                 avg_WPM: avg_WPM_session_data,
                                 avg_CPM: avg_CPM_session_data,
-                                accuracy: 0,
+                                accuracy: accuracy_session_data,
                                 lifetime_accuracy: lifetime_accuracy_session_data,
                                 total_completed_runs: total_completed_runs_session_data,
                                 total_time_spent_typing: total_time_spent_typing_session_data
@@ -810,7 +814,7 @@
                                 total_characters_typed: total_characters_typed_local_data,
                                 avg_WPM: avg_WPM_local_data,
                                 avg_CPM: avg_CPM_local_data,
-                                accuracy: 0,
+                                accuracy: accuracy_local_data,
                                 lifetime_accuracy: lifetime_accuracy_local_data,
                                 total_completed_runs: total_completed_runs_local_data,
                                 total_time_spent_typing: total_time_spent_typing_local_data
@@ -819,7 +823,6 @@
                                 alert("Error" + error);
                             })
                     }
-
                 });
             }
 

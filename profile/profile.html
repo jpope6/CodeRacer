@@ -198,7 +198,8 @@
         }
 
         #top,
-        #bottom, #chart-bg {
+        #bottom,
+        #chart-bg {
             width: 25%;
             display: flex;
             flex-direction: column;
@@ -270,7 +271,7 @@
                 </div>
 
                 <div id="average_wpm">
-                    <h3>Words per Minute: </h3>
+                    <h3>Average Words Per Minute: </h3>
                     <h3 id="average_wpm_h3">0</h3>
 
                 </div>
@@ -296,7 +297,7 @@
                 </div>
 
                 <div id="average_cpm">
-                    <h3>Chacters Per Minute: </h3>
+                    <h3>Average Characters Per Minute: </h3>
                     <h3 id="average_cpm_h3">0</h3>
 
                 </div>
@@ -313,13 +314,12 @@
 
     <footer id="footer"></footer>
 
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </script>
 
     <script type="module">
 
-        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
@@ -334,43 +334,103 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        import {getDatabase, ref, child, get, update}
+        import { getDatabase, ref, child, get, update }
             from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
         const db = getDatabase();
 
-        // Displaying the statistics for each user
+        // Update statistics after completion
 
-        function displayStatistics() {
-            let totalW = 100;
-            document.getElementById("totalW").innerHTML = totalW;
-            let totalC = 0;
-            document.getElementById("totalC").innerHTML = totalC;
-            let avgW = 0;
-            document.getElementById("avgW").innerHTML = avgW;
-            let avgC = 0;
-            document.getElementById("avgC").innerHTML = avgC;
-            let acc = 0;
-            document.getElementById("acc").innerHTML = acc;
-            let accL = 0;
-            document.getElementById("accL").innerHTML = accL;
-            let comR = 0;
-            document.getElementById("comR").innerHTML = comR;
-            let time = 0;
-            document.getElementById("time").innerHTML = time;
+        var currentuser = null;
+
+        let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+        if (keepLoggedIn == "yes") {
+            currentuser = JSON.parse(localStorage.getItem('user'));
+        }
+        else {
+            currentuser = JSON.parse(sessionStorage.getItem('user'));
         }
 
-        function updateStatistics() {
-            document.getElementById("time_spend_typing_h3").innerText = 69;
-            document.getElementById("average_wpm_h3").innerText = 69;
-            document.getElementById("accuracy_h3").innerText = 69;
-            document.getElementById("total_words_typed_h3").innerText = 69;
-            document.getElementById("total_characters_typed_h3").innerText = 69;
-            document.getElementById("average_cpm_h3").innerText = 69;
+        // Retrieving statistical data from local storage and store the data in variables
+
+        var total_words_typed_local_data = null;
+        var total_characters_typed_local_data = null;
+        var avg_WPM_local_data = null;
+        var avg_CPM_local_data = null;
+        var accuracy_local_data = null;
+        var lifetime_accuracy_local_data = null;
+        var total_completed_runs_local_data = null;
+        var total_time_spent_typing_local_data = null;
+
+        total_words_typed_local_data = JSON.parse(localStorage.getItem('total_words_typed_local'))
+        total_characters_typed_local_data = JSON.parse(localStorage.getItem('total_characters_typed_local'))
+        avg_WPM_local_data = JSON.parse(localStorage.getItem('avg_WPM_local'))
+        avg_CPM_local_data = JSON.parse(localStorage.getItem('avg_CPM_local'))
+        accuracy_local_data = JSON.parse(localStorage.getItem('accuracy_local'))
+        lifetime_accuracy_local_data = JSON.parse(localStorage.getItem('lifetime_accuracy_local'))
+        total_completed_runs_local_data = JSON.parse(localStorage.getItem('total_completed_runs_local'))
+        total_time_spent_typing_local_data = JSON.parse(localStorage.getItem('total_time_spent_typing_local'))
+
+        // Retrieving statistical data from session storage and store the data in variables
+
+        var total_words_typed_session_data = null;
+        var total_characters_typed_session_data = null;
+        var avg_WPM_session_data = null;
+        var avg_CPM_session_data = null;
+        var accuracy_session_data = null;
+        var lifetime_accuracy_session_data = null;
+        var total_completed_runs_session_data = null;
+        var total_time_spent_typing_session_data = null;
+
+        total_words_typed_session_data = JSON.parse(sessionStorage.getItem('total_words_typed_session'))
+        total_characters_typed_session_data = JSON.parse(sessionStorage.getItem('total_characters_typed_session'))
+        avg_WPM_session_data = JSON.parse(sessionStorage.getItem('avg_WPM_session'))
+        avg_CPM_session_data = JSON.parse(sessionStorage.getItem('avg_CPM_session'))
+        accuracy_session_data = JSON.parse(sessionStorage.getItem('accuracy_session'))
+        lifetime_accuracy_session_data = JSON.parse(sessionStorage.getItem('lifetime_accuracy_session'))
+        total_completed_runs_session_data = JSON.parse(sessionStorage.getItem('total_completed_runs_session'))
+        total_time_spent_typing_session_data = JSON.parse(sessionStorage.getItem('total_time_spent_typing_session'))
+
+        // confirm_completion_data gets a value of 1 when the user finishes the code snippet
+
+        var confirm_completion_data = null;
+        confirm_completion_data = JSON.parse(localStorage.getItem('confirm_completion_data'))
+
+        // Database reference
+
+        const dbRef = ref(db, 'UsersList/');
+
+
+        // The if statement checks if the value of confirm_completion_data is equal to 1
+        // If so, update the data on the leaderboard
+
+        if (confirm_completion_data == 1) {
+            function updateStatistics() {
+                get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
+                    if (!keepLoggedIn) {
+                        // Session storage updates
+                        document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing_session_data;
+                        document.getElementById("average_wpm_h3").innerText = avg_WPM_session_data;
+                        document.getElementById("accuracy_h3").innerText = accuracy_session_data;
+                        document.getElementById("total_words_typed_h3").innerText = total_words_typed_session_data;
+                        document.getElementById("total_characters_typed_h3").innerText = total_characters_typed_session_data;
+                        document.getElementById("average_cpm_h3").innerText = avg_CPM_session_data;
+                    }
+                    else {
+                        // Local storage updates
+                        document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing_local_data;
+                        document.getElementById("average_wpm_h3").innerText = avg_WPM_local_data;
+                        document.getElementById("accuracy_h3").innerText = accuracy_local_data;
+                        document.getElementById("total_words_typed_h3").innerText = total_words_typed_local_data;
+                        document.getElementById("total_characters_typed_h3").innerText = total_characters_typed_local_data;
+                        document.getElementById("average_cpm_h3").innerText = avg_CPM_local_data;
+                    }
+                });
+            }
+
+            window.onload = updateStatistics();
         }
-
-        updateStatistics();
-
 
     </script>
 
@@ -468,69 +528,69 @@
 
 
         // Code for the line graph
-        const xValues = [1,2,3,4,5,6,7,8,9,10];
-        const yValues = [70,80,80,90,90,90,100,101,104,104,105];
+        const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const yValues = [70, 80, 80, 90, 90, 90, 100, 101, 104, 104, 105];
 
         const myChart = new Chart("myChart", {
-          type: "line",
-          data: {
-            labels: xValues,
-            datasets: [{
-              backgroundColor: 'rgba(255, 255, 255, 0.3)',
-              borderColor: "whitesmoke",
-              data: yValues,
-            }]
-          },
-          options: {
-            legend: {
-                display: false,
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    borderColor: "whitesmoke",
+                    data: yValues,
+                }]
             },
-            responsive: true,
-            title: {
-              display: true,
-              text: 'Words Per Minute Graph',
-              fontColor: "whitesmoke"
-            },
-            tooltips: {
-              mode: 'label',
-            },
-            hover: {
-              mode: 'nearest',
-              intersect: true
-            },
-            scales: {
-              xAxes: [{
-                display: true,
-                gridLines: {
-                  display: true,
-                  color: "whitesmoke"
+            options: {
+                legend: {
+                    display: false,
                 },
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Previous Attempts',
-                  fontColor: "whitesmoke"
-                },
-                ticks: {
-                  fontColor: "whitesmoke"
-                }
-              }],
-              yAxes: [{
-                display: true,
-                gridLines: {
-                  display: true,
-                  color: "whitesmoke"
-                },
-                scaleLabel: {
-                  display: true,
-                  labelString: 'WPM',
-                  fontColor: "whitesmoke"
-                },
-                ticks: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Words Per Minute Graph',
                     fontColor: "whitesmoke"
+                },
+                tooltips: {
+                    mode: 'label',
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: true,
+                            color: "whitesmoke"
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Previous Attempts',
+                            fontColor: "whitesmoke"
+                        },
+                        ticks: {
+                            fontColor: "whitesmoke"
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: true,
+                            color: "whitesmoke"
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'WPM',
+                            fontColor: "whitesmoke"
+                        },
+                        ticks: {
+                            fontColor: "whitesmoke"
+                        }
+                    }]
                 }
-              }]
             }
-          }
         });
 
         // Add sign out functionality to sign-out-button
