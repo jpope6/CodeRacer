@@ -399,7 +399,7 @@
 
         // References
 
-        let userlink = document.getElementById('userlink');
+        let userlink = document.getElementById('name_h2');
         let signoutlink = document.getElementById('signoutlink');
         var currentuser = null;
 
@@ -441,9 +441,6 @@
                 signoutlink.classList.replace("btn", "nav-link");
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
-                
-                document.getElementById("name_h2").innerText = currentuser.username;
-
             }
             else {
                 signoutlink.innerText = "Sign Out";
