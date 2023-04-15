@@ -92,8 +92,11 @@ html, body {
     justify-content: space-evenly;
 }
 
+.stats > div {
+    display: flex;
+}
 
-.stats > h2 {
+.stats > div > h2 {
     color: whitesmoke;
 }
 
