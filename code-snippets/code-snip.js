@@ -23,6 +23,7 @@ let closeModalButton = document.getElementById("modalClose");
 
 test_button.addEventListener('click', () => {
     modal.showModal();
+    confirmCompletion();
 });
 
 // close modal when user clicks on the close button
@@ -30,6 +31,7 @@ closeModalButton.addEventListener('click', () => {
     modal.close();
     changeToRandomSnippet();
     resetToInitialConditions();
+    confirmCompletion();
 });
 
 // close modal when user clicks outside of the modal
@@ -38,6 +40,7 @@ modal.addEventListener('click', (e) => {
         modal.close();
         changeToRandomSnippet();
         resetToInitialConditions();
+        confirmCompletion();
     }
 });
 
@@ -45,7 +48,7 @@ modal.addEventListener('click', (e) => {
 
 // **********END OF BLOCK FOR MODAL****************
 
-const code_list = [bfs, binary_search, bubbleSort, dfs, heapSort, insertionSort, 
+const code_list = [bfs, binary_search, bubbleSort, dfs, heapSort, insertionSort,
     longestCommonSubsequence, selectionSort, partition, quicksort]
 let cur_language = "Python"
 let random_index = Math.floor(Math.random() * code_list.length);
@@ -138,6 +141,34 @@ var gameIndex = 0;
 //     lifetime accuracy 
 // };
 
+// Stores the statisical data in the local storage
+
+var total_words_typed = 434;
+var total_characters_typed = 2332422;
+var avg_WPM = 322313332;
+var avg_CPM = 44325;
+var accuracy = 2321;
+var lifetime_accuracy = 4313226;
+var total_completed_runs = 2342;
+var total_time_spent_typing = 76843243;
+
+localStorage.setItem('total_words_typed', JSON.stringify(total_words_typed));
+localStorage.setItem('total_characters_typed', JSON.stringify(total_characters_typed));
+localStorage.setItem('avg_WPM', JSON.stringify(avg_WPM));
+localStorage.setItem('avg_CPM', JSON.stringify(avg_CPM));
+localStorage.setItem('accuracy', JSON.stringify(accuracy));
+localStorage.setItem('lifetime_accuracy', JSON.stringify(lifetime_accuracy));
+localStorage.setItem('total_completed_runs', JSON.stringify(total_completed_runs));
+localStorage.setItem('total_time_spent_typing', JSON.stringify(total_time_spent_typing));
+
+// Confirms if the user completes the code snippet or not
+
+function confirmCompletion() {
+    var confirm_completion = 1;
+    localStorage.setItem('confirm_completion', JSON.stringify(confirm_completion));
+}
+
+
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {
 
@@ -200,7 +231,7 @@ function keydownSend(keyName) {
             }
 
             //Send local stats here TODO**
-            
+
             modal.showModal();
 
             // I moved this block to execute when our pop up closes -Jared

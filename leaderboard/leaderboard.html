@@ -31,7 +31,7 @@
             --clr-body-bg: #333;
             --clr-text: hsl(0, 0%, 100%);
             --clr-heading: hsl(0 0% 25%);
-            }
+        }
 
         html,
         body {
@@ -97,7 +97,7 @@
             --clr-card-bg: hsl(209 50% 100%);
             --clr-text: hsl(209 50% 15%);
             --clr-heading: hsl(209 50% 25%);
-            --clr-body-bg2: 	hsl(210, 57%, 78%);
+            --clr-body-bg2: hsl(210, 57%, 78%);
         }
 
         :root:has(#green:checked) {
@@ -206,94 +206,95 @@
         }
 
         h2 {
-         font-size: 50px;
-         color: var(--clr-text);
-         text-transform: uppercase;
-         font-weight: 300;
-         text-align: center;
-         padding-bottom: 5%;
-         /* text-decoration: underline; */
-         font-family: monospace;
-        }       
+            font-size: 50px;
+            color: var(--clr-text);
+            text-transform: uppercase;
+            font-weight: 300;
+            text-align: center;
+            padding-bottom: 5%;
+            /* text-decoration: underline; */
+            font-family: monospace;
+        }
 
         table {
-          width: 100%;
-          table-layout: fixed;
+            width: 100%;
+            table-layout: fixed;
         }
 
         th {
-          width:10%;
-          font-weight: 500;
-          font-size: 15px;
-          font-weight: bolder;
-          color: var(--clr-text);
-          text-transform: uppercase;
+            width: 10%;
+            font-weight: 500;
+            font-size: 15px;
+            font-weight: bolder;
+            color: var(--clr-text);
+            text-transform: uppercase;
         }
 
         td {
-          text-align: center;
-          vertical-align: middle;
-          font-weight: 300;
-          font-size: 12px;
-          color: var(--clr-text);
-          border-bottom: thin double var(--clr-heading);
-          overflow: hidden;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 300;
+            font-size: 12px;
+            color: var(--clr-text);
+            border-bottom: thin double var(--clr-heading);
+            overflow: hidden;
         }
 
-        #data_table > tr > td{
-            color:var(--clr-text);
+        #data_table>tr>td {
+            color: var(--clr-text);
         }
 
         ::-webkit-scrollbar {
-          width: 6px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
-          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         }
 
         ::-webkit-scrollbar-thumb {
-          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         }
 
         .tbl-header {
-          /* background-color: rgba(255, 255, 255, 0.3); */
-          border-bottom: thick double var(--clr-text);
-          text-align:center;
+            /* background-color: rgba(255, 255, 255, 0.3); */
+            border-bottom: thick double var(--clr-text);
+            text-align: center;
         }
 
         .tbl-content {
-          height: 300px;
-          overflow-x: auto;
-          margin-top: 0px;
-          /* border: solid var(--clr-text); */
+            height: 300px;
+            overflow-x: auto;
+            margin-top: 0px;
+            /* border: solid var(--clr-text); */
         }
 
         section {
-          padding-left: 5%;
-          padding-right: 5%;
-          display:flex;
-          flex-direction: column;
-          justify-content: space-between;
+            padding-left: 5%;
+            padding-right: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-/* 
+
+        /* 
         .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
             background-color: var(--clr-text);
         } */
 
         .arrow {
-  border: solid var(--clr-heading);
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
+            border: solid var(--clr-heading);
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
     </style>
 </head>
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+
 <body>
     <div id="header">
         <div id="logoname" style="cursor: pointer;">
@@ -303,33 +304,36 @@
         </div>
     </div>
 
-        <section>
-            <h2 id="title">🎉<u>Top 100 Leaderboard</u>🎉</h2>
+    <section>
+        <h2 id="title">🎉<u>Top 100 Leaderboard</u>🎉</h2>
         <div class="tbl-header">
             <table cellpadding="0" cellspacing="0" c>
-        <thead>
-            <tr>
-                    <th >Rank</th>
-                    <th >Username<br></br><i class="arrow up" id="username_up"></i> <i class="arrow down" id="username_down"></i></th>
-                    <th>Total Words Typed<br></br><i class="arrow up" id="total_words_typed_up"></i> <i class="arrow down"
-                        id="total_words_typed_down"></i></th>
-                    <th >Total Characters<br></br><i class="arrow up" id="total_characters_typed_up"></i> <i class="arrow down"
-                        id="total_characters_typed_down"></i></th>
-                    <th>Average WPM<br></br><i class="arrow up" id="avg_WPM_up"></i> <i class="arrow down" id="avg_WPM_down"></i></th>
-                    <th>Average CPM<br></br><i class="arrow up" id="avg_CPM_up"></i> <i class="arrow down" id="avg_CPM_down"></i></th>
-                    <th>Lifetime Accuracy<br></br><i class="arrow up" id="lifetime_accuracy_up"></i> <i class="arrow down"
-                        id="lifetime_accuracy_down"></i></th>
-                    <th>Total Completed Runs<br></br><i class="arrow up" id="total_completed_runs_up"></i> <i class="arrow down"
-                        id="total_completed_runs_down"></i></th>
-                    <th>Total Time Spent Typing<br></br><i class="arrow up" id="total_time_spent_typing_up"></i> <i
-                        class="arrow down" id="total_time_spent_typing_down"></i></th>
-                </tr>
-            </thead>
-          </table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username<br></br><i class="arrow up" id="username_up"></i> <i class="arrow down"
+                                id="username_down"></i></th>
+                        <th>Total Words Typed<br></br><i class="arrow up" id="total_words_typed_up"></i> <i
+                                class="arrow down" id="total_words_typed_down"></i></th>
+                        <th>Total Characters<br></br><i class="arrow up" id="total_characters_typed_up"></i> <i
+                                class="arrow down" id="total_characters_typed_down"></i></th>
+                        <th>Average WPM<br></br><i class="arrow up" id="avg_WPM_up"></i> <i class="arrow down"
+                                id="avg_WPM_down"></i></th>
+                        <th>Average CPM<br></br><i class="arrow up" id="avg_CPM_up"></i> <i class="arrow down"
+                                id="avg_CPM_down"></i></th>
+                        <th>Lifetime Accuracy<br></br><i class="arrow up" id="lifetime_accuracy_up"></i> <i
+                                class="arrow down" id="lifetime_accuracy_down"></i></th>
+                        <th>Total Completed Runs<br></br><i class="arrow up" id="total_completed_runs_up"></i> <i
+                                class="arrow down" id="total_completed_runs_down"></i></th>
+                        <th>Total Time Spent Typing<br></br><i class="arrow up" id="total_time_spent_typing_up"></i> <i
+                                class="arrow down" id="total_time_spent_typing_down"></i></th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-        <div class="tbl-content" >
+        <div class="tbl-content">
             <table class="table table-striped table-hover" cellpadding="0" cellspacing="0">
-                <tbody  id="data_table" ></tbody>
+                <tbody id="data_table"></tbody>
             </table>
         </div>
     </section>
@@ -366,7 +370,7 @@
 
         document.onload = setTheme();
 
-        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
@@ -453,7 +457,7 @@
         // Adding all items to the leaderboard
 
         function AddAllItemsToLeaderboard(UsersList) {
-        var users = [];
+            var users = [];
 
             // Inital state of data from Firebase
 
@@ -715,6 +719,72 @@
         logo.addEventListener('click', () => {
             window.location = "/CodeRacer/index.html";
         })
+
+        // Update statistics after completion
+
+        var currentuser = null;
+
+        let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+        if (keepLoggedIn == "yes") {
+            currentuser = JSON.parse(localStorage.getItem('user'));
+        }
+        else {
+            currentuser = JSON.parse(sessionStorage.getItem('user'));
+        }
+
+        // Retrieving statistical data from local storage and store the data in variables
+
+        var total_words_typed_data = null;
+        var total_characters_typed_data = null;
+        var avg_WPM_data = null;
+        var avg_CPM_data = null;
+        var lifetime_accuracy_data = null;
+        var total_completed_runs_data = null;
+        var total_time_spent_typing_data = null;
+        var confirm_completion_data = null;
+
+        total_words_typed_data = JSON.parse(localStorage.getItem('total_words_typed'))
+        total_characters_typed_data = JSON.parse(localStorage.getItem('total_characters_typed'))
+        avg_WPM_data = JSON.parse(localStorage.getItem('avg_WPM'))
+        avg_CPM_data = JSON.parse(localStorage.getItem('avg_CPM'))
+        lifetime_accuracy_data = JSON.parse(localStorage.getItem('lifetime_accuracy'))
+        total_completed_runs_data = JSON.parse(localStorage.getItem('total_completed_runs'))
+        total_time_spent_typing_data = JSON.parse(localStorage.getItem('total_time_spent_typing'))
+
+        // confirm_completion_data gets a value of 1 when the user finishes the code snippet
+
+        confirm_completion_data = JSON.parse(localStorage.getItem('confirm_completion'))
+
+
+        // Database reference
+
+        const dbRef = ref(db, 'UsersList/');
+
+
+        // The if statement checks if the value of confirm_completion_data is equal to 1, if so, update the data on the leaderboard
+
+        if (confirm_completion_data == 1) {
+            function updateStatistics() {
+                get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
+                    update(ref(db, "UsersList/" + currentuser.username),
+                        {
+                            total_words_typed: total_words_typed_data,
+                            total_characters_typed: total_characters_typed_data,
+                            avg_WPM: avg_WPM_data,
+                            avg_CPM: avg_CPM_data,
+                            lifetime_accuracy: lifetime_accuracy_data,
+                            total_completed_runs: total_completed_runs_data,
+                            total_time_spent_typing: total_time_spent_typing_data
+                        })
+                        .catch((error) => {
+                            alert("Error" + error);
+                        })
+                });
+            }
+
+            window.onload = updateStatistics();
+        }
 
 
     </script>
