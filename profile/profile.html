@@ -406,6 +406,7 @@
         // If so, update the data on the leaderboard
 
         if (confirm_completion_data == 1) {
+            getUsername();
             function updateStatistics() {
                 get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
                     if (!keepLoggedIn) {
@@ -432,9 +433,6 @@
             window.onload = updateStatistics();
         }
 
-    </script>
-
-    <script>
         // THEMES
         const colorThemes = document.querySelectorAll('[name="theme"]');
 
@@ -597,6 +595,7 @@
         const sign_out = document.getElementById("sign-out-button");
 
         sign_out.addEventListener("click", () => signOut())
+
 
     </script>
 
