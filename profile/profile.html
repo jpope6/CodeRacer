@@ -265,19 +265,19 @@
             <div id="top">
                 <div id="time_spent_typing">
                     <h3>Time Spent Typing: </h3>
-                    <h3>0</h3>
+                    <h3 id='time_spend_typing_h3'>0</h3>
 
                 </div>
 
                 <div id="average_wpm">
                     <h3>Words per Minute: </h3>
-                    <h3>0</h3>
+                    <h3 id="average_wpm_h3">0</h3>
 
                 </div>
 
                 <div id="accuracy">
                     <h3>Accuracy: </h3>
-                    <h3>0</h3>
+                    <h3 id="accuracy_h3">0</h3>
 
                 </div>
             </div>
@@ -285,19 +285,19 @@
             <div id="bottom">
                 <div id="total_words_typed">
                     <h3>Total Words Typed: </h3>
-                    <h3>0</h3>
+                    <h3 id="total_words_typed_h3">0</h3>
 
                 </div>
 
-                <div id="total_characters_types">
+                <div id="total_characters_typed">
                     <h3>Total Characters Typed: </h3>
-                    <h3>0</h3>
+                    <h3 id="total_characters_typed_h3">0</h3>
 
                 </div>
 
                 <div id="average_cpm">
                     <h3>Chacters Per Minute: </h3>
-                    <h3>0</h3>
+                    <h3 id="average_cpm_h3">0</h3>
 
                 </div>
 
@@ -361,8 +361,16 @@
         }
 
         function updateStatistics() {
-
+            document.getElementById("time_spend_typing_h3").innerText = 69;
+            document.getElementById("average_wpm_h3").innerText = 69;
+            document.getElementById("accuracy_h3").innerText = 69;
+            document.getElementById("total_words_typed_h3").innerText = 69;
+            document.getElementById("total_characters_typed_h3").innerText = 69;
+            document.getElementById("average_cpm_h3").innerText = 69;
         }
+
+        updateStatistics();
+
 
     </script>
 
@@ -448,7 +456,6 @@
                 signoutlink.classList.add("btn-success");
                 signoutlink.href = "javascript:signOut()";
             }
-
         }
 
 
