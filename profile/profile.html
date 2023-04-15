@@ -220,6 +220,24 @@
             width: 35%;
         }
 
+        #sign-out-button {
+            padding: 1%;
+            width: 10%;
+            background: var(--clr-heading);
+            color: whitesmoke;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        #sign-out-button:hover {
+            filter: brightness(0.8);
+        }
+
+        #sign-out-button:active {
+            filter: brightness(0.6);
+        }
+
         #footer {
             height: 10%;
             width: 100%;
@@ -290,6 +308,7 @@
         <div id="chart-bg">
             <canvas id="myChart" style="width:100%;max-width:700px;"></canvas>
         </div>
+        <button id="sign-out-button">Sign Out</button>
     </div>
 
     <footer id="footer"></footer>
@@ -430,10 +449,6 @@
                 signoutlink.href = "javascript:signOut()";
             }
 
-            // Change username div to name of username
-            const username_div = document.getElementById("name_h2");
-
-            username_div.innerHTML = currentuser.username;
         }
 
 
@@ -511,8 +526,10 @@
           }
         });
 
+        // Add sign out functionality to sign-out-button
+        const sign_out = document.getElementById("sign-out-button");
 
-
+        sign_out.addEventListener("click", () => signOut())
 
     </script>
 
