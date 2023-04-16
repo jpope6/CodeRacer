@@ -141,42 +141,42 @@ var gameIndex = 0;
 //     lifetime accuracy 
 // };
 
-// Stores the statisical data in the local storage
-
-var total_words_typed = 434;
-var total_characters_typed = 2332422;
-var avg_WPM = 322313332;
-var avg_CPM = 44325;
-var accuracy = 2321;
-var lifetime_accuracy = 4313226;
-var total_completed_runs = 2342;
-var total_time_spent_typing = 76843243;
-
-// Stores the data in the session storage
-
-sessionStorage.setItem('total_words_typed_session', JSON.stringify(total_words_typed));
-sessionStorage.setItem('total_characters_typed_session', JSON.stringify(total_characters_typed));
-sessionStorage.setItem('avg_WPM_session', JSON.stringify(avg_WPM));
-sessionStorage.setItem('avg_CPM_session', JSON.stringify(avg_CPM));
-sessionStorage.setItem('accuracy_session', JSON.stringify(accuracy));
-sessionStorage.setItem('lifetime_accuracy_session', JSON.stringify(lifetime_accuracy));
-sessionStorage.setItem('total_completed_runs_session', JSON.stringify(total_completed_runs));
-sessionStorage.setItem('total_time_spent_typing_session', JSON.stringify(total_time_spent_typing));
-
-// Stores the data in the local storage
-
-localStorage.setItem('total_words_typed_local', JSON.stringify(total_words_typed));
-localStorage.setItem('total_characters_typed_local', JSON.stringify(total_characters_typed));
-localStorage.setItem('avg_WPM_local', JSON.stringify(avg_WPM));
-localStorage.setItem('avg_CPM_local', JSON.stringify(avg_CPM));
-localStorage.setItem('accuracy_local', JSON.stringify(accuracy));
-localStorage.setItem('lifetime_accuracy_local', JSON.stringify(lifetime_accuracy));
-localStorage.setItem('total_completed_runs_local', JSON.stringify(total_completed_runs));
-localStorage.setItem('total_time_spent_typing_local', JSON.stringify(total_time_spent_typing));
-
 // Confirms if the user completes the code snippet or not
 
 function confirmCompletion() {
+    // Stores the statisical data in the local storage
+
+    var total_words_typed = 434;
+    var total_characters_typed = 2332422;
+    var avg_WPM = 322313332;
+    var avg_CPM = 44325;
+    var accuracy = 2321;
+    var lifetime_accuracy = 4313226;
+    var total_completed_runs = 2342;
+    var total_time_spent_typing = 76843243;
+
+    // Stores the data in the session storage
+
+    sessionStorage.setItem('total_words_typed_session', JSON.stringify(total_words_typed));
+    sessionStorage.setItem('total_characters_typed_session', JSON.stringify(total_characters_typed));
+    sessionStorage.setItem('avg_WPM_session', JSON.stringify(avg_WPM));
+    sessionStorage.setItem('avg_CPM_session', JSON.stringify(avg_CPM));
+    sessionStorage.setItem('accuracy_session', JSON.stringify(accuracy));
+    sessionStorage.setItem('lifetime_accuracy_session', JSON.stringify(lifetime_accuracy));
+    sessionStorage.setItem('total_completed_runs_session', JSON.stringify(total_completed_runs));
+    sessionStorage.setItem('total_time_spent_typing_session', JSON.stringify(total_time_spent_typing));
+
+    // Stores the data in the local storage
+
+    localStorage.setItem('total_words_typed_local', JSON.stringify(total_words_typed));
+    localStorage.setItem('total_characters_typed_local', JSON.stringify(total_characters_typed));
+    localStorage.setItem('avg_WPM_local', JSON.stringify(avg_WPM));
+    localStorage.setItem('avg_CPM_local', JSON.stringify(avg_CPM));
+    localStorage.setItem('accuracy_local', JSON.stringify(accuracy));
+    localStorage.setItem('lifetime_accuracy_local', JSON.stringify(lifetime_accuracy));
+    localStorage.setItem('total_completed_runs_local', JSON.stringify(total_completed_runs));
+    localStorage.setItem('total_time_spent_typing_local', JSON.stringify(total_time_spent_typing));
+
     var confirm_completion = 1;
     localStorage.setItem('confirm_completion_data', JSON.stringify(confirm_completion));
 }
