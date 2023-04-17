@@ -178,7 +178,7 @@ function confirmCompletion() {
     };
 
     // Initialize Firebase
-    
+
     const app = initializeApp(firebaseConfig);
 
     const db = getDatabase();
@@ -288,6 +288,10 @@ function keydownSend(keyName) {
             //Send local stats here TODO**
 
             modal.showModal();
+
+            // Displays the user's statistics on the modal after the code snippet has been completed
+
+            updateModal();
 
             // I moved this block to execute when our pop up closes -Jared
             // 
