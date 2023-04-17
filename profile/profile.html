@@ -332,14 +332,15 @@
         };
 
         // Initialize Firebase
+
         const app = initializeApp(firebaseConfig);
 
-        import { getDatabase, ref, child, get, update, query, onValue, orderByChild }
+        import { getDatabase, ref, child, get }
             from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
         const db = getDatabase();
 
-        // Update statistics after completion
+        // Gets the user's username that's stored in the local or session storage
 
         var currentuser = null;
 
@@ -352,52 +353,7 @@
             currentuser = JSON.parse(sessionStorage.getItem('user'));
         }
 
-        // Retrieving statistical data from local storage and store the data in variables
-
-        var total_words_typed_local_data = null;
-        var total_characters_typed_local_data = null;
-        var avg_WPM_local_data = null;
-        var avg_CPM_local_data = null;
-        var accuracy_local_data = null;
-        var lifetime_accuracy_local_data = null;
-        var total_completed_runs_local_data = null;
-        var total_time_spent_typing_local_data = null;
-
-        total_words_typed_local_data = JSON.parse(localStorage.getItem('total_words_typed_local'))
-        total_characters_typed_local_data = JSON.parse(localStorage.getItem('total_characters_typed_local'))
-        avg_WPM_local_data = JSON.parse(localStorage.getItem('avg_WPM_local'))
-        avg_CPM_local_data = JSON.parse(localStorage.getItem('avg_CPM_local'))
-        accuracy_local_data = JSON.parse(localStorage.getItem('accuracy_local'))
-        lifetime_accuracy_local_data = JSON.parse(localStorage.getItem('lifetime_accuracy_local'))
-        total_completed_runs_local_data = JSON.parse(localStorage.getItem('total_completed_runs_local'))
-        total_time_spent_typing_local_data = JSON.parse(localStorage.getItem('total_time_spent_typing_local'))
-
-        // Retrieving statistical data from session storage and store the data in variables
-
-        var total_words_typed_session_data = null;
-        var total_characters_typed_session_data = null;
-        var avg_WPM_session_data = null;
-        var avg_CPM_session_data = null;
-        var accuracy_session_data = null;
-        var lifetime_accuracy_session_data = null;
-        var total_completed_runs_session_data = null;
-        var total_time_spent_typing_session_data = null;
-
-        total_words_typed_session_data = JSON.parse(sessionStorage.getItem('total_words_typed_session'))
-        total_characters_typed_session_data = JSON.parse(sessionStorage.getItem('total_characters_typed_session'))
-        avg_WPM_session_data = JSON.parse(sessionStorage.getItem('avg_WPM_session'))
-        avg_CPM_session_data = JSON.parse(sessionStorage.getItem('avg_CPM_session'))
-        accuracy_session_data = JSON.parse(sessionStorage.getItem('accuracy_session'))
-        lifetime_accuracy_session_data = JSON.parse(sessionStorage.getItem('lifetime_accuracy_session'))
-        total_completed_runs_session_data = JSON.parse(sessionStorage.getItem('total_completed_runs_session'))
-        total_time_spent_typing_session_data = JSON.parse(sessionStorage.getItem('total_time_spent_typing_session'))
-
-        // confirm_completion_data gets a value of 1 when the user finishes the code snippet
-
-        var confirm_completion_data = null;
-        confirm_completion_data = JSON.parse(localStorage.getItem('confirm_completion_data'))
-
-        // Database reference
+        // Displaying all of the user statistics in the tables
 
         function AddItemToTable(total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
             accuracy, total_time_spent_typing) {
@@ -421,7 +377,7 @@
             });
         }
 
-        // Getting all of the data from Firebase
+        // Getting all of the data from Firebase at once
 
         function GetAllDataOnce() {
             const dbRef = ref(db);

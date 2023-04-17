@@ -7,6 +7,8 @@ import { selectionSort } from "./selection-sort.js";
 import { insertionSort } from "./insertion-sort.js";
 import { heapSort } from "./heap-sort.js";
 import { longestCommonSubsequence } from "./lcs.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getDatabase, ref, child, get, update } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
 let code = document.getElementById("text-to-type");
 let python = document.getElementById("python");
@@ -22,9 +24,8 @@ let closeModalButton = document.getElementById("modalClose");
 
 
 test_button.addEventListener('click', () => {
-    // Include firebase config and code to display the stats on the modal???
     modal.showModal();
-    confirmCompletion();
+    updateModal();
 });
 
 // close modal when user clicks on the close button
@@ -142,44 +143,85 @@ var gameIndex = 0;
 //     lifetime accuracy 
 // };
 
-// Confirms if the user completes the code snippet or not
+// User's statistical results (Replace the placeholder numbers with user's numbers)
+
+var total_words_typed = Math.floor(Math.random() * 100);
+var total_characters_typed = Math.floor(Math.random() * 100);
+var avg_WPM = Math.floor(Math.random() * 100);
+var avg_CPM = Math.floor(Math.random() * 100);
+var accuracy = Math.floor(Math.random() * 100);
+var lifetime_accuracy = Math.floor(Math.random() * 100);
+var total_completed_runs = Math.floor(Math.random() * 100);
+var total_time_spent_typing = Math.floor(Math.random() * 100);
+
+// Displays the user's statistics on the modal
+
+function updateModal() {
+    document.getElementById("time_h2").innerText = total_time_spent_typing;
+    document.getElementById("wpm_h2").innerText = avg_WPM;
+    document.getElementById("acc_h2").innerText = accuracy;
+    document.getElementById("cpm_h2").innerText = avg_CPM;
+}
+
+// Updates the database after the code snippet is completed
 
 function confirmCompletion() {
-    // Stores the statisical data in the local storage (Random number from 0 to 99)
 
-    var total_words_typed = Math.floor(Math.random() * 100);;
-    var total_characters_typed = Math.floor(Math.random() * 100);;
-    var avg_WPM = Math.floor(Math.random() * 100);;
-    var avg_CPM = Math.floor(Math.random() * 100);;
-    var accuracy = Math.floor(Math.random() * 100);;
-    var lifetime_accuracy = Math.floor(Math.random() * 100);;
-    var total_completed_runs = Math.floor(Math.random() * 100);;
-    var total_time_spent_typing = Math.floor(Math.random() * 100);;
+    const firebaseConfig = {
+        apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
+        authDomain: "coderacer-4d354.firebaseapp.com",
+        databaseURL: "https://coderacer-4d354-default-rtdb.firebaseio.com",
+        projectId: "coderacer-4d354",
+        storageBucket: "coderacer-4d354.appspot.com",
+        messagingSenderId: "300760585108",
+        appId: "1:300760585108:web:f1841e34b255daf97fb581"
+    };
 
-    // Stores the data in the session storage
+    // Initialize Firebase
+    
+    const app = initializeApp(firebaseConfig);
 
-    sessionStorage.setItem('total_words_typed_session', JSON.stringify(total_words_typed));
-    sessionStorage.setItem('total_characters_typed_session', JSON.stringify(total_characters_typed));
-    sessionStorage.setItem('avg_WPM_session', JSON.stringify(avg_WPM));
-    sessionStorage.setItem('avg_CPM_session', JSON.stringify(avg_CPM));
-    sessionStorage.setItem('accuracy_session', JSON.stringify(accuracy));
-    sessionStorage.setItem('lifetime_accuracy_session', JSON.stringify(lifetime_accuracy));
-    sessionStorage.setItem('total_completed_runs_session', JSON.stringify(total_completed_runs));
-    sessionStorage.setItem('total_time_spent_typing_session', JSON.stringify(total_time_spent_typing));
+    const db = getDatabase();
 
-    // Stores the data in the local storage
+    // Gets the user's username that's stored in the local or session storage
 
-    localStorage.setItem('total_words_typed_local', JSON.stringify(total_words_typed));
-    localStorage.setItem('total_characters_typed_local', JSON.stringify(total_characters_typed));
-    localStorage.setItem('avg_WPM_local', JSON.stringify(avg_WPM));
-    localStorage.setItem('avg_CPM_local', JSON.stringify(avg_CPM));
-    localStorage.setItem('accuracy_local', JSON.stringify(accuracy));
-    localStorage.setItem('lifetime_accuracy_local', JSON.stringify(lifetime_accuracy));
-    localStorage.setItem('total_completed_runs_local', JSON.stringify(total_completed_runs));
-    localStorage.setItem('total_time_spent_typing_local', JSON.stringify(total_time_spent_typing));
+    var currentuser = null;
 
-    var confirm_completion = 1;
-    localStorage.setItem('confirm_completion_data', JSON.stringify(confirm_completion));
+    let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+    if (keepLoggedIn == "yes") {
+        currentuser = JSON.parse(localStorage.getItem('user'));
+    }
+    else {
+        currentuser = JSON.parse(sessionStorage.getItem('user'));
+    }
+
+    // Database reference
+
+    const dbRef = ref(db, 'UsersList/');
+
+    // Updates the statistics after the user finishes the code snippet
+
+    function updateStatistics() {
+        get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
+            update(ref(db, "UsersList/" + currentuser.username),
+                {
+                    total_words_typed: total_words_typed,
+                    total_characters_typed: total_characters_typed,
+                    avg_WPM: avg_WPM,
+                    avg_CPM: avg_CPM,
+                    accuracy: accuracy,
+                    lifetime_accuracy: lifetime_accuracy,
+                    total_completed_runs: total_completed_runs,
+                    total_time_spent_typing: total_time_spent_typing
+                })
+                .catch((error) => {
+                    alert("Error" + error);
+                })
+        });
+    }
+
+    window.onload = updateStatistics();
 }
 
 //Char Check & Manipulation Functions
