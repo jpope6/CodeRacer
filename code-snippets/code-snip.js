@@ -22,6 +22,7 @@ let closeModalButton = document.getElementById("modalClose");
 
 
 test_button.addEventListener('click', () => {
+    // Include firebase config and code to display the stats on the modal???
     modal.showModal();
     confirmCompletion();
 });
@@ -144,16 +145,16 @@ var gameIndex = 0;
 // Confirms if the user completes the code snippet or not
 
 function confirmCompletion() {
-    // Stores the statisical data in the local storage
+    // Stores the statisical data in the local storage (Random number from 0 to 99)
 
-    var total_words_typed = 434;
-    var total_characters_typed = 2332422;
-    var avg_WPM = 322313332;
-    var avg_CPM = 44325;
-    var accuracy = 2321;
-    var lifetime_accuracy = 4313226;
-    var total_completed_runs = 2342;
-    var total_time_spent_typing = 76843243;
+    var total_words_typed = Math.floor(Math.random() * 100);;
+    var total_characters_typed = Math.floor(Math.random() * 100);;
+    var avg_WPM = Math.floor(Math.random() * 100);;
+    var avg_CPM = Math.floor(Math.random() * 100);;
+    var accuracy = Math.floor(Math.random() * 100);;
+    var lifetime_accuracy = Math.floor(Math.random() * 100);;
+    var total_completed_runs = Math.floor(Math.random() * 100);;
+    var total_time_spent_typing = Math.floor(Math.random() * 100);;
 
     // Stores the data in the session storage
 
@@ -180,7 +181,6 @@ function confirmCompletion() {
     var confirm_completion = 1;
     localStorage.setItem('confirm_completion_data', JSON.stringify(confirm_completion));
 }
-
 
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {

@@ -334,7 +334,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        import { getDatabase, ref, child, get, update }
+        import { getDatabase, ref, child, get, update, query, onValue, orderByChild }
             from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
         const db = getDatabase();
@@ -399,39 +399,41 @@
 
         // Database reference
 
-        const dbRef = ref(db, 'UsersList/');
+        function AddItemToTable(total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
+            accuracy, total_time_spent_typing) {
 
-
-        // The if statement checks if the value of confirm_completion_data is equal to 1
-        // If so, update the data on the leaderboard
-
-        if (confirm_completion_data == 1) {
-            getUsername();
-            function updateStatistics() {
-                get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
-                    if (!keepLoggedIn) {
-                        // Session storage updates
-                        document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing_session_data;
-                        document.getElementById("average_wpm_h3").innerText = avg_WPM_session_data;
-                        document.getElementById("accuracy_h3").innerText = accuracy_session_data;
-                        document.getElementById("total_words_typed_h3").innerText = total_words_typed_session_data;
-                        document.getElementById("total_characters_typed_h3").innerText = total_characters_typed_session_data;
-                        document.getElementById("average_cpm_h3").innerText = avg_CPM_session_data;
-                    }
-                    else {
-                        // Local storage updates
-                        document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing_local_data;
-                        document.getElementById("average_wpm_h3").innerText = avg_WPM_local_data;
-                        document.getElementById("accuracy_h3").innerText = accuracy_local_data;
-                        document.getElementById("total_words_typed_h3").innerText = total_words_typed_local_data;
-                        document.getElementById("total_characters_typed_h3").innerText = total_characters_typed_local_data;
-                        document.getElementById("average_cpm_h3").innerText = avg_CPM_local_data;
-                    }
-                });
-            }
-
-            window.onload = updateStatistics();
+            document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing;
+            document.getElementById("average_wpm_h3").innerText = avg_WPM;
+            document.getElementById("accuracy_h3").innerText = accuracy;
+            document.getElementById("total_words_typed_h3").innerText = total_words_typed;
+            document.getElementById("total_characters_typed_h3").innerText = total_characters_typed;
+            document.getElementById("average_cpm_h3").innerText = avg_CPM;
         }
+
+        function AddAllItemsToProfile(UsersList) {
+            var users = [];
+
+            // Inital state of data from Firebase
+
+            UsersList.forEach(element => {
+                AddItemToTable(element.total_words_typed, element.total_characters_typed, element.avg_WPM, element.avg_CPM,
+                    element.accuracy, element.total_time_spent_typing)
+            });
+        }
+
+        // Getting all of the data from Firebase
+
+        function GetAllDataOnce() {
+            const dbRef = ref(db);
+            var users = [];
+
+            get(child(dbRef, 'UsersList/' + currentuser.username)).then((snapshot) => {
+                users.push(snapshot.val());
+                AddAllItemsToProfile(users);
+            })
+        }
+
+        window.onload = GetAllDataOnce();
 
         // THEMES
         const colorThemes = document.querySelectorAll('[name="theme"]');
@@ -594,7 +596,9 @@
         // Add sign out functionality to sign-out-button
         const sign_out = document.getElementById("sign-out-button");
 
-        sign_out.addEventListener("click", () => signOut())
+        sign_out.addEventListener("click", () => {
+            signOut()
+        })
 
 
     </script>
