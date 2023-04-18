@@ -175,6 +175,9 @@
             align-items: center;
             width: 100%;
             height: 100%;
+            min-height: fit-content;
+            margin-top: 1%;
+            margin-bottom: 1%;
         }
 
         #username {
@@ -183,6 +186,10 @@
             padding-right: 1%;
             border-radius: 25px;
             border: 1px solid var(--clr-text);
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #username>h2 {
@@ -190,6 +197,7 @@
         }
 
         #stats {
+            height: 15vh;
             width: 100%;
             display: flex;
             justify-content: space-evenly;
@@ -203,7 +211,7 @@
             width: 25%;
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: space-between;
             background: var(--clr-heading);
             border-radius: 25px;
             border: 1px solid var(--clr-text);
@@ -213,12 +221,22 @@
         #top>div,
         #bottom>div {
             display: flex;
+            height: 100%;
+            width: 100%;
             justify-content: space-between;
             color: whitesmoke;
         }
 
+        #stats > div > div > h3 {
+            margin: 2%;
+            font-size: 1.2rem;
+        }
+
         #chart-bg {
+            height: 35%;
             width: 35%;
+            height: fit-content;
+            margin: 2%;
         }
 
         #sign-out-button {
@@ -228,7 +246,7 @@
             color: whitesmoke;
             border-radius: 25px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         #sign-out-button:hover {
@@ -244,6 +262,7 @@
             width: 100%;
             background: var(--clr-heading)
         }
+
     </style>
 </head>
 
@@ -307,7 +326,7 @@
         </div>
 
         <div id="chart-bg">
-            <canvas id="myChart" style="width:100%;max-width:700px;"></canvas>
+            <canvas id="myChart" style="width:100%;"></canvas>
         </div>
         <button id="sign-out-button">Sign Out</button>
     </div>
