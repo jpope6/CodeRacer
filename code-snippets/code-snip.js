@@ -113,51 +113,18 @@ function splitSnippetToDivs() {
     return code_container;
 }
 
-//Start of Character Correctness Code ---------------------------------------------
-var gameIndex = 0;
-
-//User stats NOT READY YET
-//From profile if available, for use in calculating next average
-// GlobalUserStats = {
-//     totalWords: 0,
-//     totalChars: 0,
-//     avgWPM: 0,
-//     avgWPS: 0,
-//     avgCPM: 0,
-//     avgCPS: 0,
-//     totalRunsCompleted: 0,
-//     totalTimeTyping: 0
-// };
-
-// //Stats for current snippet
-// LocalUserStats = {
-//     totalWords: 0,
-//     totalChars: 0,
-//     avgWPM: 0,
-//     avgWPS: 0,
-//     avgCPM: 0,
-//     avgCPS: 0,
-//     totalRunsCompleted: 0,
-//     totalTimeTyping: 0,
-//     accuracy,
-//     lifetime accuracy 
-// };
-
 // User's statistical results (Replace the placeholder numbers with user's numbers)
 
-var total_words_typed = Math.floor(Math.random() * 100);
-var total_characters_typed = Math.floor(Math.random() * 100);
-var avg_WPM = Math.floor(Math.random() * 100);
-var avg_CPM = Math.floor(Math.random() * 100);
-var accuracy = Math.floor(Math.random() * 100);
-var lifetime_accuracy = Math.floor(Math.random() * 100);
-var total_completed_runs = Math.floor(Math.random() * 100);
-var total_time_spent_typing = Math.floor(Math.random() * 100);
+var total_words_typed = totalWords;
+var total_characters_typed = totalChars;
+var avg_WPM = lavg_WPM;
+var avg_CPM = lavg_CPM;
+var accuracy = laccuracy;
 
 // Displays the user's statistics on the modal
 
 function updateModal() {
-    document.getElementById("time_h2").innerText = total_time_spent_typing;
+    document.getElementById("time_h2").innerText = getCurrentTimeSinceFirstChar();
     document.getElementById("wpm_h2").innerText = avg_WPM;
     document.getElementById("acc_h2").innerText = accuracy;
     document.getElementById("cpm_h2").innerText = avg_CPM;
@@ -204,16 +171,24 @@ function confirmCompletion() {
 
     function updateStatistics() {
         get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
+            // var lifetime_accuracy;
+            // var total_completed_runs;
+            // var total_time_spent_typing;
+            // var update_runs = get_total_completed_runs + 1;
+            // var update_time = total_time_spent_typing + getCurrentTimeSinceFirstChar();
+            // var update_acc = get_lifetime_accuracy * get_total_completed_runs;
+            // update_acc += accuracy;
+            // update_acc /= update_runs;
             update(ref(db, "UsersList/" + currentuser.username),
                 {
                     total_words_typed: total_words_typed,
                     total_characters_typed: total_characters_typed,
                     avg_WPM: avg_WPM,
                     avg_CPM: avg_CPM,
-                    accuracy: accuracy,
-                    lifetime_accuracy: lifetime_accuracy,
-                    total_completed_runs: total_completed_runs,
-                    total_time_spent_typing: total_time_spent_typing
+                    accuracy: accuracy
+                    // lifetime_accuracy: update_acc,
+                    // total_completed_runs: update_runs
+                    // total_time_spent_typing: update_time
                 })
                 .catch((error) => {
                     alert("Error" + error);
@@ -224,9 +199,49 @@ function confirmCompletion() {
     window.onload = updateStatistics();
 }
 
+//Start of Character Correctness Code ---------------------------------------------
+var gameIndex = 0;
+
+var isLastCharHit = 0;
+var totalWords = 0;
+var totalChars = 0;
+var lavg_WPM = 0;
+var lavg_CPM = 0;
+var timeSpentOnCurrSnippet = 0;
+var laccuracy = 1;
+var currentCorrect = 0;
+var isFirstCharPressed = 0;
+var timeOfFirstChar = 0;
+var correct = [divArray.length];
+
+function getCurrentTimeSinceFirstChar() {
+    return performance.now() / 1000 - timeOfFirstChar;
+}
+function resetLocalStats() {
+    isLastCharHit = 0;
+    totalWords = 0;
+    totalChars = 0;
+    lavg_WPM = 0;
+    lavg_CPM = 0;
+    timeSpentOnCurrSnippet = 0;
+    laccuracy = 1;
+    isFirstCharPressed = 0;
+    timeOfFirstChar = 0;
+    currentCorrect = 0;
+
+    for (var i = 0; i < correct.length; i++) {
+        correct[i] = 0;
+    }
+}
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {
 
+    if (!isFirstCharPressed) {
+        isFirstCharPressed = true;
+        timeOfFirstChar = performance.now() / 1000;
+    }
+
+    console.log(getCurrentTimeSinceFirstChar());
     if (keyName == "Enter") {
         var isCorr = checkCharCorrectness("\n", gameIndex);
         if (isCorr) {
@@ -235,6 +250,7 @@ function keydownSend(keyName) {
             var nextIndex = findNextNonWhiteSpace();
             gameIndex = nextIndex;
             setHighlight(gameIndex);
+            totalWords++;
             return;
         }
         else {
@@ -245,6 +261,14 @@ function keydownSend(keyName) {
     else if (keyName == "Backspace") {
         //Make sure not backspacing into nothing
         if (gameIndex > 0) {
+            totalChars--;
+
+            if (correct[gameIndex - 1] == 1) {
+                currentCorrect--;
+            }
+            correct[gameIndex - 1] = 0;
+
+
             //Check if backspacing into a tab
             var lastNonWhiteSpace = findPreviousNonWhiteSpace();
             var distToLastNonWhiteSpace = gameIndex - lastNonWhiteSpace;
@@ -256,25 +280,51 @@ function keydownSend(keyName) {
                 return;
             }
 
+            if (divArray[gameIndex - 1].innerText == ' ') {
+                totalWords--;
+            }
+
             updateCursorBackward(gameIndex);
             gameIndex--;
+            console.log("Correct: " + currentCorrect);
+            console.log("TotalChars: " + totalChars);
             return;
         }
         else return;
     }
     else {
         //Legitimate letter input
+        totalChars++;
+
         //If newline is what is needed, it is necessary to hit enter.  This prevents cursor misalignment
         if (divArray[gameIndex].innerText == '\n') {
             return;
         }
 
+        if (divArray[gameIndex].innerText == ' ') {
+            totalWords++;
+        }
+
         var isCorr = checkCharCorrectness(keyName, gameIndex);
+        if (isCorr) {
+            correct[gameIndex] = 1;
+            currentCorrect++;
+        }
+        else {
+            correct[gameIndex] = -1;
+        }
+
+        //console.log("AVG CPS: " + (totalChars / getCurrentTimeSinceFirstChar()));
+        //console.log("AVG CPM: " + (totalChars / getCurrentTimeSinceFirstChar()) / 60);
+        //console.log("AVG WPS: " + (totalWords / getCurrentTimeSinceFirstChar()));
+        //console.log("AVG WPM: " + (totalWords / getCurrentTimeSinceFirstChar()) / 60);
+        //console.log("AVG ACC: " + currentCorrect / totalChars);
 
         //Check for last character
         if (isLastChar(gameIndex)) {
+
+            isLastCharHit = 1;
             //Currently on last, we should unhighlight the current div, and for now, we can change code snippets
-            //console.log("Last char!");
 
             unsetHighlight(gameIndex);
 
@@ -285,19 +335,29 @@ function keydownSend(keyName) {
                 setIncorrectBG(gameIndex);
             }
 
-            //Send local stats here TODO**
+            //Send local stats
+            lavg_WPM = (totalWords / getCurrentTimeSinceFirstChar()) / 60;
+            lavg_CPM = (totalChars / getCurrentTimeSinceFirstChar()) / 60;
+            timeSpentOnCurrSnippet = getCurrentTimeSinceFirstChar();
+            //NOTE: ACCURACY ALREADY UPDATED
+
+            total_words_typed = totalWords;
+            total_characters_typed = totalChars;
+            avg_WPM = lavg_WPM;
+            avg_CPM = lavg_CPM;
+            accuracy = laccuracy;
+            // lifetime_accuracy;
+            // total_completed_runs;
+            // total_time_spent_typing;
+
+            //Debug for end of snippet stats
+            console.log("TOTAL WPM: " + lavg_WPM);
+            console.log("TOTAL CPM: " + lavg_CPM);
+            console.log("TOTAL ACC: " + laccuracy);
+            console.log("TOTAL TIME: " + timeSpentOnCurrSnippet);
 
             modal.showModal();
-
-            // Displays the user's statistics on the modal after the code snippet has been completed
-
             updateModal();
-
-            // I moved this block to execute when our pop up closes -Jared
-            // 
-            //For now we can change snippet
-            //changeToRandomSnippet();
-            //resetToInitialConditions();
             return;
 
         } else {
@@ -306,16 +366,16 @@ function keydownSend(keyName) {
     }
 
     gameIndex++;
+    console.log("Correct: " + currentCorrect);
+    console.log("TotalChars: " + totalChars);
 }
 function checkCharCorrectness(keyName, gameIndex) {
     var charToType = divArray[gameIndex].innerText;
 
     if (keyName == charToType) {
-        console.log("Index: " + gameIndex + " | User: " + keyName + " | Text: " + charToType + " | CORRECT");
         return 1;
     }
     else {
-        console.log("Index: " + gameIndex + " | User: " + keyName + " | Text: " + charToType + " | INCORRECT");
         return 0;
     }
 }
@@ -387,18 +447,14 @@ function setIncorrectBG(index) {
     divArray[index].style.fontWeight = "800"
 }
 function resetToInitialConditions() {
-    //clearLocalStats();
+    resetLocalStats();
+
     gameIndex = 0;
     for (var i = 0; i < divArray.length; i++) {
         unsetHighlight(i);
     }
     beginCursorHighlight();
 }
-// function clearLocalStats() {
-//     for (var i = 0; i < LocalUserStats.length; i++) {
-//         LocalUserStats[i] = 0;
-//     }
-// }
 function changeToRandomSnippet() {
     let mostRecentIndex = random_index;
 
