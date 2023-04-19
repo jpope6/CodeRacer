@@ -448,8 +448,13 @@ function changeToRandomSnippet() {
 
 //Event Listener
 document.addEventListener('keydown', (event) => {
-    event.preventDefault();
     var keyName = event.key;
+
+    if (keyName == "/"){
+        event.preventDefault();
+        keydownSend("/");
+        return;
+    }
 
     const KEY_IGNR = ["Shift", "CapsLock", "Alt", "Insert", "Delete", "Home", "End", "PageUp", "PageDown", "ScrollLock", "Pause",
         "NumLock", "Control", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "ArrowUp",
