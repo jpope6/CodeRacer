@@ -123,7 +123,7 @@ var accuracy = laccuracy;
 function updateModal() {
     document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100;
     document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 1000);
-    document.getElementById("acc_h2").innerText = accuracy;
+    document.getElementById("acc_h2").innerText = Math.round((accuracy + Number.EPSILON) * 100);
     document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 1000);
 }
 
@@ -171,7 +171,7 @@ function confirmCompletion() {
             var update_time = snapshot.val().total_time_spent_typing + getCurrentTimeSinceFirstChar();
             var update_acc = snapshot.val().lifetime_accuracy * snapshot.val().total_completed_runs;
             var update_runs = snapshot.val().total_completed_runs + 1;
-            update_acc += accuracy;
+            update_acc += accuracy * 100;
             update_acc /= update_runs;
             update(ref(db, "UsersList/" + currentuser.username),
                 {
@@ -179,8 +179,8 @@ function confirmCompletion() {
                     total_characters_typed: total_characters_typed,
                     avg_WPM: Math.round((avg_WPM + Number.EPSILON) * 1000),
                     avg_CPM: Math.round((avg_CPM + Number.EPSILON) * 1000),
-                    accuracy: Math.round((accuracy + Number.EPSILON) * 100) / 100,
-                    lifetime_accuracy: Math.round((update_acc + Number.EPSILON) * 100) / 100,
+                    accuracy: Math.round((accuracy + Number.EPSILON) * 100),
+                    lifetime_accuracy: Math.round(update_acc + Number.EPSILON),
                     total_completed_runs: update_runs,
                     total_time_spent_typing: Math.round((update_time + Number.EPSILON) * 100) / 100
                 })
@@ -232,7 +232,7 @@ function keydownSend(keyName) {
         timeOfFirstChar = performance.now() / 1000;
     }
 
-    console.log(getCurrentTimeSinceFirstChar());
+    //console.log(getCurrentTimeSinceFirstChar());
     if (keyName == "Enter") {
         var isCorr = checkCharCorrectness("\n", gameIndex);
         if (isCorr) {
