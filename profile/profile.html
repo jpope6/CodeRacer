@@ -283,21 +283,21 @@
 
         <div id="stats">
             <div id="top">
-                <div id="time_spent_typing">
-                    <h3>Time Spent Typing: </h3>
-                    <h3 id='time_spend_typing_h3'>0</h3>
-
-                </div>
-
                 <div id="average_wpm">
-                    <h3>Average Words Per Minute: </h3>
-                    <h3 id="average_wpm_h3">0</h3>
+                    <h3>Average Words Per Minue: </h3>
+                    <h3 id='average_wpm_h3'>0</h3>
 
                 </div>
 
-                <div id="accuracy">
-                    <h3>Accuracy: </h3>
-                    <h3 id="accuracy_h3">0</h3>
+                <div id="average_cpm">
+                    <h3>Average Characters Per Minute: </h3>
+                    <h3 id="average_cpm_h3">0</h3>
+
+                </div>
+
+                <div id="lifetime_accuracy">
+                    <h3>Lifetime Accuracy: </h3>
+                    <h3 id="lifetime_accuracy_h3">0</h3>
 
                 </div>
             </div>
@@ -315,9 +315,9 @@
 
                 </div>
 
-                <div id="average_cpm">
-                    <h3>Average Characters Per Minute: </h3>
-                    <h3 id="average_cpm_h3">0</h3>
+                <div id="total_time_spent_typing">
+                    <h3>Total Time Spent Typing: </h3>
+                    <h3 id="time_spend_typing_h3">0</h3>
 
                 </div>
 
@@ -373,13 +373,12 @@
         }
 
         // Displaying all of the user statistics in the tables
-
         function AddItemToTable(total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
-            accuracy, total_time_spent_typing) {
+            lifetime_accuracy, total_time_spent_typing) {
 
-            document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing;
+            document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing + " s";
             document.getElementById("average_wpm_h3").innerText = avg_WPM;
-            document.getElementById("accuracy_h3").innerText = accuracy;
+            document.getElementById("lifetime_accuracy_h3").innerText = _lifetime_accuracy + " %";
             document.getElementById("total_words_typed_h3").innerText = total_words_typed;
             document.getElementById("total_characters_typed_h3").innerText = total_characters_typed;
             document.getElementById("average_cpm_h3").innerText = avg_CPM;
@@ -392,7 +391,7 @@
 
             UsersList.forEach(element => {
                 AddItemToTable(element.total_words_typed, element.total_characters_typed, element.avg_WPM, element.avg_CPM,
-                    element.accuracy, element.total_time_spent_typing)
+                    element.lifetime_accuracy, element.total_time_spent_typing)
             });
         }
 
