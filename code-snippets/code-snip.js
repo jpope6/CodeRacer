@@ -1,3 +1,4 @@
+//Imports
 import { binary_search } from "./binary-search.js";
 import { partition, quicksort } from "./quicksort.js";
 import { bfs } from "./bfs.js";
@@ -22,7 +23,6 @@ let test_button = document.getElementById("testButton");
 let modal = document.getElementById("modal");
 let closeModalButton = document.getElementById("modalClose");
 
-
 test_button.addEventListener('click', () => {
     modal.showModal();
     updateModal();
@@ -45,8 +45,6 @@ modal.addEventListener('click', (e) => {
         confirmCompletion();
     }
 });
-
-
 
 // **********END OF BLOCK FOR MODAL****************
 
@@ -90,7 +88,6 @@ function splitSnippetToDivs() {
     code_container.id = "code_container";
     divArray = []
 
-
     //loop through each line of the code snippet
     for (let i = 0; i < current_block.length; i++) {
         //Create a new line div
@@ -125,9 +122,9 @@ var accuracy = laccuracy;
 
 function updateModal() {
     document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100;
-    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 100) / 100;
+    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 1000);
     document.getElementById("acc_h2").innerText = accuracy;
-    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 100) / 100;
+    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 1000);
 }
 
 // Updates the database after the code snippet is completed
@@ -180,8 +177,8 @@ function confirmCompletion() {
                 {
                     total_words_typed: total_words_typed,
                     total_characters_typed: total_characters_typed,
-                    avg_WPM: Math.round((avg_WPM + Number.EPSILON) * 100) / 100,
-                    avg_CPM: Math.round((avg_CPM + Number.EPSILON) * 100) / 100,
+                    avg_WPM: Math.round((avg_WPM + Number.EPSILON) * 1000),
+                    avg_CPM: Math.round((avg_CPM + Number.EPSILON) * 1000),
                     accuracy: Math.round((accuracy + Number.EPSILON) * 100) / 100,
                     lifetime_accuracy: Math.round((update_acc + Number.EPSILON) * 100) / 100,
                     total_completed_runs: update_runs,
@@ -198,8 +195,6 @@ function confirmCompletion() {
 
 //Start of Character Correctness Code ---------------------------------------------
 var gameIndex = 0;
-
-var isLastCharHit = 0;
 var totalWords = 0;
 var totalChars = 0;
 var lavg_WPM = 0;
@@ -215,7 +210,6 @@ function getCurrentTimeSinceFirstChar() {
     return performance.now() / 1000 - timeOfFirstChar;
 }
 function resetLocalStats() {
-    isLastCharHit = 0;
     totalWords = 0;
     totalChars = 0;
     lavg_WPM = 0;
@@ -265,7 +259,6 @@ function keydownSend(keyName) {
             }
             correct[gameIndex - 1] = 0;
 
-
             //Check if backspacing into a tab
             var lastNonWhiteSpace = findPreviousNonWhiteSpace();
             var distToLastNonWhiteSpace = gameIndex - lastNonWhiteSpace;
@@ -313,10 +306,7 @@ function keydownSend(keyName) {
 
         //Check for last character
         if (isLastChar(gameIndex)) {
-
-            isLastCharHit = 1;
             //Currently on last, we should unhighlight the current div, and for now, we can change code snippets
-
             unsetHighlight(gameIndex);
 
             if (isCorr) {
@@ -392,7 +382,6 @@ function isLastChar(gameIndex) {
     }
     else return 0;
 }
-
 //Highlighting functions
 function updateCursorForward(gameIndex, isCorr) {
     setHighlight(gameIndex + 1);
