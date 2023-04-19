@@ -276,8 +276,8 @@ function keydownSend(keyName) {
 
             updateCursorBackward(gameIndex);
             gameIndex--;
-            console.log("Correct: " + currentCorrect);
-            console.log("TotalChars: " + totalChars);
+            //console.log("Correct: " + currentCorrect);
+            //console.log("TotalChars: " + totalChars);
             return;
         }
         else return;
@@ -320,7 +320,7 @@ function keydownSend(keyName) {
             lavg_WPM = (totalWords / getCurrentTimeSinceFirstChar()) / 60;
             lavg_CPM = (totalChars / getCurrentTimeSinceFirstChar()) / 60;
             timeSpentOnCurrSnippet = getCurrentTimeSinceFirstChar();
-            //NOTE: ACCURACY ALREADY UPDATED
+            laccuracy = currentCorrect / totalChars;
 
             total_words_typed = totalWords;
             total_characters_typed = totalChars;
@@ -345,8 +345,8 @@ function keydownSend(keyName) {
     }
 
     gameIndex++;
-    console.log("Correct: " + currentCorrect);
-    console.log("TotalChars: " + totalChars);
+    //console.log("Correct: " + currentCorrect);
+    //console.log("TotalChars: " + totalChars);
 }
 function checkCharCorrectness(keyName, gameIndex) {
     var charToType = divArray[gameIndex].innerText;
