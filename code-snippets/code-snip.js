@@ -113,7 +113,7 @@ function splitSnippetToDivs() {
     return code_container;
 }
 
-// User's statistical results (Replace the placeholder numbers with user's numbers)
+// User's statistical results
 
 var total_words_typed = totalWords;
 var total_characters_typed = totalChars;
@@ -121,13 +121,13 @@ var avg_WPM = lavg_WPM;
 var avg_CPM = lavg_CPM;
 var accuracy = laccuracy;
 
-// Displays the user's statistics on the modal
+// Displays the user's statistics on the modal (Rounded to 2 decimal places)
 
 function updateModal() {
-    document.getElementById("time_h2").innerText = getCurrentTimeSinceFirstChar();
-    document.getElementById("wpm_h2").innerText = avg_WPM;
+    document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100;
+    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 100) / 100;
     document.getElementById("acc_h2").innerText = accuracy;
-    document.getElementById("cpm_h2").innerText = avg_CPM;
+    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 100) / 100;
 }
 
 // Updates the database after the code snippet is completed
@@ -165,30 +165,27 @@ function confirmCompletion() {
 
     // Database reference
 
-    const dbRef = ref(db, 'UsersList/');
+    const dbRef = ref(db);
 
-    // Updates the statistics after the user finishes the code snippet
+    // Updates the statistics after the user finishes the code snippet (Rounded to 2 decimal places)
 
     function updateStatistics() {
         get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
-            // var lifetime_accuracy;
-            // var total_completed_runs;
-            // var total_time_spent_typing;
-            // var update_runs = get_total_completed_runs + 1;
-            // var update_time = total_time_spent_typing + getCurrentTimeSinceFirstChar();
-            // var update_acc = get_lifetime_accuracy * get_total_completed_runs;
-            // update_acc += accuracy;
-            // update_acc /= update_runs;
+            var update_time = snapshot.val().total_time_spent_typing + getCurrentTimeSinceFirstChar();
+            var update_acc = snapshot.val().lifetime_accuracy * snapshot.val().total_completed_runs;
+            var update_runs = snapshot.val().total_completed_runs + 1;
+            update_acc += accuracy;
+            update_acc /= update_runs;
             update(ref(db, "UsersList/" + currentuser.username),
                 {
                     total_words_typed: total_words_typed,
                     total_characters_typed: total_characters_typed,
-                    avg_WPM: avg_WPM,
-                    avg_CPM: avg_CPM,
-                    accuracy: accuracy
-                    // lifetime_accuracy: update_acc,
-                    // total_completed_runs: update_runs
-                    // total_time_spent_typing: update_time
+                    avg_WPM: Math.round((avg_WPM + Number.EPSILON) * 100) / 100,
+                    avg_CPM: Math.round((avg_CPM + Number.EPSILON) * 100) / 100,
+                    accuracy: Math.round((accuracy + Number.EPSILON) * 100) / 100,
+                    lifetime_accuracy: Math.round((update_acc + Number.EPSILON) * 100) / 100,
+                    total_completed_runs: update_runs,
+                    total_time_spent_typing: Math.round((update_time + Number.EPSILON) * 100) / 100
                 })
                 .catch((error) => {
                     alert("Error" + error);
@@ -314,12 +311,6 @@ function keydownSend(keyName) {
             correct[gameIndex] = -1;
         }
 
-        //console.log("AVG CPS: " + (totalChars / getCurrentTimeSinceFirstChar()));
-        //console.log("AVG CPM: " + (totalChars / getCurrentTimeSinceFirstChar()) / 60);
-        //console.log("AVG WPS: " + (totalWords / getCurrentTimeSinceFirstChar()));
-        //console.log("AVG WPM: " + (totalWords / getCurrentTimeSinceFirstChar()) / 60);
-        //console.log("AVG ACC: " + currentCorrect / totalChars);
-
         //Check for last character
         if (isLastChar(gameIndex)) {
 
@@ -346,9 +337,6 @@ function keydownSend(keyName) {
             avg_WPM = lavg_WPM;
             avg_CPM = lavg_CPM;
             accuracy = laccuracy;
-            // lifetime_accuracy;
-            // total_completed_runs;
-            // total_time_spent_typing;
 
             //Debug for end of snippet stats
             console.log("TOTAL WPM: " + lavg_WPM);
@@ -358,6 +346,7 @@ function keydownSend(keyName) {
 
             modal.showModal();
             updateModal();
+
             return;
 
         } else {
