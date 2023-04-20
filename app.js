@@ -36,7 +36,7 @@ window.onload = function () {
         userlink.innerText = currentuser.username;
         userlink.classList.replace("btn", "nav-link");
         userlink.classList.add("btn-primary");
-        userlink.href = 'CodeRacer/profile/profile.html';
+        userlink.href = '/CodeRacer/profile/profile.html';
         link.href = 'style.css';
     }
 }
