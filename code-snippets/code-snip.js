@@ -121,9 +121,9 @@ var accuracy = laccuracy;
 // Displays the user's statistics on the modal (Rounded to 2 decimal places)
 
 function updateModal() {
-    document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100;
+    document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100 + " s";
     document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 1000);
-    document.getElementById("acc_h2").innerText = Math.round((accuracy + Number.EPSILON) * 100);
+    document.getElementById("acc_h2").innerText = Math.round((accuracy + Number.EPSILON) * 100) + " %";
     document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 1000);
 }
 
