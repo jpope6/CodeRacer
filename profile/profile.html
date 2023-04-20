@@ -373,7 +373,13 @@
         function AddItemToTable(total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
             lifetime_accuracy, total_time_spent_typing) {
 
-            document.getElementById("time_spend_typing_h3").innerText = total_time_spent_typing + " s";
+            // Convert total time spent typing to Hours/Minutes/Seconds
+            let hours = total_time_spent_typing / 3600;
+            let remainder = total_time_spent_typing % 3600;
+            let minutes = remainder / 60;
+            let seconds = remainder % 60;
+
+            document.getElementById("time_spend_typing_h3").innerText = hours + "h " + minutes + "m " + seconds + "s";
             document.getElementById("average_wpm_h3").innerText = avg_WPM;
             document.getElementById("lifetime_accuracy_h3").innerText = lifetime_accuracy + " %";
             document.getElementById("total_words_typed_h3").innerText = total_words_typed;
@@ -437,7 +443,7 @@
                 // Code for the line graph
 
                 const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-                let yValues = [retrieved_data_point_1, retrieved_data_point_2,
+                const yValues = [retrieved_data_point_1, retrieved_data_point_2,
                 retrieved_data_point_3, retrieved_data_point_4, 
                 retrieved_data_point_5, retrieved_data_point_6, 
                 retrieved_data_point_7, retrieved_data_point_8,
