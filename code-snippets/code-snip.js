@@ -19,14 +19,8 @@ let js = document.getElementById("js");
 
 // *******BLOCK FOR MODAL POP-UP WHEN CODE FINISHED TYPING*********
 
-let test_button = document.getElementById("testButton");
 let modal = document.getElementById("modal");
 let closeModalButton = document.getElementById("modalClose");
-
-test_button.addEventListener('click', () => {
-    modal.showModal();
-    updateModal();
-});
 
 // close modal when user clicks on the close button
 closeModalButton.addEventListener('click', () => {
