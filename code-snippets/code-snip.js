@@ -173,6 +173,17 @@ function confirmCompletion() {
             var update_runs = snapshot.val().total_completed_runs + 1;
             update_acc += accuracy * 100;
             update_acc /= update_runs;
+
+            var retrieved_data_point_2 = snapshot.val().data_point_2;
+            var retrieved_data_point_3 = snapshot.val().data_point_3;
+            var retrieved_data_point_4 = snapshot.val().data_point_4;
+            var retrieved_data_point_5 = snapshot.val().data_point_5;
+            var retrieved_data_point_6 = snapshot.val().data_point_6;
+            var retrieved_data_point_7 = snapshot.val().data_point_7;
+            var retrieved_data_point_8 = snapshot.val().data_point_8;
+            var retrieved_data_point_9 = snapshot.val().data_point_9;
+            var retrieved_data_point_10 = snapshot.val().data_point_10;
+
             update(ref(db, "UsersList/" + currentuser.username),
                 {
                     total_words_typed: total_words_typed,
@@ -182,7 +193,17 @@ function confirmCompletion() {
                     accuracy: Math.round((accuracy + Number.EPSILON) * 100),
                     lifetime_accuracy: Math.round(update_acc + Number.EPSILON),
                     total_completed_runs: update_runs,
-                    total_time_spent_typing: Math.round((update_time + Number.EPSILON) * 100) / 100
+                    total_time_spent_typing: Math.round((update_time + Number.EPSILON) * 100) / 100,
+                    data_point_1: retrieved_data_point_2,
+                    data_point_2: retrieved_data_point_3,
+                    data_point_3: retrieved_data_point_4,
+                    data_point_4: retrieved_data_point_5,
+                    data_point_5: retrieved_data_point_6,
+                    data_point_6: retrieved_data_point_7,
+                    data_point_7: retrieved_data_point_8,
+                    data_point_8: retrieved_data_point_9,
+                    data_point_9: retrieved_data_point_10,
+                    data_point_10: Math.round((avg_WPM + Number.EPSILON) * 1000),
                 })
                 .catch((error) => {
                     alert("Error" + error);

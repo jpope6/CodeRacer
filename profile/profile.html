@@ -409,20 +409,6 @@
         // Updates the database after the graph is updated
 
         function updateGraph() {
-
-            // Gets the user's username that's stored in the local or session storage
-
-            var currentuser = null;
-
-            let keepLoggedIn = localStorage.getItem("keepLoggedIn");
-
-            if (keepLoggedIn == "yes") {
-                currentuser = JSON.parse(localStorage.getItem('user'));
-            }
-            else {
-                currentuser = JSON.parse(sessionStorage.getItem('user'));
-            }
-
             // Database reference
 
             const dbRef = ref(db);
@@ -451,7 +437,11 @@
                 // Code for the line graph
 
                 const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-                const yValues = [70, 80, 90, 100, 110, 120, 130, 140, 150, 160];
+                const yValues = [retrieved_data_point_1, retrieved_data_point_2,
+                retrieved_data_point_3, retrieved_data_point_4, 
+                retrieved_data_point_5, retrieved_data_point_6, 
+                retrieved_data_point_7, retrieved_data_point_8,
+                retrieved_data_point_9, retrieved_data_point_10];
 
                 const myChart = new Chart("myChart", {
                     type: "line",
@@ -489,7 +479,7 @@
                                 },
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'Previous Attempts',
+                                    labelString: 'Previous Attempts (1 = Latest, 10 = Most Recent)',
                                     fontColor: "whitesmoke"
                                 },
                                 ticks: {
@@ -514,26 +504,6 @@
                         }
                     }
                 });
-
-                // This updates the database with the new values that are assigned to each data point(s)
-
-                update(ref(db, "UsersList/" + currentuser.username),
-                    {
-                        // Replace the 0's with the variable names that you create
-                        data_point_1: 0,
-                        data_point_2: 0,
-                        data_point_3: 0,
-                        data_point_4: 0,
-                        data_point_5: 0,
-                        data_point_6: 0,
-                        data_point_7: 0,
-                        data_point_8: 0,
-                        data_point_9: 0,
-                        data_point_10: 0
-                    })
-                    .catch((error) => {
-                        alert("Error" + error);
-                    })
             });
         }
 
@@ -627,75 +597,8 @@
         let logo = document.getElementById("logoname");
 
         logo.addEventListener('click', () => {
-            window.location = "/CodeRacer/index.html";
+            window.location = "CodeRacer/index.html";
         })
-
-
-        // Code for the line graph
-        const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        const yValues = [70, 80, 80, 90, 90, 90, 100, 101, 104, 104, 105];
-
-        const myChart = new Chart("myChart", {
-            type: "line",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                    borderColor: "whitesmoke",
-                    data: yValues,
-                }]
-            },
-            options: {
-                legend: {
-                    display: false,
-                },
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Words Per Minute Graph',
-                    fontColor: "whitesmoke"
-                },
-                tooltips: {
-                    mode: 'label',
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        gridLines: {
-                            display: true,
-                            color: "whitesmoke"
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Previous Attempts',
-                            fontColor: "whitesmoke"
-                        },
-                        ticks: {
-                            fontColor: "whitesmoke"
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        gridLines: {
-                            display: true,
-                            color: "whitesmoke"
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'WPM',
-                            fontColor: "whitesmoke"
-                        },
-                        ticks: {
-                            fontColor: "whitesmoke"
-                        }
-                    }]
-                }
-            }
-        });
 
         // Add sign out functionality to sign-out-button
         const sign_out = document.getElementById("sign-out-button");
