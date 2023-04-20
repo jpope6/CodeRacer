@@ -377,7 +377,7 @@
             let hours = Math.floor(total_time_spent_typing / 3600);
             total_time_spent_typing = total_time_spent_typing % 3600;
             let minutes = Math.floor(total_time_spent_typing / 60);
-            let seconds = total_time_spent_typing % 60;
+            let seconds = Math.floor(total_time_spent_typing % 60);
 
             document.getElementById("time_spend_typing_h3").innerText = hours + "h " + minutes + "m " + seconds + "s";
             document.getElementById("average_wpm_h3").innerText = avg_WPM;
