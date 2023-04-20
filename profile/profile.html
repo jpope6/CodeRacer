@@ -437,11 +437,13 @@
                 // Code for the line graph
 
                 const xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-                const yValues = [retrieved_data_point_1, retrieved_data_point_2,
+                let yValues = [retrieved_data_point_1, retrieved_data_point_2,
                 retrieved_data_point_3, retrieved_data_point_4, 
                 retrieved_data_point_5, retrieved_data_point_6, 
                 retrieved_data_point_7, retrieved_data_point_8,
                 retrieved_data_point_9, retrieved_data_point_10];
+
+                let yValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
                 const myChart = new Chart("myChart", {
                     type: "line",
@@ -486,6 +488,10 @@
                                     fontColor: "whitesmoke"
                                 }
                             }],
+                            y: {
+                                min: 0,
+                                grace: 5%;
+                            },
                             yAxes: [{
                                 display: true,
                                 gridLines: {
