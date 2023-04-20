@@ -174,6 +174,8 @@ function confirmCompletion() {
             update_acc += accuracy * 100;
             update_acc /= update_runs;
 
+            // Getting the data points individually from the database
+
             var retrieved_data_point_2 = snapshot.val().data_point_2;
             var retrieved_data_point_3 = snapshot.val().data_point_3;
             var retrieved_data_point_4 = snapshot.val().data_point_4;

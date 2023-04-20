@@ -417,11 +417,11 @@
 
             get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
 
-                // This gets the avg_WPM from the database
+                // Gets the avg_WPM from the database
 
                 var retrieved_avg_WPM = snapshot.val().avg_WPM;
 
-                // This is how you get all of the data points individually from the database
+                // Getting all of the data points individually from the database
 
                 var retrieved_data_point_1 = snapshot.val().data_point_1;
                 var retrieved_data_point_2 = snapshot.val().data_point_2;
