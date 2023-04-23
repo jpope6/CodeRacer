@@ -24,6 +24,7 @@ let closeModalButton = document.getElementById("modalClose");
 
 // close modal when user clicks on the close button
 closeModalButton.addEventListener('click', () => {
+    resetBlur();
     modal.close();
     changeToRandomSnippet();
     resetToInitialConditions();
@@ -33,6 +34,7 @@ closeModalButton.addEventListener('click', () => {
 // close modal when user clicks outside of the modal
 modal.addEventListener('click', (e) => {
     if (e.target.nodeName === "DIALOG") {
+        resetBlur();
         modal.close();
         changeToRandomSnippet();
         resetToInitialConditions();
@@ -41,6 +43,28 @@ modal.addEventListener('click', (e) => {
 });
 
 // **********END OF BLOCK FOR MODAL****************
+
+// *******BLOCK FOR UNBLUR CONTENT WHEN CLICKED*********
+
+const hidden_div = document.getElementById("hidden");
+const container = document.getElementById("container");
+const text_to_type = document.getElementById("text-to-type");
+let hidden = true;
+
+container.addEventListener("click", () => {
+    text_to_type.style.animation = 'unblur 1s ease';
+    text_to_type.style.filter = 'none'
+    hidden_div.style.zIndex = -3;
+    hidden = false;
+});
+
+function resetBlur() {
+    text_to_type.style.filter = 'blur(5px)'
+    hidden_div.style.zIndex = 3;
+    hidden = true;
+}
+
+// **********END OF BLOCK FOR BLURRING CONTENT****************
 
 const code_list = [bfs, binary_search, bubbleSort, dfs, heapSort, insertionSort,
     longestCommonSubsequence, selectionSort, partition, quicksort]
@@ -243,7 +267,6 @@ function resetLocalStats() {
 }
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {
-
     if (!isFirstCharPressed) {
         isFirstCharPressed = true;
         timeOfFirstChar = performance.now() / 1000;
@@ -433,13 +456,21 @@ function unsetHighlight(index) {
 }
 function setCorrectBG(index) {
     // divArray[index].style.backgroundColor = "#00ff00";
-    divArray[index].style.color = "#009A17";
-    divArray[index].style.fontWeight = "800"
+    if (divArray[index].innerText == " ") {
+        divArray[index].style.backgroundImage = "linear-gradient(180deg, transparent 0%, transparent 90%, #009A17 90%, #009A17 100%)";
+    } else {
+        divArray[index].style.color = "#009A17";
+        divArray[index].style.fontWeight = "800";
+    }
 }
 function setIncorrectBG(index) {
     // divArray[index].style.backgroundColor = "#ff3300";
-    divArray[index].style.color = "#ff3300";
-    divArray[index].style.fontWeight = "800"
+    if (divArray[index].innerText == " ") {
+        divArray[index].style.backgroundImage = "linear-gradient(180deg, transparent 0%, transparent 90%, #ff3300 90%, #ff3300 100%)";
+    } else {
+        divArray[index].style.color = "#ff3300";
+        divArray[index].style.fontWeight = "800"
+    }
 }
 function resetToInitialConditions() {
     resetLocalStats();
@@ -465,6 +496,11 @@ function changeToRandomSnippet() {
 
 //Event Listener
 document.addEventListener('keydown', (event) => {
+    // if the user has not clicked to activate typing, do not do anything
+    if (hidden) {
+        return
+    }
+
     var keyName = event.key;
 
     if (keyName == "/"){

@@ -52,6 +52,7 @@ html, body {
   width: 50%;
   border-radius: 10px;
   background: var(--clr-heading);
+  z-index: 1000;
 }
 
 #modalContent {
@@ -131,6 +132,12 @@ html, body {
     opacity: 0.5;
 }
 
+#container {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    align-items: center;
+}
+
 #typing-area {
     display: flex;
     justify-content: center;
@@ -138,8 +145,27 @@ html, body {
     padding: 1%;
     border-radius: 10px;
     border: 1px solid;
-    border-color: var(--text-color)
+    border-color: var(--text-color);
+    grid-row: 1;
+    grid-column: 1;
 }
+
+#hidden {
+    grid-row: 1;
+    grid-column: 1;
+    margin: 0 auto;
+    z-index: 3;
+}
+
+@keyframes unblur {
+    from {
+        filter: blur(5px);
+    }
+    to {
+        filter: none;
+    }
+}
+
   
 #text-to-type {
     overflow: wrap;
@@ -151,6 +177,11 @@ html, body {
     font-family: Consolas,monaco,monospace;
     font-size: 20px;
     font-weight: 0;
+    filter: blur(5px);
+}
+
+#hidden {
+    color: var(--clr-text);
 }
   
 #text-to-type > p {
