@@ -140,9 +140,9 @@ var accuracy = laccuracy;
 
 function updateModal() {
     document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100 + " s";
-    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON) * 1000);
+    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON));
     document.getElementById("acc_h2").innerText = Math.round((accuracy + Number.EPSILON) * 100) + " %";
-    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON) * 1000);
+    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON));
 }
 
 // Updates the database after the code snippet is completed
@@ -208,8 +208,8 @@ function confirmCompletion() {
                 {
                     total_words_typed: total_words_typed,
                     total_characters_typed: total_characters_typed,
-                    avg_WPM: Math.round((avg_WPM + Number.EPSILON) * 1000),
-                    avg_CPM: Math.round((avg_CPM + Number.EPSILON) * 1000),
+                    avg_WPM: Math.round((avg_WPM + Number.EPSILON)),
+                    avg_CPM: Math.round((avg_CPM + Number.EPSILON)),
                     accuracy: Math.round((accuracy + Number.EPSILON) * 100),
                     lifetime_accuracy: Math.round(update_acc + Number.EPSILON),
                     total_completed_runs: update_runs,
@@ -357,8 +357,8 @@ function keydownSend(keyName) {
             }
 
             //Send local stats
-            lavg_WPM = (totalWords / getCurrentTimeSinceFirstChar()) / 60;
-            lavg_CPM = (totalChars / getCurrentTimeSinceFirstChar()) / 60;
+            lavg_WPM = (totalWords / (getCurrentTimeSinceFirstChar() / 60));
+            lavg_CPM = (totalChars / (getCurrentTimeSinceFirstChar() / 60));
             timeSpentOnCurrSnippet = getCurrentTimeSinceFirstChar();
             laccuracy = currentCorrect / totalChars;
 
