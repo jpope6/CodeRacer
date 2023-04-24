@@ -450,18 +450,18 @@ function setHighlight(index) {
 }
 function unsetHighlight(index) {
     // divArray[index].style.backgroundColor = "";
-    divArray[index].style.color = "";
+    if (divArray[index].innerText == " ") {
+        divArray[index].style.backgroundImage = "";
+    } else {
+        divArray[index].style.color = "";
+    }
     divArray[index].className = "";
     divArray[index].style.fontWeight = "400";
 }
 function setCorrectBG(index) {
     // divArray[index].style.backgroundColor = "#00ff00";
-    if (divArray[index].innerText == " ") {
-        divArray[index].style.backgroundImage = "linear-gradient(180deg, transparent 0%, transparent 90%, #009A17 90%, #009A17 100%)";
-    } else {
-        divArray[index].style.color = "#009A17";
-        divArray[index].style.fontWeight = "800";
-    }
+    divArray[index].style.color = "#009A17";
+    divArray[index].style.fontWeight = "800";
 }
 function setIncorrectBG(index) {
     // divArray[index].style.backgroundColor = "#ff3300";
