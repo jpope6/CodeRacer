@@ -47,7 +47,12 @@
             --clr-heading: hsl(109 50% 25%);
         }
 
-
+        .dark {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
+        }
 
         :root:has(#pink:checked) {
             --clr-body-bg: hsl(310 50% 90%);
@@ -69,6 +74,13 @@
             --clr-card-bg: hsl(109 50% 100%);
             --clr-text: hsl(109 50% 15%);
             --clr-heading: hsl(109 50% 25%);
+        }
+
+        :root:has(#dark:checked) {
+            --clr-body-bg: hsl(209 50% 10%);
+            --clr-card-bg: hsl(209 50% 5%);
+            --clr-text: hsl(209 50% 90%);
+            --clr-heading: hsl(209 50% 80%);
         }
 
         .btn-outline-primary {
@@ -314,22 +326,7 @@
             <canvas id="myChart" style="width:100%;"></canvas>
         </div>
         <button id="sign-out-button">Sign Out</button>
-
-        <button type="button" id="button">
-            <img src="/images/load.jpeg" alt = "Anonymous" width="100" height="100" class = "round"
-            id = "Profile">
-            <style>
-            img.round {
-                border-radius: 50%;
-                position: absolute;
-                top: 160px;
-                left: 670px;
-            }
-            </style>
-            </button>
-        
     </div>
-
 
     <footer id="footer"></footer>
 
@@ -371,46 +368,6 @@
         else {
             currentuser = JSON.parse(sessionStorage.getItem('user'));
         }
-            var a = document.getElementById("Profile");
-            var pro = localStorage.getItem("proPic");
-            switch(pro) 
-                {
-                    case 'pfp':
-                        a.src = "/images/pfp.jpg";
-                        break; 
-                    case 'sponge':
-                        a.src = "/images/sponge.jpeg"; 
-                        break;
-                    case 'apple': 
-                        a.src = "/images/apple-touch-icon.png"; 
-                        break;
-                    case null:
-                        a.src = "/images/pfp.jpg";
-                } 
-            
-            document.getElementById("button").addEventListener("click", change);
-            function change()
-            {
-                switch(pro) 
-                {
-                    case 'pfp':
-                        a.src = "/images/sponge.jpeg";
-                        pro = 'sponge';
-                        localStorage.setItem("proPic", 'sponge');
-                        break; 
-                    case 'sponge':
-                        a.src = "/images/apple-touch-icon.png";
-                        pro = 'apple';
-                        localStorage.setItem("proPic", 'apple');
-                        break;
-                    case 'apple': 
-                        a.src = "/images/pfp.jpg";
-                        pro = 'pfp';
-                        localStorage.setItem("proPic", 'pfp');
-                        break;
-                } 
-            }
-
 
         // Displaying all of the user statistics in the tables
         function AddItemToTable(total_words_typed, total_characters_typed, avg_WPM, avg_CPM,
@@ -658,7 +615,6 @@
 
 
     </script>
-
 
 </body>
 
