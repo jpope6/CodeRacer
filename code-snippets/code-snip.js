@@ -223,7 +223,7 @@ function confirmCompletion() {
                     data_point_7: retrieved_data_point_8,
                     data_point_8: retrieved_data_point_9,
                     data_point_9: retrieved_data_point_10,
-                    data_point_10: Math.round((avg_WPM + Number.EPSILON) * 1000),
+                    data_point_10: Math.round(avg_WPM + Number.EPSILON),
                 })
                 .catch((error) => {
                     alert("Error" + error);
