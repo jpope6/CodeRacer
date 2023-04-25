@@ -1,3 +1,4 @@
+//Imports
 import { binary_search } from "./binary-search.js";
 import { partition, quicksort } from "./quicksort.js";
 import { bfs } from "./bfs.js";
@@ -7,6 +8,8 @@ import { selectionSort } from "./selection-sort.js";
 import { insertionSort } from "./insertion-sort.js";
 import { heapSort } from "./heap-sort.js";
 import { longestCommonSubsequence } from "./lcs.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getDatabase, ref, child, get, update } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
 let code = document.getElementById("text-to-type");
 let python = document.getElementById("python");
@@ -16,18 +19,12 @@ let js = document.getElementById("js");
 
 // *******BLOCK FOR MODAL POP-UP WHEN CODE FINISHED TYPING*********
 
-let test_button = document.getElementById("testButton");
 let modal = document.getElementById("modal");
 let closeModalButton = document.getElementById("modalClose");
 
-
-test_button.addEventListener('click', () => {
-    modal.showModal();
-    confirmCompletion();
-});
-
 // close modal when user clicks on the close button
 closeModalButton.addEventListener('click', () => {
+    resetBlur();
     modal.close();
     changeToRandomSnippet();
     resetToInitialConditions();
@@ -37,6 +34,7 @@ closeModalButton.addEventListener('click', () => {
 // close modal when user clicks outside of the modal
 modal.addEventListener('click', (e) => {
     if (e.target.nodeName === "DIALOG") {
+        resetBlur();
         modal.close();
         changeToRandomSnippet();
         resetToInitialConditions();
@@ -44,9 +42,29 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-
-
 // **********END OF BLOCK FOR MODAL****************
+
+// *******BLOCK FOR UNBLUR CONTENT WHEN CLICKED*********
+
+const hidden_div = document.getElementById("hidden");
+const container = document.getElementById("container");
+const text_to_type = document.getElementById("text-to-type");
+let hidden = true;
+
+container.addEventListener("click", () => {
+    text_to_type.style.animation = 'unblur 1s ease';
+    text_to_type.style.filter = 'none'
+    hidden_div.style.zIndex = -3;
+    hidden = false;
+});
+
+function resetBlur() {
+    text_to_type.style.filter = 'blur(5px)'
+    hidden_div.style.zIndex = 3;
+    hidden = true;
+}
+
+// **********END OF BLOCK FOR BLURRING CONTENT****************
 
 const code_list = [bfs, binary_search, bubbleSort, dfs, heapSort, insertionSort,
     longestCommonSubsequence, selectionSort, partition, quicksort]
@@ -88,7 +106,6 @@ function splitSnippetToDivs() {
     code_container.id = "code_container";
     divArray = []
 
-
     //loop through each line of the code snippet
     for (let i = 0; i < current_block.length; i++) {
         //Create a new line div
@@ -111,67 +128,151 @@ function splitSnippetToDivs() {
     return code_container;
 }
 
-//Start of Character Correctness Code ---------------------------------------------
-var gameIndex = 0;
+// User's statistical results
 
-//User stats NOT READY YET
-//From profile if available, for use in calculating next average
-// GlobalUserStats = {
-//     totalWords: 0,
-//     totalChars: 0,
-//     avgWPM: 0,
-//     avgWPS: 0,
-//     avgCPM: 0,
-//     avgCPS: 0,
-//     totalRunsCompleted: 0,
-//     totalTimeTyping: 0
-// };
+var total_words_typed = totalWords;
+var total_characters_typed = totalChars;
+var avg_WPM = lavg_WPM;
+var avg_CPM = lavg_CPM;
+var accuracy = laccuracy;
 
-// //Stats for current snippet
-// LocalUserStats = {
-//     totalWords: 0,
-//     totalChars: 0,
-//     avgWPM: 0,
-//     avgWPS: 0,
-//     avgCPM: 0,
-//     avgCPS: 0,
-//     totalRunsCompleted: 0,
-//     totalTimeTyping: 0,
-//     accuracy,
-//     lifetime accuracy 
-// };
+// Displays the user's statistics on the modal (Rounded to 2 decimal places)
 
-// Stores the statisical data in the local storage
-
-var total_words_typed = 434;
-var total_characters_typed = 2332422;
-var avg_WPM = 322313332;
-var avg_CPM = 44325;
-var accuracy = 2321;
-var lifetime_accuracy = 4313226;
-var total_completed_runs = 2342;
-var total_time_spent_typing = 76843243;
-
-localStorage.setItem('total_words_typed', JSON.stringify(total_words_typed));
-localStorage.setItem('total_characters_typed', JSON.stringify(total_characters_typed));
-localStorage.setItem('avg_WPM', JSON.stringify(avg_WPM));
-localStorage.setItem('avg_CPM', JSON.stringify(avg_CPM));
-localStorage.setItem('accuracy', JSON.stringify(accuracy));
-localStorage.setItem('lifetime_accuracy', JSON.stringify(lifetime_accuracy));
-localStorage.setItem('total_completed_runs', JSON.stringify(total_completed_runs));
-localStorage.setItem('total_time_spent_typing', JSON.stringify(total_time_spent_typing));
-
-// Confirms if the user completes the code snippet or not
-
-function confirmCompletion() {
-    var confirm_completion = 1;
-    localStorage.setItem('confirm_completion', JSON.stringify(confirm_completion));
+function updateModal() {
+    document.getElementById("time_h2").innerText = Math.round((getCurrentTimeSinceFirstChar() + Number.EPSILON) * 100) / 100 + " s";
+    document.getElementById("wpm_h2").innerText = Math.round((avg_WPM + Number.EPSILON));
+    document.getElementById("acc_h2").innerText = Math.round((accuracy + Number.EPSILON) * 100) + " %";
+    document.getElementById("cpm_h2").innerText = Math.round((avg_CPM + Number.EPSILON));
 }
 
+// Updates the database after the code snippet is completed
 
+function confirmCompletion() {
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCfqETPecXz44bqT_d5hgQAFbejf4isfIk",
+        authDomain: "coderacer-4d354.firebaseapp.com",
+        databaseURL: "https://coderacer-4d354-default-rtdb.firebaseio.com",
+        projectId: "coderacer-4d354",
+        storageBucket: "coderacer-4d354.appspot.com",
+        messagingSenderId: "300760585108",
+        appId: "1:300760585108:web:f1841e34b255daf97fb581"
+    };
+
+    // Initialize Firebase
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getDatabase();
+
+    // Gets the user's username that's stored in the local or session storage
+
+    var currentuser = null;
+
+    let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+    if (keepLoggedIn == "yes") {
+        currentuser = JSON.parse(localStorage.getItem('user'));
+    }
+    else {
+        currentuser = JSON.parse(sessionStorage.getItem('user'));
+    }
+
+    // Database reference
+
+    const dbRef = ref(db);
+
+    // Updates the statistics after the user finishes the code snippet (Rounded to 2 decimal places)
+
+    function updateStatistics() {
+        get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
+            var update_time = snapshot.val().total_time_spent_typing + getCurrentTimeSinceFirstChar();
+            var update_acc = snapshot.val().lifetime_accuracy * snapshot.val().total_completed_runs;
+            var update_runs = snapshot.val().total_completed_runs + 1;
+            update_acc += accuracy * 100;
+            update_acc /= update_runs;
+
+            // Getting the data points individually from the database
+
+            var retrieved_data_point_2 = snapshot.val().data_point_2;
+            var retrieved_data_point_3 = snapshot.val().data_point_3;
+            var retrieved_data_point_4 = snapshot.val().data_point_4;
+            var retrieved_data_point_5 = snapshot.val().data_point_5;
+            var retrieved_data_point_6 = snapshot.val().data_point_6;
+            var retrieved_data_point_7 = snapshot.val().data_point_7;
+            var retrieved_data_point_8 = snapshot.val().data_point_8;
+            var retrieved_data_point_9 = snapshot.val().data_point_9;
+            var retrieved_data_point_10 = snapshot.val().data_point_10;
+
+            update(ref(db, "UsersList/" + currentuser.username),
+                {
+                    total_words_typed: total_words_typed,
+                    total_characters_typed: total_characters_typed,
+                    avg_WPM: Math.round((avg_WPM + Number.EPSILON)),
+                    avg_CPM: Math.round((avg_CPM + Number.EPSILON)),
+                    accuracy: Math.round((accuracy + Number.EPSILON) * 100),
+                    lifetime_accuracy: Math.round(update_acc + Number.EPSILON),
+                    total_completed_runs: update_runs,
+                    total_time_spent_typing: Math.round((update_time + Number.EPSILON) * 100) / 100,
+                    data_point_1: retrieved_data_point_2,
+                    data_point_2: retrieved_data_point_3,
+                    data_point_3: retrieved_data_point_4,
+                    data_point_4: retrieved_data_point_5,
+                    data_point_5: retrieved_data_point_6,
+                    data_point_6: retrieved_data_point_7,
+                    data_point_7: retrieved_data_point_8,
+                    data_point_8: retrieved_data_point_9,
+                    data_point_9: retrieved_data_point_10,
+                    data_point_10: Math.round((avg_WPM + Number.EPSILON) * 1000),
+                })
+                .catch((error) => {
+                    alert("Error" + error);
+                })
+        });
+    }
+
+    window.onload = updateStatistics();
+}
+
+//Start of Character Correctness Code ---------------------------------------------
+var gameIndex = 0;
+var totalWords = 0;
+var totalChars = 0;
+var lavg_WPM = 0;
+var lavg_CPM = 0;
+var timeSpentOnCurrSnippet = 0;
+var laccuracy = 1;
+var currentCorrect = 0;
+var isFirstCharPressed = 0;
+var timeOfFirstChar = 0;
+var correct = [divArray.length];
+
+function getCurrentTimeSinceFirstChar() {
+    return performance.now() / 1000 - timeOfFirstChar;
+}
+function resetLocalStats() {
+    totalWords = 0;
+    totalChars = 0;
+    lavg_WPM = 0;
+    lavg_CPM = 0;
+    timeSpentOnCurrSnippet = 0;
+    laccuracy = 1;
+    isFirstCharPressed = 0;
+    timeOfFirstChar = 0;
+    currentCorrect = 0;
+
+    for (var i = 0; i < correct.length; i++) {
+        correct[i] = 0;
+    }
+}
 //Char Check & Manipulation Functions
 function keydownSend(keyName) {
+    if (!isFirstCharPressed) {
+        isFirstCharPressed = true;
+        timeOfFirstChar = performance.now() / 1000;
+    }
 
+    //console.log(getCurrentTimeSinceFirstChar());
     if (keyName == "Enter") {
         var isCorr = checkCharCorrectness("\n", gameIndex);
         if (isCorr) {
@@ -180,6 +281,7 @@ function keydownSend(keyName) {
             var nextIndex = findNextNonWhiteSpace();
             gameIndex = nextIndex;
             setHighlight(gameIndex);
+            totalWords++;
             return;
         }
         else {
@@ -190,6 +292,13 @@ function keydownSend(keyName) {
     else if (keyName == "Backspace") {
         //Make sure not backspacing into nothing
         if (gameIndex > 0) {
+            totalChars--;
+
+            if (correct[gameIndex - 1] == 1) {
+                currentCorrect--;
+            }
+            correct[gameIndex - 1] = 0;
+
             //Check if backspacing into a tab
             var lastNonWhiteSpace = findPreviousNonWhiteSpace();
             var distToLastNonWhiteSpace = gameIndex - lastNonWhiteSpace;
@@ -201,26 +310,43 @@ function keydownSend(keyName) {
                 return;
             }
 
+            if (divArray[gameIndex - 1].innerText == ' ') {
+                totalWords--;
+            }
+
             updateCursorBackward(gameIndex);
             gameIndex--;
+            //console.log("Correct: " + currentCorrect);
+            //console.log("TotalChars: " + totalChars);
             return;
         }
         else return;
     }
     else {
         //Legitimate letter input
+        totalChars++;
+
         //If newline is what is needed, it is necessary to hit enter.  This prevents cursor misalignment
         if (divArray[gameIndex].innerText == '\n') {
             return;
         }
 
+        if (divArray[gameIndex].innerText == ' ') {
+            totalWords++;
+        }
+
         var isCorr = checkCharCorrectness(keyName, gameIndex);
+        if (isCorr) {
+            correct[gameIndex] = 1;
+            currentCorrect++;
+        }
+        else {
+            correct[gameIndex] = -1;
+        }
 
         //Check for last character
         if (isLastChar(gameIndex)) {
             //Currently on last, we should unhighlight the current div, and for now, we can change code snippets
-            //console.log("Last char!");
-
             unsetHighlight(gameIndex);
 
             if (isCorr) {
@@ -230,15 +356,27 @@ function keydownSend(keyName) {
                 setIncorrectBG(gameIndex);
             }
 
-            //Send local stats here TODO**
+            //Send local stats
+            lavg_WPM = (totalWords / (getCurrentTimeSinceFirstChar() / 60));
+            lavg_CPM = (totalChars / (getCurrentTimeSinceFirstChar() / 60));
+            timeSpentOnCurrSnippet = getCurrentTimeSinceFirstChar();
+            laccuracy = currentCorrect / totalChars;
+
+            total_words_typed = totalWords;
+            total_characters_typed = totalChars;
+            avg_WPM = lavg_WPM;
+            avg_CPM = lavg_CPM;
+            accuracy = laccuracy;
+
+            //Debug for end of snippet stats
+            console.log("TOTAL WPM: " + lavg_WPM);
+            console.log("TOTAL CPM: " + lavg_CPM);
+            console.log("TOTAL ACC: " + laccuracy);
+            console.log("TOTAL TIME: " + timeSpentOnCurrSnippet);
 
             modal.showModal();
+            updateModal();
 
-            // I moved this block to execute when our pop up closes -Jared
-            // 
-            //For now we can change snippet
-            //changeToRandomSnippet();
-            //resetToInitialConditions();
             return;
 
         } else {
@@ -247,16 +385,16 @@ function keydownSend(keyName) {
     }
 
     gameIndex++;
+    //console.log("Correct: " + currentCorrect);
+    //console.log("TotalChars: " + totalChars);
 }
 function checkCharCorrectness(keyName, gameIndex) {
     var charToType = divArray[gameIndex].innerText;
 
     if (keyName == charToType) {
-        console.log("Index: " + gameIndex + " | User: " + keyName + " | Text: " + charToType + " | CORRECT");
         return 1;
     }
     else {
-        console.log("Index: " + gameIndex + " | User: " + keyName + " | Text: " + charToType + " | INCORRECT");
         return 0;
     }
 }
@@ -284,7 +422,6 @@ function isLastChar(gameIndex) {
     }
     else return 0;
 }
-
 //Highlighting functions
 function updateCursorForward(gameIndex, isCorr) {
     setHighlight(gameIndex + 1);
@@ -313,33 +450,37 @@ function setHighlight(index) {
 }
 function unsetHighlight(index) {
     // divArray[index].style.backgroundColor = "";
-    divArray[index].style.color = "";
+    if (divArray[index].innerText == " ") {
+        divArray[index].style.backgroundImage = "";
+    } else {
+        divArray[index].style.color = "";
+    }
     divArray[index].className = "";
     divArray[index].style.fontWeight = "400";
 }
 function setCorrectBG(index) {
     // divArray[index].style.backgroundColor = "#00ff00";
     divArray[index].style.color = "#009A17";
-    divArray[index].style.fontWeight = "800"
+    divArray[index].style.fontWeight = "800";
 }
 function setIncorrectBG(index) {
     // divArray[index].style.backgroundColor = "#ff3300";
-    divArray[index].style.color = "#ff3300";
-    divArray[index].style.fontWeight = "800"
+    if (divArray[index].innerText == " ") {
+        divArray[index].style.backgroundImage = "linear-gradient(180deg, transparent 0%, transparent 90%, #ff3300 90%, #ff3300 100%)";
+    } else {
+        divArray[index].style.color = "#ff3300";
+        divArray[index].style.fontWeight = "800"
+    }
 }
 function resetToInitialConditions() {
-    //clearLocalStats();
+    resetLocalStats();
+
     gameIndex = 0;
     for (var i = 0; i < divArray.length; i++) {
         unsetHighlight(i);
     }
     beginCursorHighlight();
 }
-// function clearLocalStats() {
-//     for (var i = 0; i < LocalUserStats.length; i++) {
-//         LocalUserStats[i] = 0;
-//     }
-// }
 function changeToRandomSnippet() {
     let mostRecentIndex = random_index;
 
@@ -355,7 +496,18 @@ function changeToRandomSnippet() {
 
 //Event Listener
 document.addEventListener('keydown', (event) => {
+    // if the user has not clicked to activate typing, do not do anything
+    if (hidden) {
+        return
+    }
+
     var keyName = event.key;
+
+    if (keyName == "/"){
+        event.preventDefault();
+        keydownSend("/");
+        return;
+    }
 
     const KEY_IGNR = ["Shift", "CapsLock", "Alt", "Insert", "Delete", "Home", "End", "PageUp", "PageDown", "ScrollLock", "Pause",
         "NumLock", "Control", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "ArrowUp",

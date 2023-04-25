@@ -59,14 +59,24 @@
             <div id="modalContent">
                 <h1>STATS</h1>
                 <div class="stats">
-                   <h2 id="wpm">WPM: </h2> 
-                   <h2 id="wps">WPS: </h2>
-                   <h2 id="cpm">CPM: </h2>
-                   <h2 id="cps">CPS: </h2>
+                    <div>
+                        <h2 id="wpm">Words Per Minute: &nbsp;</h2> 
+                        <h2 id="wpm_h2">0</h2>
+                    </div>
+                    <div>
+                        <h2 id="acc">Accuracy: &nbsp;</h2>
+                        <h2 id="acc_h2">0</h2>
+                    </div>
                 </div>
                 <div class="stats">
-                    <h2 id="acc">ACC: </h2>
-                    <h2 id="time">TIME: </h2>
+                    <div>
+                        <h2 id="cpm">Characters Per Minute: &nbsp;</h2>
+                        <h2 id="cpm_h2">0</h2>
+                    </div>
+                    <div>
+                        <h2 id="time">Time: &nbsp;</h2>
+                        <h2 id="time_h2">0</h2>
+                    </div>
                 </div>
                 <button type="button" id="learnMore">
                     Click Me to Learn More About the Code You Just Typed!
@@ -75,11 +85,15 @@
             </div>
         </dialog>
 
-        <button type="button" id="testButton">test</button>
+        <div id="testButton"></div>
 
-        <div id="typing-area">
+        <div id="container">
+            <h2 id="hidden" class="hidden">Click here to begin typing</h2>
+            <div id="typing-area">
 
-            <pre id="text-to-type"><code id="code"></code></pre>
+                <pre id="text-to-type"><code id="code"></code></pre>
+
+            </div>
         </div>
     </div>
     <footer id="footer"></footer>
