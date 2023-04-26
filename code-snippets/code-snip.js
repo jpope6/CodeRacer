@@ -130,8 +130,6 @@ function splitSnippetToDivs() {
 
 // User's statistical results
 
-var total_words_typed = totalWords;
-var total_characters_typed = totalChars;
 var avg_WPM = lavg_WPM;
 var avg_CPM = lavg_CPM;
 var accuracy = laccuracy;
