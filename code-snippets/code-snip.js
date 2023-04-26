@@ -191,6 +191,8 @@ function confirmCompletion() {
             var update_runs = snapshot.val().total_completed_runs + 1;
             update_acc += accuracy * 100;
             update_acc /= update_runs;
+            var update_total_words = snapshot.val().total_words_typed + totalWords;
+            var update_total_chars = snapshot.val().total_characters_typed + totalChars;
 
             // Getting the data points individually from the database
 
@@ -206,8 +208,8 @@ function confirmCompletion() {
 
             update(ref(db, "UsersList/" + currentuser.username),
                 {
-                    total_words_typed: total_words_typed,
-                    total_characters_typed: total_characters_typed,
+                    total_words_typed: update_total_words,
+                    total_characters_typed: update_total_chars,
                     avg_WPM: Math.round((avg_WPM + Number.EPSILON)),
                     avg_CPM: Math.round((avg_CPM + Number.EPSILON)),
                     accuracy: Math.round((accuracy + Number.EPSILON) * 100),
