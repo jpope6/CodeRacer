@@ -130,9 +130,12 @@ function splitSnippetToDivs() {
 
 // User's statistical results
 
+var total_words_typed = totalWords;
+var total_characters_typed = totalChars;
 var avg_WPM = lavg_WPM;
 var avg_CPM = lavg_CPM;
 var accuracy = laccuracy;
+var lastWords, lastChars;
 
 // Displays the user's statistics on the modal (Rounded to 2 decimal places)
 
@@ -189,8 +192,8 @@ function confirmCompletion() {
             var update_runs = snapshot.val().total_completed_runs + 1;
             update_acc += accuracy * 100;
             update_acc /= update_runs;
-            var update_total_words = snapshot.val().total_words_typed + totalWords;
-            var update_total_chars = snapshot.val().total_characters_typed + totalChars;
+            var update_total_words = lastWords + totalWords;
+            var update_total_chars = lastChars + totalChars;
 
             // Getting the data points individually from the database
 
@@ -248,6 +251,8 @@ var timeOfFirstChar = 0;
 var correct = [divArray.length];
 
 function getCurrentTimeSinceFirstChar() {
+    lastWords = snapshot.val().total_words_typed;
+    lastChars = snapshot.val().total_characters_typed;
     return performance.now() / 1000 - timeOfFirstChar;
 }
 function resetLocalStats() {
