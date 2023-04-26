@@ -130,8 +130,8 @@ function splitSnippetToDivs() {
 
 // User's statistical results
 
-var total_words_typed = totalWords;
-var total_characters_typed = totalChars;
+var total_words_typed_saved;
+var total_characters_typed_saved;
 var avg_WPM = lavg_WPM;
 var avg_CPM = lavg_CPM;
 var accuracy = laccuracy;
@@ -186,8 +186,8 @@ function confirmCompletion() {
 
     function updateStatistics() {
         get(child(dbRef, "UsersList/" + currentuser.username)).then((snapshot) => {
-            var update_total_words = snapshot.val().total_words_typed + totalWords;
-            var update_total_chars = snapshot.val().total_characters_typed + totalChars;
+            var update_total_words = snapshot.val().total_words_typed + total_words_typed_saved;
+            var update_total_chars = snapshot.val().total_characters_typed + total_characters_typed_saved;
             var update_time = snapshot.val().total_time_spent_typing + getCurrentTimeSinceFirstChar();
             var update_acc = snapshot.val().lifetime_accuracy * snapshot.val().total_completed_runs;
             var update_runs = snapshot.val().total_completed_runs + 1;
@@ -364,8 +364,8 @@ function keydownSend(keyName) {
             timeSpentOnCurrSnippet = getCurrentTimeSinceFirstChar();
             laccuracy = currentCorrect / totalChars;
 
-            total_words_typed = totalWords;
-            total_characters_typed = totalChars;
+            total_words_typed_saved = totalWords;
+            total_characters_typed_saved = totalChars;
             avg_WPM = lavg_WPM;
             avg_CPM = lavg_CPM;
             accuracy = laccuracy;
