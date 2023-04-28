@@ -462,9 +462,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Descending order for username
@@ -476,9 +475,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Ascending order for total words typed
@@ -489,10 +487,9 @@
                 onValue(dbRef, (snapshot) => {
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
-                    });
-
-                    AddAllItemsToLeaderboard(users.reverse());
+                    });                    
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for total words typed
@@ -504,9 +501,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for total characters typed
@@ -518,9 +514,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for total characters typed
@@ -532,9 +527,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for avg_WPM
@@ -546,9 +540,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for avg_WPM
@@ -560,9 +553,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for avg_CPM
@@ -574,9 +566,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for avg_CPM
@@ -588,9 +579,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for lifetime accuracy
@@ -602,9 +592,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for lifetime accuracy
@@ -616,9 +605,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for total completed runs
@@ -630,9 +618,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for total completed runs
@@ -644,9 +631,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
 
             // Ascending order for total time spent typing
@@ -658,9 +644,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users.reverse());
                 })
+                AddAllItemsToLeaderboard(users.reverse());
             })
 
             // Descending order for total time spent typing
@@ -672,9 +657,8 @@
                     snapshot.forEach(childsnapshot => {
                         users.push(childsnapshot.val());
                     });
-
-                    AddAllItemsToLeaderboard(users);
                 })
+                AddAllItemsToLeaderboard(users);
             })
         }
 
