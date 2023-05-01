@@ -21,7 +21,7 @@ Visit the Code Racer website at [https://jpope6.github.io/CodeRacer/](https://jp
 ## Usage
 
 1. Create an account or sign in to track your progress and customize your profile.
-2. Choose your preffered programming language to start typing.
+2. Choose your preferred programming language to start typing.
 3. Upon completing the challenge, view your typing statistics and compare them to your previous scores.
 4. Learn more about the algorithm by following the provided educational resource link.
 5. Climb the leaderboard and compete with other users.
