@@ -9,7 +9,7 @@ The goal of Code Racer is to provide programmers with a way to continuously impr
 ## Features
 
 - Typing challenges based on popular programming algorithms
-- Real-time statistics tracking: WPM, WPS, CPM, CPS, and accuracy
+- Real-time statistics: Total Words Typed, Total Characters Typed, Average WPM, Average CPM, Accuracy, Lifetime Accuracy, Total Completed Runs, Total Time Spent Typing
 - Customizable user experience with themes
 - Educational resources for learning about algorithms
 - Real-time leaderboard for friendly competition
