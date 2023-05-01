@@ -4,7 +4,7 @@ CodeRacer is a web-based game designed for programmers who enjoy improving their
 
 ## Introduction
 
-The goal of Code Racer is to provide programmers with a way to continuously improve their typing speed and accuracy while also introducing them to various algorithms. As users become more proficient in typing, they'll be exposed to more efficient and interesting algorithms, further expanding their programming knowledge. With real-time leaderboards and customizable profiles, Code Racer offers an exciting and memorable experience for those looking to improve their typing skills and programming expertise.
+The goal of CodeRacer is to provide programmers with a way to continuously improve their typing speed and accuracy while also introducing them to various algorithms. As users become more proficient in typing, they'll be exposed to more efficient and interesting algorithms, further expanding their programming knowledge. With real-time leaderboards and customizable profiles, CodeRacer offers an exciting and memorable experience for those looking to improve their typing skills and programming expertise.
 
 ## Features
 
@@ -16,7 +16,7 @@ The goal of Code Racer is to provide programmers with a way to continuously impr
 
 ## Getting Started
 
-Visit the Code Racer website at [https://jpope6.github.io/CodeRacer/](https://jpope6.github.io/CodeRacer/) to start playing and improving your typing skills.
+Visit the CodeRacer website at [https://jpope6.github.io/CodeRacer/](https://jpope6.github.io/CodeRacer/) to start playing and improving your typing skills.
 
 ## Usage
 
@@ -28,4 +28,4 @@ Visit the Code Racer website at [https://jpope6.github.io/CodeRacer/](https://jp
 
 ## License
 
-Code Racer is released under the MIT License.
+CodeRacer is released under the MIT License.
